@@ -2,6 +2,46 @@
   <head>
     <title>Brown Uni</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    <style>
+      .container-xl {
+        font-family: "Newsreader", serif;
+        font-optical-sizing: auto;
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @keyframes reveal {
+        from {
+          opacity: 0;
+          /* clip-path: inset(45% 20% 45% 20%); */
+        }
+        to {
+          opacity: 1;
+          /* clip-path: inset(0% 0% 0% 0%); */
+        }
+      }
+
+      #story1 {
+        height: 100vh;
+      }
+
+      #story2 {
+        /* Create View Timeline */
+        view-timeline-name: --revealing-image;
+        view-timeline-axis: block;
+
+        /* Attach animation, linked to the  View Timeline */
+        animation: linear reveal both;
+        animation-timeline: --revealing-image;
+
+        /* Tweak range when effect should run*/
+        animation-range: entry 25% cover 50%;
+      }
+
+    </style>
   </head>
 
   <body>
@@ -12,34 +52,6 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
         </div>
       </nav>
     </div>
@@ -48,27 +60,27 @@
 
       <!-- Modal (green) -->
       <div class="modal fade" id="positive" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-body text-bg-success">
-              news paper article 01
+            <div class="modal-header">
+              <button type="button" class="fs-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-footer text-bg-success">
-              <button id="close_modal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div class="modal-body text-bg-success modal-story-positive">
+              <!-- filled on demand -->
             </div>
           </div>
         </div>
       </div>
 
       <!-- Modal (red) -->
-      <div class="modal fade" id="nagative" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+      <div class="modal fade" id="negative" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-body text-bg-danger">
-              news paper article 01
+            <div class="modal-header">
+              <button type="button" class="fs-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-footer text-bg-danger">
-              <button id="close_modal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div class="modal-body text-bg-danger modal-story-negative">
+              <!-- filled on demand -->
             </div>
           </div>
         </div>
@@ -76,24 +88,24 @@
 
       <section id="story1" class="my-5 py-5">
         <h1>
-          <p>The Department of Defence is the largest employer in the United States and by some measurements the entire world.</p>
-          <p>Within this workplace, sexual harassment and sexual assault continue to be tolerated and at times even encouraged. Military sexual assault occurs within a social fabric rife with sexism, misogyny and gendered violence. This "broken culture" is not new, but it was made worse by 20 years of war.</span>
-          <p>Going to war has prevented the military from institutionally reckoning with its shameful legacy of sexual assault.</p>
-          <p>Worsening sexual assault must be considered a cost of war and a likely cost of future wars.</p>
-          <a href="#" data-bs-toggle="modal" data-bs-target="#positive">Read more</a>
+          <p class="text-secondary">The Department of Defence is the largest employer in the United States and by some measurements the entire world.</p>
+          <p class="text-secondary">Within this workplace, <b>sexual harassment</b> and <b>sexual assault</b> continue to be tolerated and at times even encouraged. Military sexual assault occurs within a social fabric rife with sexism, misogyny and gendered violence. This "broken culture" is not new, but it was made worse by 20 years of war.</span>
+          <p>While the US were busy reducing sexual assault in Afghanistan, they also <a href="#" id="for-story-1" class="text-success trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried</a> to reduce sexual assaults in their own military. But it <a href="#" id="for-story-1" class="text-danger trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">didn't</a> always work.</p>
         </h1>
       </section>
       
-      <section id="story2" class="my-5 py-5 visually-hidden">
-        <h1>Story 2. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique voluptatum totam, rerum aperiam quibusdam, reprehenderit reiciendis ut cupiditate nostrum, suscipit dolore! Dignissimos accusamus dolor delectus eum eos rerum quo amet!</h1>
+      <section id="story2" class="my-5 py-5">
+        <h1 class="text-secondary">Story 2. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique voluptatum totam, rerum aperiam quibusdam, reprehenderit reiciendis ut cupiditate nostrum, suscipit dolore! Dignissimos accusamus dolor delectus eum eos rerum quo amet!</h1>
+        <p>While the US were busy reducing sexual assault in Afghanistan, they also <a href="#" id="for-story-2" class="text-success trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried</a> to reduce sexual assaults in their own military. But it <a href="#" id="for-story-2" class="text-danger trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">didn't</a> always work.</p>
       </section>
 
-      <section id="story3" class="my-5 py-5 visually-hidden">
+      <section id="story3" class="my-5 py-5">
         <h1>Story 3. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique voluptatum totam, rerum aperiam quibusdam, reprehenderit reiciendis ut cupiditate nostrum, suscipit dolore! Dignissimos accusamus dolor delectus eum eos rerum quo amet!</h1>
       </section>
 
-      <section id="story4" class="my-5 py-5 visually-hidden">
-        <h1>Story 4. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique voluptatum totam, rerum aperiam quibusdam, reprehenderit reiciendis ut cupiditate nostrum, suscipit dolore! Dignissimos accusamus dolor delectus eum eos rerum quo amet!</h1>
+      <section id="story4" class="my-5 py-5">
+        <h1>Going to war has prevented the military from institutionally reckoning with its shameful legacy of sexual assault.</h1>
+        <h1>Worsening sexual assault must be considered a cost of war and a likely cost of future wars.</h1>
       </section>
 
       <div>
@@ -109,15 +121,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
-      const stories = document.querySelectorAll("section")
-      const close_modal = document.querySelector("#close_modal")
-      const show_stories = (elem) => {
-        stories.forEach((e, i) => {
-          e.classList.remove('visually-hidden')
-        })
+      /**
+       * On clicking of an appropriate type of hyperlink
+       * create a modal and fill it in the appropriate positive/negative story details
+       */
+      function trigger_modal_story(elem, i) {
+        let e = elem.srcElement
+        let id = e.getAttribute('id')
+
+        const story_id = id.substr(id.length - 1)
+        const story_key = e.getAttribute('data-bs-target').substr(1)
+        fill_story(story_key, data_stories[story_id][story_key])
       }
 
-      close_modal.addEventListener('click', show_stories)
+      function fill_story(pos_neg, txt) {
+        const txt_container = document.querySelector(`.modal-story-${pos_neg}`)
+        txt_container.innerHTML = `<h1>${txt}</h1>`
+      }
+
+      // add a click event to all the hyperlinks that triggers a modal
+      document.querySelectorAll('a.trigger-modal').forEach((elem, i) => {
+        elem.addEventListener('click', trigger_modal_story, i)
+      })
+
+      // list of data stories that has a positive & negative combos
+      const data_stories = [
+        {
+          'positive': 'diversity is a strength of the U.S. military, and our experience as senior defence leaders tells us that capable and diverse teams are more effective in today’s environment.',
+          'negative': 'Following multiple federal lawsuits, the Marine Corps now has an initiative to integrate women into every occupation specialty'
+        },
+        {
+          'positive': 'Beth was a logistics officer volunteerly deployed in Afghanisthan on a female engagement team (FET). Her role within the Green Barrett team was to interact with women and their households to gather information about whether the village contained residents who might support an internal defence force. Her position as a woman as “an invaluable tool” when it came to collecting information in the military.',
+          'negative': 'Edith, saw the army as a more meritocratic workplace than the civilian jobs he had in the US South where she always felt looked down upon.',
+        },
+        {
+          'positive': 'The DoD, branches of the US military, and Congress produced over 200 initiatives, independent commissions and recommendations, and secretarial initiatives, ranging from changing the UCMJ to prohibit retaliation for reporting sexual assault.',
+          'negative': '... although the program left hundreds of civilians who reported military sexual assault to fend for themselves.',
+        }
+      ]
 
     </script>
   </body>
