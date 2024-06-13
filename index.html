@@ -6,6 +6,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
     <style>
+      :root, [data-bs-theme=light] {
+        --bs-success-bg-subtle: #d1e7dd;
+        --bs-success-border-subtle: #a3cfbb;
+        --bs-danger-bg-subtle: #f8d7da;
+        --bs-danger-border-subtle: #f1aeb5;
+      }
+
+      body { 
+        background-image: url(newspaper-bg.jpeg);
+        background-repeat: round;
+        background-attachment: fixed;
+        background-color: white;
+      }
+
+      a {
+        cursor: zoom-in;
+      }
+
+      .bg-success-subtle { background-color: var(--bs-success-bg-subtle); }
+      .bg-danger-subtle { background-color: var(--bs-danger-bg-subtle); }
+
       .container-xl {
         font-family: "Newsreader", serif;
         font-optical-sizing: auto;
@@ -15,7 +36,7 @@
 
       @keyframes reveal {
         from {
-          opacity: 0;
+          opacity: 0.1;
           /* clip-path: inset(45% 20% 45% 20%); */
         }
         to {
@@ -24,11 +45,10 @@
         }
       }
 
-      #story1 {
-        height: 100vh;
-      }
+      #story1 { height: 85vh; }
+      #story2, #story3 { height: 50vh; }
 
-      #story2 {
+      #story2, #story3 {
         /* Create View Timeline */
         view-timeline-name: --revealing-image;
         view-timeline-axis: block;
@@ -38,24 +58,13 @@
         animation-timeline: --revealing-image;
 
         /* Tweak range when effect should run*/
-        animation-range: entry 25% cover 50%;
+        animation-range: entry 20% cover 40%;
       }
 
     </style>
   </head>
 
   <body>
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
-    </div>
-
     <div class="container-xl mt-5">
 
       <!-- Modal (green) -->
@@ -65,7 +74,7 @@
             <div class="modal-header">
               <button type="button" class="fs-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body text-bg-success modal-story-positive">
+            <div class="modal-body bg-success-subtle modal-story-positive">
               <!-- filled on demand -->
             </div>
           </div>
@@ -79,31 +88,32 @@
             <div class="modal-header">
               <button type="button" class="fs-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body text-bg-danger modal-story-negative">
+            <div class="modal-body bg-danger-subtle modal-story-negative">
               <!-- filled on demand -->
             </div>
           </div>
         </div>
       </div>
 
-      <section id="story1" class="my-5 py-5">
-        <h1>
-          <p class="text-secondary">The Department of Defence is the largest employer in the United States and by some measurements the entire world.</p>
-          <p class="text-secondary">Within this workplace, <b>sexual harassment</b> and <b>sexual assault</b> continue to be tolerated and at times even encouraged. Military sexual assault occurs within a social fabric rife with sexism, misogyny and gendered violence. This "broken culture" is not new, but it was made worse by 20 years of war.</span>
-          <p>While the US were busy reducing sexual assault in Afghanistan, they also <a href="#" id="for-story-1" class="text-success trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried</a> to reduce sexual assaults in their own military. But it <a href="#" id="for-story-1" class="text-danger trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">didn't</a> always work.</p>
-        </h1>
+      <section id="story1" class="m-5 p-5 inline-block">
+        <div class="align-middle">
+          <h1 class="text">The invasion of Afghanistan was justified in the name of women's rights. In her radio address in   November 2001, just weeks after the invasion began and in place of the weekly radio address Laura Bush (first lady) condemned
+          </h1>
+          <h1 class="my-5"><em>"The brutal oppression of women, a central goal of the terrorists. Fight against terrorism is also a fight for the rights and dignity of women."</em></h1>
+          <h3 class="text-secondary">While the US were busy reducing sexual assault in Afghanistan, they also <a href="#" id="for-story-1" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried</a> to reduce sexual assaults in their own military. But it <a href="#" id="for-story-1" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">didn't</a> always work.</h3>
+        </div>
       </section>
       
-      <section id="story2" class="my-5 py-5">
-        <h1 class="text-secondary">Story 2. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique voluptatum totam, rerum aperiam quibusdam, reprehenderit reiciendis ut cupiditate nostrum, suscipit dolore! Dignissimos accusamus dolor delectus eum eos rerum quo amet!</h1>
-        <p>While the US were busy reducing sexual assault in Afghanistan, they also <a href="#" id="for-story-2" class="text-success trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried</a> to reduce sexual assaults in their own military. But it <a href="#" id="for-story-2" class="text-danger trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">didn't</a> always work.</p>
+      <section id="story2" class="m-5 p-5">
+        <h1>Following multiple federal lawsuits, the Marine Corps has an initiative to integrate women into every occupation specialty.</h1>
+        <h3 class="text-secondary">But there was still <a href="#" id="for-story-2" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">resistence</a>. Although, for women like Beth and Amelia, breaking down barriers to woman in combat eventually happened, albeit in an <a href="#" id="for-story-2" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">unexpected way.</a></h3>
       </section>
 
-      <section id="story3" class="my-5 py-5">
+      <section id="story3" class="m-5 p-5">
         <h1>Story 3. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique voluptatum totam, rerum aperiam quibusdam, reprehenderit reiciendis ut cupiditate nostrum, suscipit dolore! Dignissimos accusamus dolor delectus eum eos rerum quo amet!</h1>
       </section>
 
-      <section id="story4" class="my-5 py-5">
+      <section id="story4" class="m-5 p-5">
         <h1>Going to war has prevented the military from institutionally reckoning with its shameful legacy of sexual assault.</h1>
         <h1>Worsening sexual assault must be considered a cost of war and a likely cost of future wars.</h1>
       </section>
@@ -136,7 +146,7 @@
 
       function fill_story(pos_neg, txt) {
         const txt_container = document.querySelector(`.modal-story-${pos_neg}`)
-        txt_container.innerHTML = `<h1>${txt}</h1>`
+        txt_container.innerHTML = `<h3>${txt}</h3>`
       }
 
       // add a click event to all the hyperlinks that triggers a modal
@@ -147,12 +157,16 @@
       // list of data stories that has a positive & negative combos
       const data_stories = [
         {
-          'positive': 'diversity is a strength of the U.S. military, and our experience as senior defence leaders tells us that capable and diverse teams are more effective in today’s environment.',
+          'positive': 'diversity is a strength of the U.S. military, and our experience as senior defence leaders tells us that capable and diverse teams are more effective in today\'s environment.',
           'negative': 'Following multiple federal lawsuits, the Marine Corps now has an initiative to integrate women into every occupation specialty'
         },
         {
-          'positive': 'Beth was a logistics officer volunteerly deployed in Afghanisthan on a female engagement team (FET). Her role within the Green Barrett team was to interact with women and their households to gather information about whether the village contained residents who might support an internal defence force. Her position as a woman as “an invaluable tool” when it came to collecting information in the military.',
-          'negative': 'Edith, saw the army as a more meritocratic workplace than the civilian jobs he had in the US South where she always felt looked down upon.',
+          'positive': '<p>Beth was a logistics officer volunteerly deployed in Afghanisthan on a female engagement team (FET).</p><p> Her role within the Green Barrett team was to interact with women and their households to gather information about whether the village contained residents who might support an internal defence force. Her position as a woman as "an invaluable tool" when it came to collecting information in the military.</p>',
+          'negative': 'Edith, deployed as a supply clerk, saw the army as a more meritocratic workplace than the civilian jobs he had in the US South where she always felt looked down upon. She also wanted to disprove the stereotypes she had encountered growing up as a young woman of color from a poor background that, in her words, "being a Hispanic female, I wouldn\'t do much."',
+        },
+        {
+          'positive': 'Gender integration happened through conservative gender expectations that women are "natural" caregivers and more emotionally equipped than their male counterparts to calm and quiet the victims of a night raid or extract valuable intelligence. Deeply seated conservative gender regimes remain within military culture even as women have recently become officially included in all military professions.',
+          'negative': 'A few years after Beth had this experience, when the combat ban was rescinded, the Marine Corps sought official exemption from having to include women in infantry units, even going so far to conduct its own study, later condemned for biases in methodology and analysis favoring men, that claimed to show all-male infantry units were superior to mixed-gender units in areas such as speed, weapons accuracy, and evacuation ability. Even after the request for exemption from gender integration was denied, the Marine Corp continued to fight gender integration by elevating infantry standards and maintain separate boot camps.'
         },
         {
           'positive': 'The DoD, branches of the US military, and Congress produced over 200 initiatives, independent commissions and recommendations, and secretarial initiatives, ranging from changing the UCMJ to prohibit retaliation for reporting sexual assault.',
