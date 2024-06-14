@@ -13,7 +13,7 @@ fill_story(story_key, data_stories[story_id][story_key])
 
 function fill_story(pos_neg, txt) {
 const txt_container = document.querySelector(`.modal-story-${pos_neg}`)
-txt_container.innerHTML = `<h3>${txt}</h3>`
+txt_container.innerHTML = `<p>${txt}</p>`
 }
 
 // add a click event to all the hyperlinks that triggers a modal
