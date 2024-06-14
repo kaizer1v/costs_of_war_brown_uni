@@ -1,0 +1,54 @@
+:root, [data-bs-theme=light] {
+  --bs-success-bg-subtle: #d1e7dd;
+  --bs-success-border-subtle: #a3cfbb;
+  --bs-danger-bg-subtle: #f8d7da;
+  --bs-danger-border-subtle: #f1aeb5;
+}
+
+body { 
+  background-image: url(newspaper-bg.jpeg);
+  background-repeat: round;
+  background-attachment: fixed;
+  background-color: white;
+}
+
+a {
+  cursor: zoom-in;
+}
+
+.bg-success-subtle { background-color: var(--bs-success-bg-subtle); }
+.bg-danger-subtle { background-color: var(--bs-danger-bg-subtle); }
+
+.container-xl {
+  font-family: "Newsreader", serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0.1;
+    /* clip-path: inset(45% 20% 45% 20%); */
+  }
+  to {
+    opacity: 1;
+    /* clip-path: inset(0% 0% 0% 0%); */
+  }
+}
+
+section { height: 50vh; }
+#story1 { height: 75vh; }
+
+#story2, #story3, #story4 {
+  /* Create View Timeline */
+  view-timeline-name: --revealing-image;
+  view-timeline-axis: block;
+
+  /* Attach animation, linked to the  View Timeline */
+  animation: linear reveal both;
+  animation-timeline: --revealing-image;
+
+  /* Tweak range when effect should run*/
+  animation-range: entry 20% cover 40%;
+}
