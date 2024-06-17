@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Tienne:wght@400;700;900&display=swap');
+
 :root, [data-bs-theme=light] {
   --bs-success-bg-subtle: #d1e7dd;
   --bs-success-border-subtle: #a3cfbb;
@@ -5,7 +7,8 @@
   --bs-danger-border-subtle: #f1aeb5;
 }
 
-body { 
+body {
+  font-family: "Tienne", "Times New Roman", "Georgia", serif;
   background-image: url(newspaper-bg.jpeg);
   background-repeat: round;
   background-attachment: fixed;
@@ -20,7 +23,8 @@ a {
 .bg-danger-subtle { background-color: var(--bs-danger-bg-subtle); }
 
 .container-xl {
-  font-family: "Newsreader", serif;
+  margin: 0 auto;
+  padding: 2rem 0;
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
@@ -37,8 +41,9 @@ a {
   }
 }
 
-section { height: 50vh; }
-#story1 { height: 75vh; }
+section { height: 95vh; }
+.story { margin: 2rem auto; }
+#story1 { height: 70vh; }
 
 #story2, #story3, #story4 {
   /* Create View Timeline */

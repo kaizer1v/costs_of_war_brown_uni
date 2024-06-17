@@ -13,7 +13,7 @@ function trigger_modal_story(elem, i) {
 
 function fill_story(pos_neg, txt) {
   const txt_container = document.querySelector(`.modal-story-${pos_neg}`)
-  txt_container.innerHTML = `<h3>${txt}</h3>`
+  txt_container.innerHTML = `<p>${txt}</p>`
 }
 
 // add a click event to all the hyperlinks that triggers a modal
@@ -23,7 +23,7 @@ document.querySelectorAll('a.trigger-modal').forEach((elem, i) => {
 
 // list of data stories that has a positive & negative combos
 const data_stories = [
-  { 
+  {
     'positive': 'diversity is a strength of the U.S. military, and our experience as senior defence leaders tells us that capable and diverse teams are more effective in today\'s environment.',
     'negative': 'Following multiple federal lawsuits, the Marine Corps now has an initiative to integrate women into every occupation specialty'
   },
