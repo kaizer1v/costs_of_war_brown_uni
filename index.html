@@ -9,7 +9,12 @@
 </head>
 
 <body>
-  <div class="container-xl fs-1">
+  <div class="container-xl px-5 pt-5">
+
+    <!-- DRAGGABLE DIV: https://codepen.io/kaizer1v/pen/OJYQdye -->
+
+    <!-- TODO: can add radio disturbance before & after the clip -->
+    <audio id="my_audio" src="./trimmed_laura_bush_brown_uni.mp3" type="audio/mpeg"></audio>
 
     <!-- Modal (green) -->
     <div class="modal fade" id="positive" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -18,7 +23,7 @@
           <div class="modal-header">
             <button type="button" class="fs-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body bg-success-subtle modal-story-positive">
+          <div class="modal-body bg-success-subtle modal-story-positive p-4">
             <!-- filled on demand -->
           </div>
         </div>
@@ -32,7 +37,7 @@
           <div class="modal-header">
             <button type="button" class="fs-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body bg-danger-subtle modal-story-negative">
+          <div class="modal-body bg-danger-subtle modal-story-negative p-4">
             <!-- filled on demand -->
           </div>
         </div>
@@ -41,34 +46,38 @@
 
     <section id="story1" class="m-5 p-5 inline-block">
       <div class="align-middle">
-        <h1 class="fw-bolder">In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>
-        <h1 class="my-5"><em> "the brutal oppression of women"</em></h1>
-        <h3 class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a href="#" id="for-story-1" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried</a> to reduce sexual assaults in our own military, even if it <a href="#" id="for-story-1" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">didn't</a> succeed at the start.</h3>
+        <h1 class="fw-bolder fade-show">In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>
+        <h1 class="my-5 fade-show"><em> "the brutal oppression of women"</em></h1>
+        <h3 class="text-secondary lh-lg fade-show">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a href="#" id="for-story-1" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried</a> to reduce sexual assaults in our own military, even if it <a href="#" id="for-story-1" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">didn't</a> succeed at the start.</h3>
       </div>
     </section>
     
     <section id="story2" class="m-5 p-5">
       <h1 class="fw-bolder">We won some major victories against the Taliban, and even established democracy in Afghanistan. Its women thanked us for helping them feel safe.</h1>
-      <h3 class="text-secondary">Our own women were playing a greater role within the armed forces, and we <a href="#" id="for-story-2" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried again</a>to reduce sexual assaults in our own military. But it <a href="#" id="for-story-2" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">still didn't</a> seem to work</h3>
+      <h3 class="text-secondary lh-lg">Our own women were playing a greater role within the armed forces, and we <a href="#" id="for-story-2" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried again</a>to reduce sexual assaults in our own military. But it <a href="#" id="for-story-2" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">still didn't</a> seem to work</h3>
     </section>
 
     <section id="story3" class="m-5 p-5">
       <h1 class="fw-bolder">We struggled to keep the peace, and Afghanistan slowly descended into chaos. As assaults against Afghan women continued to rise, </h1>
-      <h3 class="text-secondary">we<a href="#" id="for-story-3" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">kept pretending</a> to stymie sexual assaults in our own military. But, clearly, we <a href="#" id="for-story-3" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">weren't doing enough</a> tofor women, whether in Afghanistan or in our armed forces.</h3>
+      <h3 class="text-secondary lh-lg">we<a href="#" id="for-story-3" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">kept pretending</a> to stymie sexual assaults in our own military. But, clearly, we <a href="#" id="for-story-3" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">weren't doing enough</a> tofor women, whether in Afghanistan or in our armed forces.</h3>
     </section>
 
     <section id="story4" class="m-5 p-5">
       <h1>Can we help women elsewhere in the world if we don't pay attention to our own?</h1>
+      <div class="container-fluid mx-auto">
+        <h4 class="navbar-brand" href="#">View Timeline</h4>
+        <h4 class="navbar-brand" href="#">Read Full Paper</h4>
+      </div>
     </section>
 
-    <div>
+    <!-- <div>
       <nav class="navbar sticky-bottom bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">View Timeline</a>
           <a class="navbar-brand" href="#">Read Full Paper</a>
         </div>
       </nav>
-    </div>
+    </div> -->
 
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -15,30 +15,21 @@ body {
   background-color: white;
 }
 
-a {
-  cursor: zoom-in;
-}
+a { cursor: zoom-in; }
 
 .bg-success-subtle { background-color: var(--bs-success-bg-subtle); }
 .bg-danger-subtle { background-color: var(--bs-danger-bg-subtle); }
 
 .container-xl {
   margin: 0 auto;
-  padding: 2rem 0;
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
 }
 
 @keyframes reveal {
-  from {
-    opacity: 0.1;
-    /* clip-path: inset(45% 20% 45% 20%); */
-  }
-  to {
-    opacity: 1;
-    /* clip-path: inset(0% 0% 0% 0%); */
-  }
+  from { opacity: 0.1; }
+  to   { opacity: 1;   }
 }
 
 section { height: 95vh; }
@@ -46,14 +37,7 @@ section { height: 95vh; }
 #story1 { height: 70vh; }
 
 #story2, #story3, #story4 {
-  /* Create View Timeline */
-  view-timeline-name: --revealing-image;
-  view-timeline-axis: block;
-
-  /* Attach animation, linked to the  View Timeline */
-  animation: linear reveal both;
-  animation-timeline: --revealing-image;
-
-  /* Tweak range when effect should run*/
-  animation-range: entry 20% cover 40%;
+  animation: reveal linear both;
+  animation-timeline: view(block);
+  animation-range: cover 0% contain 30%;
 }

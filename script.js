@@ -1,4 +1,13 @@
 /**
+ * On loading the page, auto play the audio
+ * https://developer.chrome.com/blog/autoplay/ - browsers don't allow autoplay but see hacks
+ * */
+window.addEventListener("DOMContentLoaded", event => {
+  const aud = document.querySelector('audio');
+  aud.play()
+})
+
+/**
 * On clicking of an appropriate type of hyperlink
 * create a modal and fill it in the appropriate positive/negative story details
 */
@@ -13,7 +22,7 @@ function trigger_modal_story(elem, i) {
 
 function fill_story(pos_neg, txt) {
   const txt_container = document.querySelector(`.modal-story-${pos_neg}`)
-  txt_container.innerHTML = `<p>${txt}</p>`
+  txt_container.innerHTML = `<h3>${txt}</h3>`
 }
 
 // add a click event to all the hyperlinks that triggers a modal
