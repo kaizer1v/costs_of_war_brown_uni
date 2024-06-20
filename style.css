@@ -7,6 +7,8 @@
   --bs-danger-border-subtle: #f1aeb5;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
   font-family: "Tienne", "Times New Roman", "Georgia", serif;
   background-image: url(newspaper-bg.jpeg);
@@ -15,26 +17,28 @@ body {
   background-color: white;
 }
 
+.container-xl {
+  font-optical-sizing: auto;
+  scroll-snap-type: y mandatory;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+article {
+  scroll-snap-align: start;
+  height: 100vh;
+}
+
 a { cursor: zoom-in; }
 
 .bg-success-subtle { background-color: var(--bs-success-bg-subtle); }
 .bg-danger-subtle { background-color: var(--bs-danger-bg-subtle); }
 
-.container-xl {
-  margin: 0 auto;
-  font-optical-sizing: auto;
-  font-weight: normal;
-  font-style: normal;
-}
 
 @keyframes reveal {
   from { opacity: 0.1; }
   to   { opacity: 1;   }
 }
-
-section { height: 95vh; }
-.story { margin: 2rem auto; }
-#story1 { height: 70vh; }
 
 #story2, #story3, #story4 {
   animation: reveal linear both;
