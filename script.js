@@ -2,10 +2,34 @@
  * On loading the page, auto play the audio
  * https://developer.chrome.com/blog/autoplay/ - browsers don't allow autoplay but see hacks
  * */
-window.addEventListener("DOMContentLoaded", event => {
-  const aud = document.querySelector('audio');
-  aud.play()
-})
+// window.addEventListener("DOMContentLoaded", event => {
+//   const aud = document.querySelector('audio');
+//   aud.play()
+// })
+
+/**
+ * 
+ */
+const wrapper = document.querySelector(".dialog-wrapper");
+
+function onDrag({movementX, movementY}) {
+  let getStyle = window.getComputedStyle(wrapper);
+  let leftVal = parseInt(getStyle.left);
+  let topVal = parseInt(getStyle.top);
+  wrapper.style.left = `${leftVal + movementX}px`;
+  wrapper.style.top = `${topVal + movementY}px`;
+}
+
+wrapper.addEventListener("mousedown", () => {
+  wrapper.classList.add("active");
+  wrapper.addEventListener("mousemove", onDrag);
+});
+
+document.addEventListener("mouseup", () => {
+  wrapper.classList.remove("active");
+  wrapper.removeEventListener("mousemove", onDrag);
+});
+
 
 /**
 * On clicking of an appropriate type of hyperlink

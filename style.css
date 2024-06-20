@@ -45,3 +45,32 @@ a { cursor: zoom-in; }
   animation-timeline: view(block);
   animation-range: cover 0% contain 30%;
 }
+
+/**
+Story Dialogs
+**/
+.dialog-wrapper {
+  cursor: move;
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  max-width: 450px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  transform: translate(-10%, 50%);
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.06);
+}
+
+.dialog-wrapper header {
+  font-size: 23px;
+  font-weight: 500;
+  padding: 17px 30px;
+  border-bottom: 1px solid #ccc;
+}
+.dialog-wrapper .content { padding: 2rem; }
+
+.dialog-wrapper header.active {
+  cursor: move;
+  user-select: none;
+}
