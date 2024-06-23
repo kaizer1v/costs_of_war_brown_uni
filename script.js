@@ -7,9 +7,6 @@
 //   aud.play()
 // })
 
-/**
- * 
- */
 const wrapper = document.querySelector(".dialog-wrapper");
 
 function onDrag({movementX, movementY}) {
@@ -120,21 +117,54 @@ const data_stories = [
   }
 ]
 
+// TODO: make sure you are on the top-most section when you load the page
 
 /** get all section.top positions */
+let prev_section = 0, curr_section = 0;
+const fns = [story_zero, story_one, story_two, story_three]
 const sections = document.querySelectorAll('section');
 const milestones = []
 sections.forEach((elem, i) => {
   const props = elem.getBoundingClientRect()
-  milestones.push(props['top'])
+  milestones.push(props['top'] + props['height'] / 2);  // until you scroll to atleast half of the next section
 })
 
-function get_section_index(pos, milestones, prev) {
-  return milestones.findLastIndex((m) => pos > m) + 1
+function get_section_index(pos, milestones) {
+  return milestones.findIndex((m) => pos < m)
 }
 
 /** on scrolling, get the scroll position on the page & get which section you are viewing */
 document.addEventListener("scroll", evt => {
 	const pos = document.documentElement.scrollTop || document.body.scrollTop;
-  console.log('you are in section', get_section_index(pos, milestones))
+  curr_section = get_section_index(pos, milestones);
+  // console.log(pos, milestones, curr_section)
+  if(prev_section != curr_section) {
+    fns[curr_section]();
+  }
 })
+
+
+
+function story_zero() {
+  // when in section 0, do the following
+  console.log('you are in section 0');
+  prev_section = curr_section;
+}
+
+function story_one() {
+  // when in section 1, do the following
+  console.log('you are in section 1');
+  prev_section = curr_section;
+}
+
+function story_two() {
+  // when in section 2, do the following
+  console.log('you are in section 2');
+  prev_section = curr_section;
+}
+
+function story_three() {
+  // when in section 3, do the following
+  console.log('you are in section 3');
+  prev_section = curr_section;
+}
