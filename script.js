@@ -79,9 +79,9 @@ document.addEventListener("mouseup", () => {
 // }
 
 // add a click event to all the hyperlinks that triggers a modal
-document.querySelectorAll('a.trigger-modal').forEach((elem, i) => {
-  elem.addEventListener('click', trigger_modal_story, i)
-})
+// document.querySelectorAll('a.trigger-modal').forEach((elem, i) => {
+//   elem.addEventListener('click', trigger_modal_story, i)
+// })
 
 // list of data stories that has a positive & negative combos
 const data_stories = [
@@ -120,16 +120,21 @@ const data_stories = [
   }
 ]
 
-const main_container = document.querySelector('.container-xl')
 
-const story1 = false;
-main_container.addEventListener("scroll", (event) => {
-  console.log(`scrollTop: ${main_container.scrollTop}`);
+/** get all section.top positions */
+const sections = document.querySelectorAll('section');
+const milestones = []
+sections.forEach((elem, i) => {
+  const props = elem.getBoundingClientRect()
+  milestones.push(props['top'])
+})
 
-  // if scroll reaches a position, show a popup
-  if(main_container.scrollTop >= 1000 && story1 == false) {
-    // check if it's not already shown
-    console.log('show story 1')
-    story1 != story1;
-  }
-});
+function get_section_index(pos, milestones, prev) {
+  return milestones.findLastIndex((m) => pos > m) + 1
+}
+
+/** on scrolling, get the scroll position on the page & get which section you are viewing */
+document.addEventListener("scroll", evt => {
+	const pos = document.documentElement.scrollTop || document.body.scrollTop;
+  console.log('you are in section', get_section_index(pos, milestones))
+})
