@@ -7,32 +7,45 @@
   --bs-danger-border-subtle: #f1aeb5;
 }
 
-html { scroll-behavior: smooth; }
-
 body {
   font-family: "Tienne", "Times New Roman", "Georgia", serif;
-  background-image: url(newspaper-bg.jpeg);
+  /* background-image: url(newspaper-bg.jpeg); */
   background-repeat: round;
   background-attachment: fixed;
-  background-color: white;
+  background-color: rgb(212, 179, 179);
 }
 
-.container-xl {
-  font-optical-sizing: auto;
-  scroll-snap-type: y mandatory;
-  height: 100vh;
-  overflow-y: scroll;
+html {
+	scroll-snap-type: mandatory;
+	scroll-snap-points-y: repeat(100vh);
+	scroll-snap-type: y mandatory;
 }
 
-article {
-  scroll-snap-align: start;
-  height: 100vh;
+section {
+	border-bottom: 1px solid white;
+	padding: 1rem;
+	height: 100vh;
+	scroll-snap-align: start;
+	text-align: center;
+	position: relative;
 }
 
-a { cursor: zoom-in; }
+section h1 {
+  position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	color: white;
+	width: 100%;
+	left: 0;
+	font-size: calc(1rem + 3vw);
+}
 
-.bg-success-subtle { background-color: var(--bs-success-bg-subtle); }
-.bg-danger-subtle { background-color: var(--bs-danger-bg-subtle); }
+
+/* ----- */
+
+/* .bg-success-subtle { background-color: var(--bs-success-bg-subtle); }
+.bg-danger-subtle { background-color: var(--bs-danger-bg-subtle); } */
 
 
 @keyframes reveal {
@@ -40,11 +53,11 @@ a { cursor: zoom-in; }
   to   { opacity: 1;   }
 }
 
-#story2, #story3, #story4 {
+/* #story2, #story3, #story4 {
   animation: reveal linear both;
   animation-timeline: view(block);
   animation-range: cover 0% contain 30%;
-}
+} */
 
 /**
 Story Dialogs
@@ -52,8 +65,6 @@ Story Dialogs
 .dialog-wrapper {
   cursor: move;
   position: absolute;
-  top: 10%;
-  left: 20%;
   max-width: 450px;
   width: 100%;
   background: #fff;
@@ -72,5 +83,26 @@ Story Dialogs
 
 .dialog-wrapper header.active {
   cursor: move;
+    .dialog-wrapper .content { padding: 2rem; > article {
+    flex: 1 200px;
+  }
   user-select: none;
+}
+
+#dialog-story1 {
+  top: 30%;
+  left: 50%;
+}
+#dialog-story2 {
+  top: 10%;
+  left: 20%
+}
+
+
+/* floating read_on button */
+.read_on {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 998;
 }

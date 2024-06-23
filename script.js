@@ -20,34 +20,63 @@ function onDrag({movementX, movementY}) {
   wrapper.style.top = `${topVal + movementY}px`;
 }
 
+var previousTouch;
+function onTouchDrag(e) {
+  const touch = e.touches[0];
+
+  if (previousTouch) {
+    movementX = touch.pageX - previousTouch.pageX;
+    movementY = touch.pageY - previousTouch.pageY;
+
+    let getStyle = window.getComputedStyle(wrapper);
+    let leftVal = parseInt(getStyle.left);
+    let topVal = parseInt(getStyle.top);
+
+    wrapper.style.left = `${leftVal + movementX}px`;
+    wrapper.style.top = `${topVal + movementY}px`;
+  }
+
+  previousTouch = touch;
+}
+
 wrapper.addEventListener("mousedown", () => {
   wrapper.classList.add("active");
   wrapper.addEventListener("mousemove", onDrag);
 });
+    // for touch
+    wrapper.addEventListener("touchstart", () => {
+      wrapper.classList.add("active");
+      wrapper.addEventListener("touchmove", onTouchDrag);
+    });
 
 document.addEventListener("mouseup", () => {
   wrapper.classList.remove("active");
   wrapper.removeEventListener("mousemove", onDrag);
 });
+    // for touch
+    document.addEventListener("touchend", () => {
+      wrapper.classList.remove("active");
+      wrapper.removeEventListener("touchmove", onTouchDrag);
+    });
 
 
 /**
 * On clicking of an appropriate type of hyperlink
 * create a modal and fill it in the appropriate positive/negative story details
 */
-function trigger_modal_story(elem, i) {
-  let e = elem.srcElement
-  let id = e.getAttribute('id')
+// function trigger_modal_story(elem, i) {
+//   let e = elem.srcElement
+//   let id = e.getAttribute('id')
 
-  const story_id = id.substr(id.length - 1)
-  const story_key = e.getAttribute('data-bs-target').substr(1)
-  fill_story(story_key, data_stories[story_id][story_key])
-}
+//   const story_id = id.substr(id.length - 1)
+//   const story_key = e.getAttribute('data-bs-target').substr(1)
+//   fill_story(story_key, data_stories[story_id][story_key])
+// }
 
-function fill_story(pos_neg, txt) {
-  const txt_container = document.querySelector(`.modal-story-${pos_neg}`)
-  txt_container.innerHTML = `<h3>${txt}</h3>`
-}
+// function fill_story(pos_neg, txt) {
+//   const txt_container = document.querySelector(`.modal-story-${pos_neg}`)
+//   txt_container.innerHTML = `<h3>${txt}</h3>`
+// }
 
 // add a click event to all the hyperlinks that triggers a modal
 document.querySelectorAll('a.trigger-modal').forEach((elem, i) => {
@@ -90,3 +119,17 @@ const data_stories = [
     'negative': 'Pvt. Ana Fernanda Basaldua Ruiz was found dead, also at Fort Hood, in March 2023. Basaldua had also told her family she was being sexually harassed by a superior before her death.'
   }
 ]
+
+const main_container = document.querySelector('.container-xl')
+
+const story1 = false;
+main_container.addEventListener("scroll", (event) => {
+  console.log(`scrollTop: ${main_container.scrollTop}`);
+
+  // if scroll reaches a position, show a popup
+  if(main_container.scrollTop >= 1000 && story1 == false) {
+    // check if it's not already shown
+    console.log('show story 1')
+    story1 != story1;
+  }
+});
