@@ -151,12 +151,22 @@ document.addEventListener("scroll", evt => {
 
 function story_zero() {
   // when in section 0, do the following
+  // TODO: releval line by line
+  const story0 = document.querySelector('#dialog-story1')
+  const story_content = document.querySelector('#story1')
+  story0.classList.replace('invisible', 'visible')
+  story_content.classList.replace('invisible', 'visible')
+  story_content.classList.add('reveal')
+
   console.log('you are in section 0');
   prev_section = curr_section;
 }
 
 function story_one() {
   // when in section 1, do the following
+  const story2 = document.querySelector('#dialog-story2')
+  story2.classList.replace('invisible', 'visible')
+
   console.log('you are in section 1');
   prev_section = curr_section;
 }
