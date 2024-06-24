@@ -7,54 +7,58 @@
 //   aud.play()
 // })
 
-const wrapper = document.querySelector(".dialog-wrapper");
+const dialogs = document.querySelectorAll(".dialog-wrapper");
 
-function onDrag({movementX, movementY}) {
-  let getStyle = window.getComputedStyle(wrapper);
-  let leftVal = parseInt(getStyle.left);
-  let topVal = parseInt(getStyle.top);
-  wrapper.style.left = `${leftVal + movementX}px`;
-  wrapper.style.top = `${topVal + movementY}px`;
-}
+dialogs.forEach((wrapper) => {
 
-var previousTouch;
-function onTouchDrag(e) {
-  const touch = e.touches[0];
+  wrapper.addEventListener("mousedown", () => {
+    wrapper.classList.add("active");
+    wrapper.addEventListener("mousemove", onDrag);
+  });
+      // for touch
+      wrapper.addEventListener("touchstart", () => {
+        wrapper.classList.add("active");
+        wrapper.addEventListener("touchmove", onTouchDrag);
+      });
+  
+  document.addEventListener("mouseup", () => {
+    wrapper.classList.remove("active");
+    wrapper.removeEventListener("mousemove", onDrag);
+  });
+      // for touch
+      document.addEventListener("touchend", () => {
+        wrapper.classList.remove("active");
+        wrapper.removeEventListener("touchmove", onTouchDrag);
+      });
 
-  if (previousTouch) {
-    movementX = touch.pageX - previousTouch.pageX;
-    movementY = touch.pageY - previousTouch.pageY;
-
+  function onDrag({movementX, movementY}) {
     let getStyle = window.getComputedStyle(wrapper);
     let leftVal = parseInt(getStyle.left);
     let topVal = parseInt(getStyle.top);
-
     wrapper.style.left = `${leftVal + movementX}px`;
     wrapper.style.top = `${topVal + movementY}px`;
   }
+  
+  var previousTouch;
+  function onTouchDrag(e) {
+    const touch = e.touches[0];
+  
+    if (previousTouch) {
+      movementX = touch.pageX - previousTouch.pageX;
+      movementY = touch.pageY - previousTouch.pageY;
+  
+      let getStyle = window.getComputedStyle(wrapper);
+      let leftVal = parseInt(getStyle.left);
+      let topVal = parseInt(getStyle.top);
+  
+      wrapper.style.left = `${leftVal + movementX}px`;
+      wrapper.style.top = `${topVal + movementY}px`;
+    }
+  
+    previousTouch = touch;
+  }
 
-  previousTouch = touch;
-}
-
-wrapper.addEventListener("mousedown", () => {
-  wrapper.classList.add("active");
-  wrapper.addEventListener("mousemove", onDrag);
-});
-    // for touch
-    wrapper.addEventListener("touchstart", () => {
-      wrapper.classList.add("active");
-      wrapper.addEventListener("touchmove", onTouchDrag);
-    });
-
-document.addEventListener("mouseup", () => {
-  wrapper.classList.remove("active");
-  wrapper.removeEventListener("mousemove", onDrag);
-});
-    // for touch
-    document.addEventListener("touchend", () => {
-      wrapper.classList.remove("active");
-      wrapper.removeEventListener("touchmove", onTouchDrag);
-    });
+})
 
 
 /**
