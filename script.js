@@ -162,7 +162,6 @@ function show_dialog(id) {
 
 function reveal_content(id) {
   const story_content = document.querySelector(`#story${id} > div`)
-  debugger;
   if([...story_content.classList].includes('invisible')) {
     story_content.classList.replace('invisible', 'visible')
     story_content.classList.add('reveal')
