@@ -12,7 +12,7 @@ body {
   /* background-image: url(newspaper-bg.jpeg); */
   background-repeat: round;
   background-attachment: fixed;
-  background-color: rgb(212, 179, 179);
+  background-color: rgb(240, 240, 240);
 }
 
 html {
@@ -35,7 +35,7 @@ section {
 	top: 50%;
 	transform: translateY(-50%);
 	text-align: center;
-	color: white;
+	color: rgb(43, 40, 40);
 	width: 100%;
 	left: 0;
 	font-size: calc(1rem + 3vw);
@@ -49,7 +49,7 @@ section {
 }
 
 .reveal {
-  animation: reveal 2s steps(44) 1s 1 normal both;
+  animation: reveal 0.5s steps(10) 1s 1 normal both;
 }
 
 /**
@@ -76,11 +76,11 @@ Story Dialogs
 
 
 /* story dialog positions */
-#dialog-story1 {
+#dialog-story0 {
   top: 30%;
-  left: 50%;
+  left: 10%;
 }
-#dialog-story2 {
+#dialog-story1 {
   top: 130%;
   left: 20%
 }

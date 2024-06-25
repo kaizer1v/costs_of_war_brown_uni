@@ -8,6 +8,7 @@
 // })
 
 const dialogs = document.querySelectorAll(".dialog-wrapper");
+const dialogs_arr = [...dialogs]
 
 dialogs.forEach((wrapper) => {
 
@@ -125,7 +126,7 @@ const data_stories = [
 
 /** get all section.top positions */
 let prev_section = 0, curr_section = 0;
-const fns = [story_zero, story_one, story_two, story_three]
+const fns = [story_zero, story_one, story_two, story_three, story_four]
 const sections = document.querySelectorAll('section');
 const milestones = []
 sections.forEach((elem, i) => {
@@ -141,44 +142,74 @@ function get_section_index(pos, milestones) {
 document.addEventListener("scroll", evt => {
 	const pos = document.documentElement.scrollTop || document.body.scrollTop;
   curr_section = get_section_index(pos, milestones);
-  // console.log(pos, milestones, curr_section)
   if(prev_section != curr_section) {
     fns[curr_section]();
   }
 })
+
+/**
+ * Given a dialog id, unhide the dialog with that id
+ * This is a one time function
+ * `id` is an integer (for now)
+ */
+function show_dialog(id) {
+  if([...dialogs[id].classList].includes('invisible')) {
+    dialogs[id].classList.replace('invisible', 'visible')
+    dialogs[id].classList.add('reveal')
+  }
+}
+
+
+function reveal_content(id) {
+  const story_content = document.querySelector(`#story${id} > div`)
+  debugger;
+  if([...story_content.classList].includes('invisible')) {
+    story_content.classList.replace('invisible', 'visible')
+    story_content.classList.add('reveal')
+  }
+}
 
 
 
 function story_zero() {
   // when in section 0, do the following
   // TODO: releval line by line
-  const story0 = document.querySelector('#dialog-story1')
-  const story_content = document.querySelector('#story1')
-  story0.classList.replace('invisible', 'visible')
-  story_content.classList.replace('invisible', 'visible')
-  story_content.classList.add('reveal')
-
   console.log('you are in section 0');
+  show_dialog(0)
+  reveal_content(0)
   prev_section = curr_section;
 }
 
 function story_one() {
   // when in section 1, do the following
-  const story2 = document.querySelector('#dialog-story2')
-  story2.classList.replace('invisible', 'visible')
-
+  show_dialog(1)
+  reveal_content(1)
   console.log('you are in section 1');
   prev_section = curr_section;
 }
 
 function story_two() {
   // when in section 2, do the following
+  show_dialog(2)
+  reveal_content(2)
   console.log('you are in section 2');
   prev_section = curr_section;
 }
 
 function story_three() {
   // when in section 3, do the following
+  show_dialog(3)
+  reveal_content(3)
   console.log('you are in section 3');
   prev_section = curr_section;
 }
+
+function story_four() {
+  // when in section 3, do the following
+  show_dialog(4)
+  reveal_content(4)
+  console.log('you are in section 4');
+  prev_section = curr_section;
+}
+
+story_zero()
