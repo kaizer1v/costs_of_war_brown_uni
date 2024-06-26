@@ -30,17 +30,14 @@ section {
 	scroll-snap-align: start;
 	text-align: center;
 	position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .section-content {
-  position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	text-align: center;
 	color: rgb(43, 40, 40);
-	width: 100%;
-	left: 0;
 	font-size: calc(1rem + 3vw);
+  padding: 2rem;
 }
 
 .disable-touch { touch-action: none !important; }
