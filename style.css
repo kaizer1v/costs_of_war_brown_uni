@@ -5,6 +5,8 @@
   --bs-success-border-subtle: #a3cfbb;
   --bs-danger-bg-subtle: #f8d7da;
   --bs-danger-border-subtle: #f1aeb5;
+  --green: #35A6AD;
+  --red: #EF4748;
 }
 
 body {
@@ -41,6 +43,8 @@ section {
 	font-size: calc(1rem + 3vw);
 }
 
+.disable-touch { touch-action: none !important; }
+
 /* ----- */
 
 @keyframes reveal {
@@ -48,8 +52,16 @@ section {
   to   { opacity: 1;   }
 }
 
-.reveal {
-  animation: reveal 0.5s steps(10) 1s 1 normal both;
+.reveal { animation: reveal 0.5s steps(10) 1s 1 normal both; }
+
+.text-bg-danger {
+  background-color: var(--red) !important;
+  padding: 0 0.5rem;
+}
+
+.text-bg-success {
+  background-color: var(--green) !important;
+  padding: 0 0.5rem;
 }
 
 /**
@@ -60,36 +72,33 @@ Story Dialogs
   position: absolute;
   max-width: 450px;
   width: 100%;
-  background: #fff;
-  border-radius: 10px;
-  transform: translate(-10%, 50%);
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.06);
+  background: #F8F5ED;
+  /* transform: translate(-10%, 50%); */
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.125);
+  padding: 16px;
 }
-
-.dialog-wrapper header {
-  font-size: 23px;
-  font-weight: 500;
-  padding: 17px 30px;
-  border-bottom: 1px solid #ccc;
-}
-.dialog-wrapper .content { padding: 2rem; }
+  .dialog-wrapper .year { font-size: 0.7rem; }
+  .positive-story { border: 2px solid var(--green); }
+  .negative-story { border: 2px solid var(--red); }
+  .dialog-wrapper header {
+    font-size: 23px;
+    font-weight: 500;
+    padding: 17px 30px;
+    border-bottom: 1px solid #ccc;
+  }
+  .dialog-wrapper .content { padding: 2rem; }
 
 
 /* story dialog positions */
 #dialog-story0 {
-  top: 30%;
-  left: 10%;
+  top: 90%;
+  left: 1%;
 }
 #dialog-story1 {
   top: 130%;
   left: 20%
 }
-
-
-/* floating read_on button */
-.read_on {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 998;
+#dialog-story2 {
+  top: 150%;
+  left: 90%
 }

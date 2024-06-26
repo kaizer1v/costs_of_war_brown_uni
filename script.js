@@ -7,8 +7,10 @@
 //   aud.play()
 // })
 
+let to_print = '';
 const dialogs = document.querySelectorAll(".dialog-wrapper");
 const dialogs_arr = [...dialogs]
+const body = document.querySelector('body');
 
 dialogs.forEach((wrapper) => {
 
@@ -18,6 +20,7 @@ dialogs.forEach((wrapper) => {
   });
       // for touch
       wrapper.addEventListener("touchstart", () => {
+        body.classList.add('disable-touch')
         wrapper.classList.add("active");
         wrapper.addEventListener("touchmove", onTouchDrag);
       });
@@ -30,6 +33,7 @@ dialogs.forEach((wrapper) => {
       document.addEventListener("touchend", () => {
         wrapper.classList.remove("active");
         wrapper.removeEventListener("touchmove", onTouchDrag);
+        body.classList.remove('disable-touch');
       });
 
   function onDrag({movementX, movementY}) {
@@ -55,7 +59,6 @@ dialogs.forEach((wrapper) => {
       wrapper.style.left = `${leftVal + movementX}px`;
       wrapper.style.top = `${topVal + movementY}px`;
     }
-  
     previousTouch = touch;
   }
 
@@ -150,7 +153,7 @@ document.addEventListener("scroll", evt => {
 /**
  * Given a dialog id, unhide the dialog with that id
  * This is a one time function
- * `id` is an integer (for now)
+ * `id` is an index <int> (for now)
  */
 function show_dialog(id) {
   if([...dialogs[id].classList].includes('invisible')) {
@@ -158,7 +161,6 @@ function show_dialog(id) {
     dialogs[id].classList.add('reveal')
   }
 }
-
 
 function reveal_content(id) {
   const story_content = document.querySelector(`#story${id} > div`)
@@ -174,8 +176,13 @@ function story_zero() {
   // when in section 0, do the following
   // TODO: releval line by line
   console.log('you are in section 0');
-  show_dialog(0)
-  reveal_content(0)
+  const target = document.querySelector('.typewriter')
+  typewriter(target, 'In 2006, Laura Bush said that America was going to Afghanistan to fight')
+
+  window.setTimeout(() => {
+    show_dialog(0)
+  }, 2000)
+  // reveal_content(0)
   prev_section = curr_section;
 }
 
@@ -212,3 +219,17 @@ function story_four() {
 }
 
 story_zero()
+
+
+/**
+ * Typewriter
+ */
+const target = document.querySelector('.typewriter')
+
+function typewriter(elem, txt, i = 0) {
+  if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+  to_print += txt[i];
+  elem.innerHTML = `<h2>${to_print}</h2>`
+  if(i === txt.length - 1) return;
+  setTimeout(() => typewriter(elem, txt, i + 1), 80)
+}

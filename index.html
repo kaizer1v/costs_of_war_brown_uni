@@ -3,6 +3,7 @@
 <head>
   <title>Brown Uni</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -10,13 +11,14 @@
 
 <body>
 
-  <div class="sections">
+  <div class="container">
 
     <section id="story0">
-      <div class="section-content align-middle invisible">
-        <h1 class="fw-bolder fade-show">In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>
-        <h1 class="my-5 fade-show"><em> "the brutal oppression of women"</em></h1>
-        <h3 class="text-secondary lh-lg fade-show">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a href="#" id="for-story-1" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried</a> to reduce sexual assaults in our own military, even if it <a href="#" id="for-story-1" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">didn't</a> succeed at the start.</h3>
+      <div class="section-content align-middle">
+        <div class="typewriter"></div>
+        <!-- <h1 class="fw-bolder fade-show">In 2006, Laura Bush said that America was going to Afghanistan to fight</h1> -->
+        <!-- <h1 class="my-5 fade-show"><em> "the brutal oppression of women"</em></h1> -->
+        <!-- <h3 class="text-secondary lh-lg fade-show">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a href="#" id="for-story-1" class="text-white text-bg-success p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#positive">tried</a> to reduce sexual assaults in our own military, even if it <a href="#" id="for-story-1" class="text-white text-bg-danger p-1 trigger-modal" data-bs-toggle="modal" data-bs-target="#negative">didn't</a> succeed at the start.</h3> -->
       </div>
     </section>
     
@@ -46,29 +48,29 @@
   </div>
 
   <!-- dialogs -->
-  <div id="dialog-story0" class="dialog-wrapper">
-    <header>Story 0</header>
+  <div id="dialog-story0" class="dialog-wrapper invisible positive-story">
+    <!-- <header>Story 0</header> -->
     <div class="content">
-      <div class="icon"><i class='bx bx-move'></i></div>
-      <div class="title">Draggable Div</div>
-      <p>This is a draggable div which is created using HTML CSS & JavaScript. You can move this div anywhere on the document or page.</p>
+      <!-- <div class="title">Draggable Div</div> -->
+      <p>Beth was a logistics officer volunteerly deployed in Afghanisthan on a female engagement team (FET). Her position as a woman within the Green Barrett team was "an invaluable tool" when it came to collecting information from Afghan women about sympathetic residents.</p>
+      <span class="year">2008</span>
     </div>
   </div>
 
-  <div id="dialog-story1" class="invisible dialog-wrapper">
-    <header>Draggable Div 2</header>
+  <div id="dialog-story1" class="invisible dialog-wrapper positive-story">
+    <!-- <header>Draggable Div 2</header> -->
     <div class="content">
-      <div class="icon"><i class='bx bx-move'></i></div>
-      <div class="title">Draggable Div</div>
-      <p>This is a draggable div which is created using HTML CSS & JavaScript. You can move this div anywhere on the document or page.</p>
+      <!-- <div class="title">Draggable Div</div> -->
+      <p>However, the reforms did not extend to PTSD claims in which the cause of PTSD is sexual assault.</p>
+      <p>When Edith finally did seek mental health services at the VA, the clinician did not believe that she had been in the sort of combat she described. </p>
+      <span class="year">2008</span>
     </div>
   </div>
   
-  <div id="dialog-story2" class="invisible dialog-wrapper">
-    <header>Another story (2)</header>
+  <div id="dialog-story2" class="invisible dialog-wrapper negative-story">
+    <!-- <header>Another story (2)</header> -->
     <div class="content">
-      <div class="icon"><i class='bx bx-move'></i></div>
-      <div class="title">Draggable Div</div>
+      <!-- <div class="title">Draggable Div</div> -->
       <p>This is a draggable div which is created using HTML CSS & JavaScript. You can move this div anywhere on the document or page.</p>
     </div>
   </div>
@@ -76,7 +78,6 @@
   <div id="dialog-story3" class="invisible dialog-wrapper">
     <header>Third story</header>
     <div class="content">
-      <div class="icon"><i class='bx bx-move'></i></div>
       <div class="title">Draggable Div</div>
       <p>This is a draggable div which is created using HTML CSS & JavaScript. You can move this div anywhere on the document or page.</p>
     </div>
@@ -85,7 +86,6 @@
   <div id="dialog-story4" class="invisible dialog-wrapper">
     <header>One more four</header>
     <div class="content">
-      <div class="icon"><i class='bx bx-move'></i></div>
       <div class="title">Draggable Div</div>
       <p>This is a draggable div which is created using HTML CSS & JavaScript. You can move this div anywhere on the document or page.</p>
     </div>
