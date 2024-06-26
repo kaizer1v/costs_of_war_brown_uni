@@ -9,7 +9,6 @@ const dialogs_arr = [...dialogs]
 const body = document.querySelector('body');
 
 dialogs.forEach((wrapper) => {
-
   wrapper.addEventListener("mousedown", () => {
     wrapper.classList.add("active");
     wrapper.addEventListener("mousemove", onDrag);
@@ -57,8 +56,9 @@ dialogs.forEach((wrapper) => {
     }
     previousTouch = touch;
   }
-
 })
+
+
 
 /** get all section.top positions */
 let prev_section = 0, curr_section = 0;
@@ -108,27 +108,67 @@ function reveal_content(id) {
 }
 
 
-
+let story_zero_loaded = false;
 function story_zero() {
-  // when in section 0, do the following
-  // TODO: releval line by line
+  if(story_zero_loaded == true) return;
+  const target = document.querySelector('#story0 > div')
+  function typewriter(elem, txt, i = 0) {
+    if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+    console.log(txt[i], i);
+    if(i == 309) {
+      // load first dialog (green)
+      show_dialog(0)
+    }
+    if(i == 419) {
+      // load second dialog (red)
+      show_dialog(1)
+    }
+
+    to_print += txt[i];
+    elem.innerHTML = to_print
+    if(i === txt.length - 1) return;
+    setTimeout(() => typewriter(elem, txt, i + 1), 80)
+  }
+
+  typewriter(target, '\
+    <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
+    <h2><em>"the brutal oppression of women"</em></h2>\
+    <h3 class="text-secondary lh-lg">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="text-white text-bg-success p-1">tried</a> to reduce sexual assaults in our own military, even if it <a class="text-white text-bg-danger p-1">didn\'t</a> succeed at the start.</h3>\
+  ');
   console.log('you are in section 0');
-  // const target = document.querySelector('.typewriter')
-  // typewriter(target, 'In 2006, Laura Bush said that America was going to Afghanistan to fight')
-  reveal_content(0)
-  show_dialog(0)
-  // window.setTimeout(() => {
-  //   show_dialog(0)
-  // }, 2000)
   prev_section = curr_section;
+  story_zero_loaded = true;
 }
 
+let story_one_loaded = false;
 function story_one() {
-  // when in section 1, do the following
-  show_dialog(1)
-  reveal_content(1)
+  if(story_one_loaded == true) return;
+  const target = document.querySelector('#story1 > div')
+  function typewriter(elem, txt, i = 0) {
+    if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+    console.log(txt[i], i);
+    if(i == 309) {
+      // load first dialog (green)
+      show_dialog(2)
+    }
+    if(i == 419) {
+      // load second dialog (red)
+      show_dialog(3)
+    }
+
+    to_print += txt[i];
+    elem.innerHTML = to_print
+    if(i === txt.length - 1) return;
+    setTimeout(() => typewriter(elem, txt, i + 1), 80)
+  }
+
+  typewriter(target, '\
+    <h1>We defeated the Taliban, established democracy, and helped Afghanistan\'s women feel safer. </h1>\
+    <h3 class="text-secondary lh-lg">We defeated the Taliban, established democracy, and helped Afghanistan\'s women feel safer. </h3>\
+  ');
   console.log('you are in section 1');
   prev_section = curr_section;
+  story_one_loaded = true;
 }
 
 function story_two() {
@@ -155,18 +195,34 @@ function story_four() {
   prev_section = curr_section;
 }
 
-// story_zero()
+story_zero()
 
 
 /**
  * Typewriter
  */
-const target = document.querySelector('.typewriter')
+// const target = document.querySelector('#story0 > div')
 
-function typewriter(elem, txt, i = 0) {
-  if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-  to_print += txt[i];
-  elem.innerHTML = `<h2>${to_print}</h2>`
-  if(i === txt.length - 1) return;
-  setTimeout(() => typewriter(elem, txt, i + 1), 80)
-}
+// function typewriter(elem, txt, i = 0) {
+//   if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+//   console.log(txt[i], i);
+//   if(i == 309) {
+//     // load first dialog (green)
+//     show_dialog(0)
+//   }
+//   if(i == 419) {
+//     // load second dialog (red)
+//     show_dialog(1)
+//   }
+
+//   to_print += txt[i];
+//   elem.innerHTML = to_print
+//   if(i === txt.length - 1) return;
+//   setTimeout(() => typewriter(elem, txt, i + 1), 80)
+// }
+
+// typewriter(target, '\
+//   <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
+//   <h2><em>"the brutal oppression of women"</em></h2>\
+//   <h3 class="text-secondary lh-lg">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="text-white text-bg-success p-1">tried</a> to reduce sexual assaults in our own military, even if it <a class="text-white text-bg-danger p-1">didn\'t</a> succeed at the start.</h3>\
+// ');

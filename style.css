@@ -1,17 +1,20 @@
+/* ----- */
+/* Imports */
+/* ----- */
 @import url('https://fonts.googleapis.com/css2?family=Tienne:wght@400;700;900&display=swap');
 
+
+/* ----- */
+/* Base */
+/* ----- */
+
 :root, [data-bs-theme=light] {
-  --bs-success-bg-subtle: #d1e7dd;
-  --bs-success-border-subtle: #a3cfbb;
-  --bs-danger-bg-subtle: #f8d7da;
-  --bs-danger-border-subtle: #f1aeb5;
   --green: #35A6AD;
   --red: #EF4748;
 }
 
 body {
   font-family: "Tienne", "Times New Roman", "Georgia", serif;
-  /* background-image: url(newspaper-bg.jpeg); */
   background-repeat: round;
   background-attachment: fixed;
   background-color: rgb(240, 240, 240);
@@ -23,6 +26,11 @@ html {
 	scroll-snap-type: y mandatory;
 }
 
+
+/* ----- */
+/* Sections */
+/* ----- */
+
 section {
 	border-bottom: 1px solid white;
 	padding: 1rem;
@@ -33,37 +41,17 @@ section {
   display: flex;
   align-items: center;
 }
+  .section-content {
+    color: rgb(43, 40, 40);
+    font-size: calc(1rem + 3vw);
+    padding: 2rem;
+  }
 
-.section-content {
-	color: rgb(43, 40, 40);
-	font-size: calc(1rem + 3vw);
-  padding: 2rem;
-}
 
-.disable-touch { touch-action: none !important; }
-
+  /* ----- */
+/* Story Dialogs */
 /* ----- */
 
-@keyframes reveal {
-  from { opacity: 0.1; }
-  to   { opacity: 1;   }
-}
-
-.reveal { animation: reveal 0.5s steps(10) 1s 1 normal both; }
-
-.text-bg-danger {
-  background-color: var(--red) !important;
-  padding: 0 0.5rem;
-}
-
-.text-bg-success {
-  background-color: var(--green) !important;
-  padding: 0 0.5rem;
-}
-
-/**
-Story Dialogs
-**/
 .dialog-wrapper {
   cursor: move;
   position: absolute;
@@ -86,16 +74,40 @@ Story Dialogs
   .dialog-wrapper .content { padding: 2rem; }
 
 
-/* story dialog positions */
+/* -- story dialog positions -- */
 #dialog-story0 {
-  top: 90%;
-  left: 1%;
+  top: 70%;
+  left: 10%;
 }
 #dialog-story1 {
-  top: 130%;
-  left: 20%
+  top: 11%;
+  left: 70%
 }
+
 #dialog-story2 {
   top: 150%;
   left: 90%
+}
+
+
+/* ----- */
+/* Animations & Utilities */
+/* ----- */
+
+.disable-touch { touch-action: none !important; }
+
+@keyframes reveal {
+  from { opacity: 0.1; }
+  to   { opacity: 1;   }
+}
+.reveal { animation: reveal 0.2s steps(2) 0.2s 1 normal both; }
+
+.text-bg-danger {
+  background-color: var(--red) !important;
+  padding: 0 0.5rem;
+}
+
+.text-bg-success {
+  background-color: var(--green) !important;
+  padding: 0 0.5rem;
 }
