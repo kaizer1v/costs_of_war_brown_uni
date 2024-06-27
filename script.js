@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
 
+  const typingSpeed = 40;
   const options = {
     root: null, // Use the viewport as the root
     rootMargin: '0px',
@@ -73,12 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
         to_print += txt[i];
         elem.innerHTML = to_print
         if(i === txt.length - 1) return;
-        setTimeout(() => typewriter(elem, txt, i + 1), 10)
+        setTimeout(() => typewriter(elem, txt, i + 1), typingSpeed)
       }
     
       typewriter(target, '\
         <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
-        <h2><em>"the brutal oppression of women"</em></h2>\
+        <h2>"the brutal oppression of women"</h2>\
         <h3 class="text-secondary lh-lg">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h3>\
       ');
       
@@ -102,12 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
       to_print += txt[i];
       elem.innerHTML = to_print
       if(i === txt.length - 1) return;
-      setTimeout(() => typewriter(elem, txt, i + 1), 10)
+      setTimeout(() => typewriter(elem, txt, i + 1), typingSpeed)
     }
   
     typewriter(target, '\
       <h1>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h1>\
-      <h3 class="text-secondary lh-lg">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="p">still didn\'t</a> seem to work.</h3>\
+      <h3 class="text-secondary lh-lg">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="n">still didn\'t</a> seem to work.</h3>\
     ');
   }
   
@@ -128,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
       to_print += txt[i];
       elem.innerHTML = to_print
       if(i === txt.length - 1) return;
-      setTimeout(() => typewriter(elem, txt, i + 1), 10)
+      setTimeout(() => typewriter(elem, txt, i + 1), typingSpeed)
     }
   
     typewriter(target, '\
