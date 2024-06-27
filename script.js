@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
 
-  const typingSpeed = 40;
+  const typingSpeed = 60;
   const options = {
     root: null, // Use the viewport as the root
     rootMargin: '0px',
@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
       typewriter(target, '\
         <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
-        <h2>"the brutal oppression of women"</h2>\
-        <h3 class="text-secondary lh-lg">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h3>\
+        <h1>"the brutal oppression of women"</h1>\
+        <h1 class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h1>\
       ');
       
       setTimeout(() => {
@@ -108,15 +108,15 @@ document.addEventListener('DOMContentLoaded', () => {
   
     typewriter(target, '\
       <h1>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h1>\
-      <h3 class="text-secondary lh-lg">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="n">still didn\'t</a> seem to work.</h3>\
+      <h1 class="text-secondary">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="n">still didn\'t</a> seem to work.</h1>\
     ');
   }
   
   function doSomethingForSection3() {
     const target = document.querySelector('#story2 > div')
     function typewriter(elem, txt, i = 0) {
-      if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-      if(i == 95)  { show_dialog('dialog-story9', 70, 30) }
+      if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
+      if(i == 95)  { show_dialog('dialog-story9',  70, 30) }
       if(i == 161) { show_dialog('dialog-story10', 78, 50) }
       if(i == 120) { show_dialog('dialog-story11', 65, 60) }
       if(i == 130) { show_dialog('dialog-story12', 83, 66) }
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     typewriter(target, '\
       <h1>Ultimately, though, the war severely <a class="n">worsened</a> Afghan women\'s lives. </h1>\
-      <h3 class="text-secondary lh-lg">While we were busy <a class="p">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It <a class="n">didn\'t work</a> at all.</h3>\
+      <h1 class="text-secondary">While we were busy <a class="p">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It <a class="n">didn\'t work</a> at all.</h1>\
     ');
   }
 

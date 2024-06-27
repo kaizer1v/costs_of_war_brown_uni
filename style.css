@@ -85,7 +85,7 @@ section {
   from { opacity: 0.1; }
   to   { opacity: 1;   }
 }
-.reveal { animation: reveal 0.2s steps(2) 0.2s 1 normal both; }
+.reveal { animation: reveal 0.2s 1 normal both; }
 
 a.p {
   padding: 0.5rem;
