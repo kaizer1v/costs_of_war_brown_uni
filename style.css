@@ -11,6 +11,7 @@
 :root, [data-bs-theme=light] {
   --green: #35A6AD;
   --red: #EF4748;
+  --white:  #F8F5ED;
 }
 
 body {
@@ -48,7 +49,7 @@ section {
   }
 
 
-  /* ----- */
+/* ----- */
 /* Story Dialogs */
 /* ----- */
 
@@ -57,7 +58,7 @@ section {
   position: absolute;
   max-width: 450px;
   width: 100%;
-  background: #F8F5ED;
+  background: var(--white);
   /* transform: translate(-10%, 50%); */
   box-shadow: 0px 0px 5px rgba(0,0,0,0.125);
   padding: 16px;
@@ -65,6 +66,7 @@ section {
   .dialog-wrapper .year { font-size: 0.7rem; }
   .positive-story { border: 2px solid var(--green); }
   .negative-story { border: 2px solid var(--red); }
+  .neutral-story  { border: 2px solid var(--white) }
   .dialog-wrapper header {
     font-size: 23px;
     font-weight: 500;
@@ -102,7 +104,7 @@ section {
 }
 .reveal { animation: reveal 0.2s steps(2) 0.2s 1 normal both; }
 
-.text-bg-danger {
+/* .text-bg-danger {
   background-color: var(--red) !important;
   padding: 0 0.5rem;
 }
@@ -110,4 +112,16 @@ section {
 .text-bg-success {
   background-color: var(--green) !important;
   padding: 0 0.5rem;
+} */
+
+a.p {
+  padding: 1rem;
+  color: var(--white);
+  background-color: var(--green) !important;
+}
+
+a.n {
+  padding: 1rem;
+  color: var(--white);
+  background-color: var(--red) !important;
 }

@@ -86,12 +86,12 @@ document.addEventListener("scroll", evt => {
 /**
  * Given a dialog id, unhide the dialog with that id
  * This is a one time function
- * `id` is an index <int> (for now)
  */
 function show_dialog(id) {
-  if([...dialogs[id].classList].includes('invisible')) {
-    dialogs[id].classList.replace('invisible', 'visible')
-    dialogs[id].classList.add('reveal')
+  const dialog = document.getElementById(id)
+  if(dialog.classList.includes('invisible')) {
+    dialog.classList.replace('invisible', 'visible')
+    dialog.classList.add('reveal')
   }
 }
 
@@ -110,18 +110,17 @@ function reveal_content(id) {
 
 let story_zero_loaded = false;
 function story_zero() {
+  console.log('you are in section 0');
   if(story_zero_loaded == true) return;
   const target = document.querySelector('#story0 > div')
   function typewriter(elem, txt, i = 0) {
     if(i === 0) { elem.innerHTML = ''; to_print = ''; }
     console.log(txt[i], i);
     if(i == 309) {
-      // load first dialog (green)
-      show_dialog(0)
+      show_dialog('dialog-story0')
     }
     if(i == 419) {
-      // load second dialog (red)
-      show_dialog(1)
+      show_dialog('dialog-story1')
     }
 
     to_print += txt[i];
@@ -133,27 +132,27 @@ function story_zero() {
   typewriter(target, '\
     <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
     <h2><em>"the brutal oppression of women"</em></h2>\
-    <h3 class="text-secondary lh-lg">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="text-white text-bg-success p-1">tried</a> to reduce sexual assaults in our own military, even if it <a class="text-white text-bg-danger p-1">didn\'t</a> succeed at the start.</h3>\
+    <h3 class="text-secondary lh-lg">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h3>\
   ');
-  console.log('you are in section 0');
   prev_section = curr_section;
   story_zero_loaded = true;
 }
 
 let story_one_loaded = false;
 function story_one() {
+  console.log('you are in section 1');
   if(story_one_loaded == true) return;
   const target = document.querySelector('#story1 > div')
   function typewriter(elem, txt, i = 0) {
     if(i === 0) { elem.innerHTML = ''; to_print = ''; }
     console.log(txt[i], i);
-    if(i == 309) {
-      // load first dialog (green)
-      show_dialog(2)
+    if(i == 90) {
+      // load news article
+      show_dialog('dialog-story2')
     }
-    if(i == 419) {
+    if(i == 31) {
       // load second dialog (red)
-      show_dialog(3)
+      show_dialog('dialog-story3')
     }
 
     to_print += txt[i];
@@ -163,20 +162,42 @@ function story_one() {
   }
 
   typewriter(target, '\
-    <h1>We defeated the Taliban, established democracy, and helped Afghanistan\'s women feel safer. </h1>\
-    <h3 class="text-secondary lh-lg">We defeated the Taliban, established democracy, and helped Afghanistan\'s women feel safer. </h3>\
+    <h1>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h1>\
+    <h3 class="text-secondary lh-lg">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="p">still didn\'t</a> seem to work.</h3>\
   ');
-  console.log('you are in section 1');
   prev_section = curr_section;
   story_one_loaded = true;
 }
 
 function story_two() {
   // when in section 2, do the following
-  show_dialog(2)
-  reveal_content(2)
   console.log('you are in section 2');
+  if(story_one_loaded == true) return;
+  const target = document.querySelector('#story2 > div')
+  function typewriter(elem, txt, i = 0) {
+    if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+    console.log(txt[i], i);
+    if(i == 90) {
+      // load news article
+      // show_dialog('dialog-story2')
+    }
+    if(i == 31) {
+      // load second dialog (red)
+      // show_dialog('dialog-story3')
+    }
+
+    to_print += txt[i];
+    elem.innerHTML = to_print
+    if(i === txt.length - 1) return;
+    setTimeout(() => typewriter(elem, txt, i + 1), 80)
+  }
+
+  typewriter(target, '\
+    <h1>Ultimately, though, the war severely <a class="e">worsened</a> Afghan women\'s lives.</h1>\
+    <h3 class="text-secondary lh-lg">While we were busy pretending to help Afghanistan, we kept <a class="p">pretending</a> to reduce sexual assaults in our own military. It <a class="n>didn\'t</a> work at all.</h3>\
+  ');
   prev_section = curr_section;
+  story_one_loaded = true;
 }
 
 function story_three() {
