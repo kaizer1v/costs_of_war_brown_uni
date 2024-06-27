@@ -12,6 +12,7 @@
   --green: #35A6AD;
   --red: #EF4748;
   --white:  #F8F5ED;
+  --black: rgb(43, 40, 40);
 }
 
 body {
@@ -37,12 +38,12 @@ section {
 	padding: 1rem;
 	height: 100vh;
 	scroll-snap-align: start;
-	text-align: center;
 	position: relative;
   display: flex;
   align-items: center;
 }
   .section-content {
+    text-align: center;
     color: rgb(43, 40, 40);
     font-size: calc(1rem + 3vw);
     padding: 2rem;
@@ -59,14 +60,13 @@ section {
   max-width: 450px;
   width: 100%;
   background: var(--white);
-  /* transform: translate(-10%, 50%); */
   box-shadow: 0px 0px 5px rgba(0,0,0,0.125);
   padding: 16px;
 }
   .dialog-wrapper .year { font-size: 0.7rem; }
   .positive-story { border: 2px solid var(--green); }
   .negative-story { border: 2px solid var(--red); }
-  .neutral-story  { border: 2px solid var(--white) }
+  .neutral-story  { border: 2px solid var(--white); }
   .dialog-wrapper header {
     font-size: 23px;
     font-weight: 500;
@@ -74,23 +74,6 @@ section {
     border-bottom: 1px solid #ccc;
   }
   .dialog-wrapper .content { padding: 2rem; }
-
-
-/* -- story dialog positions -- */
-#dialog-story0 {
-  top: 70%;
-  left: 10%;
-}
-#dialog-story1 {
-  top: 11%;
-  left: 70%
-}
-
-#dialog-story2 {
-  top: 150%;
-  left: 90%
-}
-
 
 /* ----- */
 /* Animations & Utilities */
@@ -104,24 +87,20 @@ section {
 }
 .reveal { animation: reveal 0.2s steps(2) 0.2s 1 normal both; }
 
-/* .text-bg-danger {
-  background-color: var(--red) !important;
-  padding: 0 0.5rem;
-}
-
-.text-bg-success {
-  background-color: var(--green) !important;
-  padding: 0 0.5rem;
-} */
-
 a.p {
-  padding: 1rem;
+  padding: 0.5rem;
   color: var(--white);
   background-color: var(--green) !important;
 }
 
 a.n {
-  padding: 1rem;
+  padding: 0.5rem;
   color: var(--white);
   background-color: var(--red) !important;
+}
+
+a.e {
+  padding: 0.5rem;
+  color: var(--black);
+  background-color: var(--white) !important;
 }

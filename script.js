@@ -3,10 +3,161 @@
  * https://developer.chrome.com/blog/autoplay/ - browsers don't allow autoplay but see hacks
  * */
 
-// force scroll to top of page when loading
-document.addEventListener('DOMContentLoaded', function() {
-  window.scrollTo(0, 0);
+/** get all section.top positions */
+// let prev_section = 0, curr_section = 0;
+// const sections = document.querySelectorAll('section');
+// const milestones = []
+// sections.forEach((elem, i) => {
+//   const props = elem.getBoundingClientRect()
+//   milestones.push(props['top'] + props['height'] / 3);  // until you scroll to atleast half of the next section
+// })
+
+// // force scroll to top of page when loading
+// document.addEventListener('DOMContentLoaded', function() {
+//   window.scrollTo(0, 0);
+// });
+
+/* -----
+ * Scroll based events
+ * -----
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section');
+
+  const options = {
+    root: null, // Use the viewport as the root
+    rootMargin: '0px',
+    threshold: 0.4 // Trigger callback when 50% of the section is visible
+  };
+
+  const disableScroll = () => {
+    window.addEventListener('scroll', preventScroll, { passive: false });
+  };
+
+  const enableScroll = () => {
+    window.removeEventListener('scroll', preventScroll, { passive: false });
+  };
+
+  const preventScroll = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+  };
+
+  const observer = new IntersectionObserver(async (entries, observer) => {
+    for (const entry of entries) {
+      if(entry.isIntersecting) {
+        disableScroll();
+        console.log(`In viewport: ${entry.target.id}`);
+
+        // Perform any other actions you want when the section is in the viewport
+        switch(entry.target.id) {
+          case 'story0':
+              doSomethingForSection1();
+              break;
+          case 'story1':
+              doSomethingForSection2();
+              break;
+          case 'story2':
+              doSomethingForSection3();
+              break;
+        }
+        // Unobserve the section so the callback runs only once
+        observer.unobserve(entry.target);
+        enableScroll();
+      }
+    }
+  }, options);
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+
+  function doSomethingForSection1() {
+    return new Promise((resolve) => {
+      const target = document.querySelector('#story0 > div')
+      function typewriter(elem, txt, i = 0) {
+        if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+        console.log(txt[i], i);
+        if(i == 286) { show_dialog('dialog-story0', 10, 90) }
+        if(i == 375) { show_dialog('dialog-story1', 20, 40) }
+    
+        to_print += txt[i];
+        elem.innerHTML = to_print
+        if(i === txt.length - 1) return;
+        setTimeout(() => typewriter(elem, txt, i + 1), 10)
+      }
+    
+      typewriter(target, '\
+        <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
+        <h2><em>"the brutal oppression of women"</em></h2>\
+        <h3 class="text-secondary lh-lg">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h3>\
+      ');
+      
+      setTimeout(() => {
+          console.log('Placeholder function for Section 3 completed.');
+          resolve();
+      }, 2000); // Simulate an asynchronous operation with a 2-second delay
+    });
+  }
+  
+  function doSomethingForSection2() {
+    const target = document.querySelector('#story1 > div')
+    function typewriter(elem, txt, i = 0) {
+      if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+      console.log(txt[i], i);
+      if(i == 95)  { show_dialog('dialog-story2', 70, 30) }
+      if(i == 361) { show_dialog('dialog-story3', 78, 50) }
+      if(i == 420) { show_dialog('dialog-story4', 65, 60) }
+      if(i == 512) { show_dialog('dialog-story5', 83, 56) }
+  
+      to_print += txt[i];
+      elem.innerHTML = to_print
+      if(i === txt.length - 1) return;
+      setTimeout(() => typewriter(elem, txt, i + 1), 10)
+    }
+  
+    typewriter(target, '\
+      <h1>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h1>\
+      <h3 class="text-secondary lh-lg">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="p">still didn\'t</a> seem to work.</h3>\
+    ');
+  }
+  
+  function doSomethingForSection3() {
+    const target = document.querySelector('#story2 > div')
+    function typewriter(elem, txt, i = 0) {
+      if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+  
+      if(i == 95)  { show_dialog('dialog-story9', 70, 30) }
+      if(i == 361) { show_dialog('dialog-story10', 78, 50) }
+      if(i == 420) { show_dialog('dialog-story11', 65, 60) }
+      if(i == 530) { show_dialog('dialog-story12', 83, 56) }
+      if(i == 532) { show_dialog('dialog-story13', 83, 56) }
+      if(i == 533) { show_dialog('dialog-story14', 83, 56) }
+      if(i == 534) { show_dialog('dialog-story15', 83, 56) }
+      if(i == 535) { show_dialog('dialog-story16', 83, 56) }
+      if(i == 535) { show_dialog('dialog-story17', 83, 56) }
+  
+      to_print += txt[i];
+      elem.innerHTML = to_print
+      if(i === txt.length - 1) return;
+      setTimeout(() => typewriter(elem, txt, i + 1), 10)
+    }
+  
+    typewriter(target, '\
+      <h1>Ultimately, though, the war severely <a class="n">worsened</a> Afghan women\'s lives. </h1>\
+      <h3 class="text-secondary lh-lg">While we were busy <a class="p">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It <a class="n">didn\'t work</a> at all.</h3>\
+    ');
+  }
+
 });
+
+
+/** ------ */
+
+
 
 let to_print = '';
 const dialogs = document.querySelectorAll(".dialog-wrapper");
@@ -63,40 +214,23 @@ dialogs.forEach((wrapper) => {
   }
 })
 
-
-
-/** get all section.top positions */
-let prev_section = 0, curr_section = 0;
-const fns = [story_zero, story_one, story_two, story_three, story_four]
-const sections = document.querySelectorAll('section');
-const milestones = []
-sections.forEach((elem, i) => {
-  const props = elem.getBoundingClientRect()
-  milestones.push(props['top'] + props['height'] / 2);  // until you scroll to atleast half of the next section
-})
-
 function get_section_index(pos, milestones) {
   return milestones.findIndex((m) => pos < m)
 }
 
-/** on scrolling, get the scroll position on the page & get which section you are viewing */
-document.addEventListener("scroll", evt => {
-	const pos = document.documentElement.scrollTop || document.body.scrollTop;
-  curr_section = get_section_index(pos, milestones);
-  if(prev_section != curr_section) {
-    fns[curr_section]();
-  }
-})
 
 /**
  * Given a dialog id, unhide the dialog with that id
  * This is a one time function
  */
-function show_dialog(id) {
+function show_dialog(id, x, y) {
   const dialog = document.getElementById(id)
-  if(dialog.classList.includes('invisible')) {
+  
+  if(dialog.classList.contains('invisible')) {
     dialog.classList.replace('invisible', 'visible')
     dialog.classList.add('reveal')
+    dialog.style.top = `${x}%`;
+    dialog.style.left = `${y}%`;
   }
 }
 
@@ -106,149 +240,8 @@ function show_dialog(id) {
  */
 function reveal_content(id) {
   const story_content = document.querySelector(`#story${id} > div`)
-  if([...story_content.classList].includes('invisible')) {
+  if([...story_content.classList].contains('invisible')) {
     story_content.classList.replace('invisible', 'visible')
     story_content.classList.add('reveal')
   }
 }
-
-
-let story_zero_loaded = false;
-function story_zero() {
-  console.log('you are in section 0');
-  if(story_zero_loaded == true) return;
-  const target = document.querySelector('#story0 > div')
-  function typewriter(elem, txt, i = 0) {
-    if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-    console.log(txt[i], i);
-    if(i == 309) {
-      show_dialog('dialog-story0')
-    }
-    if(i == 419) {
-      show_dialog('dialog-story1')
-    }
-
-    to_print += txt[i];
-    elem.innerHTML = to_print
-    if(i === txt.length - 1) return;
-    setTimeout(() => typewriter(elem, txt, i + 1), 80)
-  }
-
-  typewriter(target, '\
-    <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
-    <h2><em>"the brutal oppression of women"</em></h2>\
-    <h3 class="text-secondary lh-lg">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h3>\
-  ');
-  prev_section = curr_section;
-  story_zero_loaded = true;
-}
-
-let story_one_loaded = false;
-function story_one() {
-  console.log('you are in section 1');
-  if(story_one_loaded == true) return;
-  const target = document.querySelector('#story1 > div')
-  function typewriter(elem, txt, i = 0) {
-    if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-    console.log(txt[i], i);
-    if(i == 90) {
-      // load news article
-      show_dialog('dialog-story2')
-    }
-    if(i == 31) {
-      // load second dialog (red)
-      show_dialog('dialog-story3')
-    }
-
-    to_print += txt[i];
-    elem.innerHTML = to_print
-    if(i === txt.length - 1) return;
-    setTimeout(() => typewriter(elem, txt, i + 1), 80)
-  }
-
-  typewriter(target, '\
-    <h1>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h1>\
-    <h3 class="text-secondary lh-lg">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="p">still didn\'t</a> seem to work.</h3>\
-  ');
-  prev_section = curr_section;
-  story_one_loaded = true;
-}
-
-function story_two() {
-  // when in section 2, do the following
-  console.log('you are in section 2');
-  if(story_one_loaded == true) return;
-  const target = document.querySelector('#story2 > div')
-  function typewriter(elem, txt, i = 0) {
-    if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-    console.log(txt[i], i);
-    if(i == 90) {
-      // load news article
-      // show_dialog('dialog-story2')
-    }
-    if(i == 31) {
-      // load second dialog (red)
-      // show_dialog('dialog-story3')
-    }
-
-    to_print += txt[i];
-    elem.innerHTML = to_print
-    if(i === txt.length - 1) return;
-    setTimeout(() => typewriter(elem, txt, i + 1), 80)
-  }
-
-  typewriter(target, '\
-    <h1>Ultimately, though, the war severely <a class="e">worsened</a> Afghan women\'s lives.</h1>\
-    <h3 class="text-secondary lh-lg">While we were busy pretending to help Afghanistan, we kept <a class="p">pretending</a> to reduce sexual assaults in our own military. It <a class="n>didn\'t</a> work at all.</h3>\
-  ');
-  prev_section = curr_section;
-  story_one_loaded = true;
-}
-
-function story_three() {
-  // when in section 3, do the following
-  show_dialog(3)
-  reveal_content(3)
-  console.log('you are in section 3');
-  prev_section = curr_section;
-}
-
-function story_four() {
-  // when in section 3, do the following
-  show_dialog(4)
-  reveal_content(4)
-  console.log('you are in section 4');
-  prev_section = curr_section;
-}
-
-story_zero()
-
-
-/**
- * Typewriter
- */
-// const target = document.querySelector('#story0 > div')
-
-// function typewriter(elem, txt, i = 0) {
-//   if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-//   console.log(txt[i], i);
-//   if(i == 309) {
-//     // load first dialog (green)
-//     show_dialog(0)
-//   }
-//   if(i == 419) {
-//     // load second dialog (red)
-//     show_dialog(1)
-//   }
-
-//   to_print += txt[i];
-//   elem.innerHTML = to_print
-//   if(i === txt.length - 1) return;
-//   setTimeout(() => typewriter(elem, txt, i + 1), 80)
-// }
-
-// typewriter(target, '\
-//   <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
-//   <h2><em>"the brutal oppression of women"</em></h2>\
-//   <h3 class="text-secondary lh-lg">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="text-white text-bg-success p-1">tried</a> to reduce sexual assaults in our own military, even if it <a class="text-white text-bg-danger p-1">didn\'t</a> succeed at the start.</h3>\
-// ');
