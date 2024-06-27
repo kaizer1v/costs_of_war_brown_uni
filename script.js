@@ -1,28 +1,12 @@
-/**
- * On loading the page, auto play the audio
- * https://developer.chrome.com/blog/autoplay/ - browsers don't allow autoplay but see hacks
- * */
-
-/** get all section.top positions */
-// let prev_section = 0, curr_section = 0;
-// const sections = document.querySelectorAll('section');
-// const milestones = []
-// sections.forEach((elem, i) => {
-//   const props = elem.getBoundingClientRect()
-//   milestones.push(props['top'] + props['height'] / 3);  // until you scroll to atleast half of the next section
-// })
-
-// // force scroll to top of page when loading
-// document.addEventListener('DOMContentLoaded', function() {
-//   window.scrollTo(0, 0);
-// });
-
 /* -----
  * Scroll based events
  * -----
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ensure the page starts from the top
+  // window.scrollTo(0, 0);
+
   const sections = document.querySelectorAll('section');
 
   const options = {
@@ -32,10 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const disableScroll = () => {
+    document.body.style.overflow = 'hidden';
     window.addEventListener('scroll', preventScroll, { passive: false });
   };
 
   const enableScroll = () => {
+    document.body.style.overflow = 'auto';
     window.removeEventListener('scroll', preventScroll, { passive: false });
   };
 
@@ -129,16 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const target = document.querySelector('#story2 > div')
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-  
       if(i == 95)  { show_dialog('dialog-story9', 70, 30) }
-      if(i == 361) { show_dialog('dialog-story10', 78, 50) }
-      if(i == 420) { show_dialog('dialog-story11', 65, 60) }
-      if(i == 530) { show_dialog('dialog-story12', 83, 56) }
-      if(i == 532) { show_dialog('dialog-story13', 83, 56) }
-      if(i == 533) { show_dialog('dialog-story14', 83, 56) }
-      if(i == 534) { show_dialog('dialog-story15', 83, 56) }
-      if(i == 535) { show_dialog('dialog-story16', 83, 56) }
-      if(i == 535) { show_dialog('dialog-story17', 83, 56) }
+      if(i == 161) { show_dialog('dialog-story10', 78, 50) }
+      if(i == 120) { show_dialog('dialog-story11', 65, 60) }
+      if(i == 130) { show_dialog('dialog-story12', 83, 66) }
+      if(i == 132) { show_dialog('dialog-story13', 83, 46) }
+      if(i == 133) { show_dialog('dialog-story14', 13, 16) }
+      if(i == 134) { show_dialog('dialog-story15', 33, 26) }
+      if(i == 135) { show_dialog('dialog-story16', 23, 86) }
+      if(i == 135) { show_dialog('dialog-story17', 43, 16) }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -161,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let to_print = '';
 const dialogs = document.querySelectorAll(".dialog-wrapper");
-const dialogs_arr = [...dialogs]
 const body = document.querySelector('body');
 
 dialogs.forEach((wrapper) => {
