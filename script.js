@@ -3,6 +3,11 @@
  * https://developer.chrome.com/blog/autoplay/ - browsers don't allow autoplay but see hacks
  * */
 
+// force scroll to top of page when loading
+document.addEventListener('DOMContentLoaded', function() {
+  window.scrollTo(0, 0);
+});
+
 let to_print = '';
 const dialogs = document.querySelectorAll(".dialog-wrapper");
 const dialogs_arr = [...dialogs]
