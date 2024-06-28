@@ -98,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i == 95)  { show_dialog('dialog-story2', 70, 30) }
       if(i == 361) { show_dialog('dialog-story3', 78, 50) }
       if(i == 420) { show_dialog('dialog-story4', 65, 60) }
-      if(i == 512) { show_dialog('dialog-story5', 83, 56) }
+      if(i == 420) { show_dialog('dialog-story5', 83, 56) }
+      if(i == 512) { show_dialog('dialog-story6', 13, 26) }
+      if(i == 512) { show_dialog('dialog-story7', 33, 96) }
   
       to_print += txt[i];
       elem.innerHTML = to_print

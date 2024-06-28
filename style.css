@@ -48,6 +48,7 @@ section {
     font-size: calc(1rem + 3vw);
     padding: 2rem;
   }
+  .section-content .text-secondary { line-height: 1.6; }
 
 
 /* ----- */
@@ -88,19 +89,19 @@ section {
 .reveal { animation: reveal 0.2s 1 normal both; }
 
 a.p {
-  padding: 0.5rem;
+  padding: 0.2rem;
   color: var(--white);
   background-color: var(--green) !important;
 }
 
 a.n {
-  padding: 0.5rem;
+  padding: 0.2rem;
   color: var(--white);
   background-color: var(--red) !important;
 }
 
 a.e {
-  padding: 0.5rem;
+  padding: 0.2rem;
   color: var(--black);
   background-color: var(--white) !important;
 }
