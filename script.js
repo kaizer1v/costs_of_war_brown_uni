@@ -143,23 +143,19 @@ document.addEventListener('DOMContentLoaded', () => {
   
   dialogs.forEach((wrapper) => {
     wrapper.addEventListener("mousedown", () => {
-      wrapper.classList.add("active");
       wrapper.addEventListener("mousemove", onDrag);
     });
         // for touch
         wrapper.addEventListener("touchstart", () => {
           body.classList.add('disable-touch')
-          wrapper.classList.add("active");
           wrapper.addEventListener("touchmove", onTouchDrag);
         });
     
     document.addEventListener("mouseup", () => {
-      wrapper.classList.remove("active");
       wrapper.removeEventListener("mousemove", onDrag);
     });
         // for touch
         document.addEventListener("touchend", () => {
-          wrapper.classList.remove("active");
           wrapper.removeEventListener("touchmove", onTouchDrag);
           body.classList.remove('disable-touch');
         });
@@ -176,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function onTouchDrag(e) {
       const touch = e.touches[0];
     
-      if (previousTouch) {
+      if(previousTouch) {
         movementX = touch.pageX - previousTouch.pageX;
         movementY = touch.pageY - previousTouch.pageY;
     
