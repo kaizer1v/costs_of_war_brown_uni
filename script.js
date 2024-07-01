@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
   let to_print = '';
-  const typingSpeed = 10;
+  const typingSpeed = 1;
   const options = {
     root: null, // Use the viewport as the root
     rootMargin: '0px',
@@ -138,70 +138,108 @@ document.addEventListener('DOMContentLoaded', () => {
       <h1 class="text-secondary">While we were busy <a class="p">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It <a class="n">didn\'t work</a> at all.</h1>\
     ');
   }
-  const dialogs = document.querySelectorAll(".dialog-wrapper");
+
+
+  /**
+   * Drag events
+   */
+  const draggables = document.querySelectorAll(".dialog-wrapper");
+  let isDragging = false;
+  let startX, startY, initialX, initialY, currentDraggable;
   const body = document.querySelector('body');
-  
-  dialogs.forEach((wrapper) => {
-    wrapper.addEventListener("mousedown", () => {
-      wrapper.addEventListener("mousemove", onDrag);
-    });
-        // for touch
-        wrapper.addEventListener("touchstart", () => {
-          body.classList.add('disable-touch')
-          wrapper.addEventListener("touchmove", onTouchDrag);
-        });
-    
-    document.addEventListener("mouseup", () => {
-      wrapper.removeEventListener("mousemove", onDrag);
-    });
-        // for touch
-        document.addEventListener("touchend", () => {
-          wrapper.removeEventListener("touchmove", onTouchDrag);
-          body.classList.remove('disable-touch');
-        });
-  
-    function onDrag({movementX, movementY}) {
-      let getStyle = window.getComputedStyle(wrapper);
-      let leftVal = parseInt(getStyle.left);
-      let topVal = parseInt(getStyle.top);
-      wrapper.style.left = `${leftVal + movementX}px`;
-      wrapper.style.top = `${topVal + movementY}px`;
+  const preventDefault = (e) => e.preventDefault();
+
+  const findDraggable = (element) => {
+    while (element && !element.classList.contains('dialog-wrapper')) {
+      element = element.parentElement;
     }
-    
-    var previousTouch;
-    function onTouchDrag(e) {
-      const touch = e.touches[0];
-    
-      if(previousTouch) {
-        movementX = touch.pageX - previousTouch.pageX;
-        movementY = touch.pageY - previousTouch.pageY;
-    
-        let getStyle = window.getComputedStyle(wrapper);
-        let leftVal = parseInt(getStyle.left);
-        let topVal = parseInt(getStyle.top);
-    
-        wrapper.style.left = `${leftVal + movementX}px`;
-        wrapper.style.top = `${topVal + movementY}px`;
-      }
-      previousTouch = touch;
-    }
+    return element;
+  };
+
+  const onMouseDown = (e) => {
+    currentDraggable = findDraggable(e.target);
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    initialX = currentDraggable.offsetLeft;
+    initialY = currentDraggable.offsetTop;
+    currentDraggable.style.cursor = 'grabbing';
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('scroll', preventDefault, { passive: false });
+  }
+
+  const onMouseMove = (e) => {
+    if(!isDragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    currentDraggable.style.left = `${initialX + dx}px`;
+    currentDraggable.style.top = `${initialY + dy}px`;
+  };
+
+  const onMouseUp = () => {
+    isDragging = false;
+    currentDraggable.style.cursor = 'grab';
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+    document.removeEventListener('scroll', preventDefault);
+  }
+
+  // for touch devices
+  const onTouchStart = (e) => {
+    currentDraggable = findDraggable(e.target);
+    isDragging = true;
+    const touch = e.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    initialX = currentDraggable.offsetLeft;
+    initialY = currentDraggable.offsetTop;
+
+    document.addEventListener('touchmove', onTouchMove, { passive: false });
+    document.addEventListener('touchend', onTouchEnd);
+    document.addEventListener('scroll', preventDefault, { passive: false });
+  };
+
+  const onTouchMove = (e) => {
+    if(!isDragging) return;
+    const touch = e.touches[0];
+    const dx = touch.clientX - startX;
+    const dy = touch.clientY - startY;
+    currentDraggable.style.left = `${initialX + dx}px`;
+    currentDraggable.style.top = `${initialY + dy}px`;
+    e.preventDefault(); // Prevent scrolling while dragging
+  };
+
+  const onTouchEnd = () => {
+    isDragging = false;
+    document.removeEventListener('touchmove', onTouchMove);
+    document.removeEventListener('touchend', onTouchEnd);
+    document.removeEventListener('scroll', preventDefault);
+  };
+
+  // add the events
+  draggables.forEach((draggable) => {
+    draggable.addEventListener('mousedown', onMouseDown);
+    draggable.addEventListener('touchstart', onTouchStart, { passive: false });
   })
 
 
-/**
- * Utility
- * Given a dialog id, unhide the dialog with that id
- * This is a one time function
- */
-function show_dialog(id, x, y) {
-  const dialog = document.getElementById(id)
-  
-  if(dialog.classList.contains('invisible')) {
-    dialog.classList.replace('invisible', 'visible')
-    dialog.classList.add('reveal')
-    dialog.style.top = `${y}%`;
-    dialog.style.left = `${x}%`;
+  /**
+   * Utility
+   * Given a dialog id, unhide the dialog with that id
+   * This is a one time function
+   */
+  function show_dialog(id, x, y) {
+    const dialog = document.getElementById(id)
+    
+    if(dialog.classList.contains('invisible')) {
+      dialog.classList.replace('invisible', 'visible')
+      dialog.classList.add('reveal')
+      dialog.style.top = `${y}%`;
+      dialog.style.left = `${x}%`;
+    }
   }
-}
 
 });
