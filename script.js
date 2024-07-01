@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
   let to_print = '';
-  const typingSpeed = 1;
+  const typingSpeed = 60;
   const options = {
     root: null, // Use the viewport as the root
     rootMargin: '0px',
