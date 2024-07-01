@@ -41,14 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Perform any other actions you want when the section is in the viewport
         switch(entry.target.id) {
           case 'story0':
-              doSomethingForSection1();
-              break;
+            doSomethingForSection1();
+            break;
           case 'story1':
-              doSomethingForSection2();
-              break;
+            doSomethingForSection2();
+            break;
           case 'story2':
-              doSomethingForSection3();
-              break;
+            doSomethingForSection3();
+            break;
         }
         // Unobserve the section so the callback runs only once
         observer.unobserve(entry.target);
@@ -67,9 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector('#story0 > div')
       function typewriter(elem, txt, i = 0) {
         if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-        console.log(txt[i], i);
-        if(i == 286) { show_dialog('dialog-story0', 10, 90) }
-        if(i == 375) { show_dialog('dialog-story1', 20, 40) }
+        if(i == 286) { show_dialog('dialog-story0', 0, 10) }
+        if(i == 375) { show_dialog('dialog-story1', 10, 30) }
     
         to_print += txt[i];
         elem.innerHTML = to_print
@@ -84,8 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ');
       
       setTimeout(() => {
-          console.log('Placeholder function for Section 3 completed.');
-          resolve();
+        resolve();
       }, 2000); // Simulate an asynchronous operation with a 2-second delay
     });
   }
@@ -95,12 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
       console.log(txt[i], i);
-      if(i == 95)  { show_dialog('dialog-story2', 70, 30) }
-      if(i == 361) { show_dialog('dialog-story3', 78, 50) }
-      if(i == 420) { show_dialog('dialog-story4', 65, 60) }
-      if(i == 420) { show_dialog('dialog-story5', 83, 56) }
-      if(i == 512) { show_dialog('dialog-story6', 13, 26) }
-      if(i == 512) { show_dialog('dialog-story7', 33, 96) }
+      if(i == 95)  { show_dialog('dialog-story2', -10, 10) }
+      if(i == 361) { show_dialog('dialog-story3', -5, 15) }
+      if(i == 420) { show_dialog('dialog-story4', 0, 20) }
+      if(i == 426) { show_dialog('dialog-story5', 5, 25) }
+      if(i == 508) { show_dialog('dialog-story6', 10, 30) }
+      if(i == 512) { show_dialog('dialog-story7', 15, 35) }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -118,15 +116,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const target = document.querySelector('#story2 > div')
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
-      if(i == 95)  { show_dialog('dialog-story9',  70, 30) }
-      if(i == 161) { show_dialog('dialog-story10', 78, 50) }
-      if(i == 120) { show_dialog('dialog-story11', 65, 60) }
-      if(i == 130) { show_dialog('dialog-story12', 83, 66) }
-      if(i == 132) { show_dialog('dialog-story13', 83, 46) }
-      if(i == 133) { show_dialog('dialog-story14', 13, 16) }
-      if(i == 134) { show_dialog('dialog-story15', 33, 26) }
-      if(i == 135) { show_dialog('dialog-story16', 23, 86) }
-      if(i == 135) { show_dialog('dialog-story17', 43, 16) }
+      console.log(txt[i], i);
+      if(i == 95)  { show_dialog('dialog-story9',  -20, -5) }
+      if(i == 161) { show_dialog('dialog-story10', -15, 0) }
+      if(i == 120) { show_dialog('dialog-story11', -10, 5) }
+      if(i == 130) { show_dialog('dialog-story12', -5, 10) }
+      if(i == 132) { show_dialog('dialog-story13', 0, 15) }
+      if(i == 283) { show_dialog('dialog-story14', 5, 20) }
+      if(i == 285) { show_dialog('dialog-story15', 40, 25) }
+      if(i == 287) { show_dialog('dialog-story16', 15, 30) }
+      if(i == 290) { show_dialog('dialog-story17', 20, 35) }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -216,8 +215,8 @@ function show_dialog(id, x, y) {
   if(dialog.classList.contains('invisible')) {
     dialog.classList.replace('invisible', 'visible')
     dialog.classList.add('reveal')
-    dialog.style.top = `${x}%`;
-    dialog.style.left = `${y}%`;
+    dialog.style.top = `${y}%`;
+    dialog.style.left = `${x}%`;
   }
 }
 
