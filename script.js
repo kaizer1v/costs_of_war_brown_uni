@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
   let to_print = '';
-  const typingSpeed = 60;
+  const typingSpeed = 10;
   const options = {
     root: null, // Use the viewport as the root
     rootMargin: '0px',
@@ -32,27 +32,27 @@ document.addEventListener('DOMContentLoaded', () => {
     return false;
   };
 
+  disableScroll();
+
   const observer = new IntersectionObserver(async (entries, observer) => {
-    for (const entry of entries) {
+    for(const entry of entries) {
       if(entry.isIntersecting) {
-        disableScroll();
         console.log(`In viewport: ${entry.target.id}`);
 
         // Perform any other actions you want when the section is in the viewport
         switch(entry.target.id) {
           case 'story0':
-            doSomethingForSection1();
+            doSomethingForSection0();
             break;
           case 'story1':
-            doSomethingForSection2();
+            doSomethingForSection1();
             break;
           case 'story2':
-            doSomethingForSection3();
+            doSomethingForSection2();
             break;
         }
         // Unobserve the section so the callback runs only once
         observer.unobserve(entry.target);
-        enableScroll();
       }
     }
   }, options);
@@ -62,37 +62,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  function doSomethingForSection1() {
-    return new Promise((resolve) => {
-      const target = document.querySelector('#story0 > div')
-      function typewriter(elem, txt, i = 0) {
-        if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-        if(i == 286) { show_dialog('dialog-story0', 0, 10) }
-        if(i == 375) { show_dialog('dialog-story1', 10, 30) }
-    
-        to_print += txt[i];
-        elem.innerHTML = to_print
-        if(i === txt.length - 1) return;
-        setTimeout(() => typewriter(elem, txt, i + 1), typingSpeed)
-      }
-    
-      typewriter(target, '\
-        <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
-        <h1>"the brutal oppression of women"</h1>\
-        <h1 class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h1>\
-      ');
-      
-      setTimeout(() => {
-        resolve();
-      }, 2000); // Simulate an asynchronous operation with a 2-second delay
-    });
+  function doSomethingForSection0() {
+    const target = document.querySelector('#story0 > div')
+    function typewriter(elem, txt, i = 0) {
+      if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+      if(i == 286) { show_dialog('dialog-story0', 0, 10) }
+      if(i == 375) { show_dialog('dialog-story1', 10, 30) }
+  
+      to_print += txt[i];
+      elem.innerHTML = to_print
+      if(i === txt.length - 1) return;
+      setTimeout(() => typewriter(elem, txt, i + 1), typingSpeed)
+    }
+  
+    typewriter(target, '\
+      <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
+      <h1>"the brutal oppression of women"</h1>\
+      <h1 class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h1>\
+      <p><a class="m" href="#story1">read more...</a></p>\
+    ');
   }
   
-  function doSomethingForSection2() {
+  function doSomethingForSection1() {
     const target = document.querySelector('#story1 > div')
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-      console.log(txt[i], i);
       if(i == 95)  { show_dialog('dialog-story2', -10, 10) }
       if(i == 361) { show_dialog('dialog-story3', -5, 15) }
       if(i == 420) { show_dialog('dialog-story4', 0, 20) }
@@ -109,14 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
     typewriter(target, '\
       <h1>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h1>\
       <h1 class="text-secondary">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="n">still didn\'t</a> seem to work.</h1>\
+      <p><a class="m" href="#story2">continue reading...</a></p>\
     ');
   }
   
-  function doSomethingForSection3() {
+  function doSomethingForSection2() {
     const target = document.querySelector('#story2 > div')
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
-      console.log(txt[i], i);
       if(i == 95)  { show_dialog('dialog-story9',  -20, -5) }
       if(i == 161) { show_dialog('dialog-story10', -15, 0) }
       if(i == 120) { show_dialog('dialog-story11', -10, 5) }
@@ -126,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i == 285) { show_dialog('dialog-story15', 40, 25) }
       if(i == 287) { show_dialog('dialog-story16', 15, 30) }
       if(i == 290) { show_dialog('dialog-story17', 20, 35) }
+      if(i == txt.length - 5) { enableScroll(); }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -136,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typewriter(target, '\
       <h1>Ultimately, though, the war severely <a class="n">worsened</a> Afghan women\'s lives. </h1>\
       <h1 class="text-secondary">While we were busy <a class="p">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It <a class="n">didn\'t work</a> at all.</h1>\
+      <p><a class="m" href="#story3">continue...</a></p>\
     ');
   }
 
