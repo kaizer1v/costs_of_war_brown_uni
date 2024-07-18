@@ -13,6 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
       loaded_s2 = false,
       loaded_s3 = false;
 
+  // utility function to scroll down
+  function scrollDown(by=100) {
+    window.scrollBy({
+        top: by,
+        left: 0,
+        behavior: 'smooth' // Smooth scrolling
+    });
+  }
+
   // on loading the page, show section 0 (first section)
   doSomethingForSection0();
 
@@ -28,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         doSomethingForSection2()
       if(sectionID == 'for-3')
         doSomethingForSection3()
+
+      scrollDown(250)
     }
   });
 

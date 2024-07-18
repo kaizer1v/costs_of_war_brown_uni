@@ -46,6 +46,11 @@ section {
   flex-wrap: wrap;
   width: fit-content;
 }
+  section a {
+    text-decoration: underline;
+    color: var(--black) !important;
+    font-size: 1.5rem;
+  }
   .section-content {
     text-align: left;
     color: rgb(43, 40, 40);
