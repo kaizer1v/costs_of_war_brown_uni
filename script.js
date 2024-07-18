@@ -100,20 +100,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   doSomethingForSection0();
 
+  // const anchors = document.getElementsByTagName('a');
+  // console.log(anchors)
   // anchors.forEach(anchor => {
-  //   anchor.addEventListener('click', (event) => {
-  //     event.preventDefault(); // Prevent the default anchor click behavior
-  //     console.log(`Anchor clicked: ${anchor.getAttribute('href')}`);
-  //     // Additional logic for the click event can go here
-  //   });
+    document.addEventListener('click', (event) => {
+      // event.preventDefault(); // Prevent the default anchor click behavior
+      if(event.target.tagName == 'A') {
+        const anchor = event.target;
+        const sectionID = (anchor.getAttribute('id')) ? anchor.getAttribute('id') : false;
+
+        if(sectionID == 'for-1')
+          doSomethingForSection1()
+        if(sectionID == 'for-2')
+          doSomethingForSection2()
+        if(sectionID == 'for-3')
+          doSomethingForSection3()
+      }
+      // console.log(event.target.tagName)
+      // console.log(`Anchor clicked: ${anchor.getAttribute('href')}`);
+      // Additional logic for the click event can go here
+    });
   // });
 
   function doSomethingForSection0() {
     const target = document.querySelector('#story0 > div')
+    target.classList.remove('invisible');
+    const nextSection = document.getElementById('for-1')
+
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
       if(i == 286) { show_dialog('dialog-story0', 0, 10) }
       if(i == 375) { show_dialog('dialog-story1', 10, 30) }
+      if(i == txt.length - 1) { nextSection.classList.remove('invisible') }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -125,13 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
       <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
       <h1>"the brutal oppression of women"</h1>\
       <h1 class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h1>\
-      <p><a class="m" id="for-1">read more...</a></p>\
     ');
   }
 
   function doSomethingForSection1() {
     const target = document.querySelector('#story1 > div')
-    
+    target.classList.remove('invisible');
+    const nextSection = document.getElementById('for-2')
+
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
       if(i == 95)  { show_dialog('dialog-story2', -10, 10) }
@@ -140,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i == 426) { show_dialog('dialog-story5', 5, 25) }
       if(i == 508) { show_dialog('dialog-story6', 10, 30) }
       if(i == 512) { show_dialog('dialog-story7', 15, 35) }
+      if(i == txt.length - 1) { nextSection.classList.remove('invisible') }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -150,14 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
     typewriter(target, '\
       <h1>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h1>\
       <h1 class="text-secondary">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="n">still didn\'t</a> seem to work.</h1>\
-      <p><a class="m" id="for-2">continue reading...</a></p>\
     ');
-
-    return false;
   }
 
   function doSomethingForSection2() {
     const target = document.querySelector('#story2 > div')
+    target.classList.remove('invisible');
+    const nextSection = document.getElementById('for-3')
+
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
       if(i == 95)  { show_dialog('dialog-story9',  -20, -5) }
@@ -169,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i == 285) { show_dialog('dialog-story15', 40, 25) }
       if(i == 287) { show_dialog('dialog-story16', 15, 30) }
       if(i == 290) { show_dialog('dialog-story17', 20, 35) }
+      if(i == txt.length - 1) { nextSection.classList.remove('invisible') }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -179,9 +200,14 @@ document.addEventListener('DOMContentLoaded', () => {
     typewriter(target, '\
       <h1>Ultimately, though, the war severely <a class="n">worsened</a> Afghan women\'s lives. </h1>\
       <h1 class="text-secondary">While we were busy <a class="p">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It <a class="n">didn\'t work</a> at all.</h1>\
-      <p><a class="m" id="for-3">continue...</a></p>\
     ');
 
+    return false;
+  }
+
+  function doSomethingForSection3() {
+    const target = document.querySelector('#story3 > div')
+    target.classList.remove('invisible');
     return false;
   }
 
