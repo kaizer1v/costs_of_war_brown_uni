@@ -35,7 +35,7 @@ html {
 
 section {
   padding: 1rem;
-  /* height: 100vh; */
+  height: 80vh;
   scroll-snap-align: start;
   position: relative;
   display: flex;

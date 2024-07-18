@@ -4,125 +4,36 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ensure the page starts from the top
-  // window.scrollTo(0, 0);
 
   const sections = document.querySelectorAll('section');
   let to_print = '';
   const typingSpeed = 10;
-  // const options = {
-  //   root: null, // Use the viewport as the root
-  //   rootMargin: '0px',
-  //   threshold: 0.4 // Trigger callback when 40% of the section is visible
-  // };
+  let loaded_s0 = false,
+      loaded_s1 = false,
+      loaded_s2 = false,
+      loaded_s3 = false;
 
-  // const disableScroll = () => {
-  //   document.body.style.overflow = 'hidden';
-  //   window.addEventListener('scroll', preventScroll, { passive: false });
-  // };
-
-  // const enableScroll = () => {
-  //   document.body.style.overflow = 'auto';
-  //   window.removeEventListener('scroll', preventScroll, { passive: false });
-  // };
-
-  // const preventScroll = (event) => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   return false;
-  // };
-
-  // disableScroll();
-
-  // const observer = new IntersectionObserver(async (entries, observer) => {
-  //   for(const entry of entries) {
-  //     if(entry.isIntersecting) {
-  //       console.log(`In viewport: ${entry.target.id}`);
-
-  //       // Perform any other actions you want when the section is in the viewport
-  //       switch(entry.target.id) {
-  //         case 'story0':
-  //           doSomethingForSection0();
-  //           break;
-  //         case 'story1':
-  //           doSomethingForSection1();
-  //           break;
-  //         case 'story2':
-  //           doSomethingForSection2();
-  //           break;
-  //       }
-  //       // Unobserve the section so the callback runs only once
-  //       observer.unobserve(entry.target);
-  //     }
-  //   }
-  // }, options);
-
-  // sections.forEach(section => {
-  //   observer.observe(section);
-  // });
-
-  sections.forEach((section, callback) => {
-    // const observer = new MutationObserver((mutationList) => {
-    //   for(let mutation of mutationList) {
-    //     console.log(mutation.target.id);
-    //     if(mutation.type === 'attributes' && mutation.attributeName === 'class') {
-    //       const currentClassList = mutation.target.classList;
-    //       if(!currentClassList.contains('invisible')) {
-    //         console.log('do something!!!')
-    //       }
-    //     }
-    //   }
-    // })
-
-    // observer.observe(section, {
-    //   attributes: true // Listen for changes to attributes
-    // });
-
-    // add a delegated click event for each 'read more' link
-    section.addEventListener('click', (event) => {
-      if(event.target && event.target.matches('.m')) {
-        // loadNextSection(event.target);
-        console.log(event.target.getAttribute('id'))
-        const sectionID = event.target.getAttribute('id')
-
-        switch(sectionID) {
-          case "for-1":
-            doSomethingForSection1()
-          case "for-2":
-            doSomethingForSection2()
-          // case "for-3":
-          //   doSomethingForSection3()
-        }
-
-      }
-    });
-  })
-
+  // on loading the page, show section 0 (first section)
   doSomethingForSection0();
 
-  // const anchors = document.getElementsByTagName('a');
-  // console.log(anchors)
-  // anchors.forEach(anchor => {
-    document.addEventListener('click', (event) => {
-      // event.preventDefault(); // Prevent the default anchor click behavior
-      if(event.target.tagName == 'A') {
-        const anchor = event.target;
-        const sectionID = (anchor.getAttribute('id')) ? anchor.getAttribute('id') : false;
+  // subsequent sections are loaded when clicking on 'read more...'
+  document.addEventListener('click', (event) => {
+    if(event.target.tagName == 'A') {
+      const anchor = event.target;
+      const sectionID = (anchor.getAttribute('id')) ? anchor.getAttribute('id') : false;
 
-        if(sectionID == 'for-1')
-          doSomethingForSection1()
-        if(sectionID == 'for-2')
-          doSomethingForSection2()
-        if(sectionID == 'for-3')
-          doSomethingForSection3()
-      }
-      // console.log(event.target.tagName)
-      // console.log(`Anchor clicked: ${anchor.getAttribute('href')}`);
-      // Additional logic for the click event can go here
-    });
-  // });
+      if(sectionID == 'for-1')
+        doSomethingForSection1()
+      if(sectionID == 'for-2')
+        doSomethingForSection2()
+      if(sectionID == 'for-3')
+        doSomethingForSection3()
+    }
+  });
 
+  // loading section 0
   function doSomethingForSection0() {
+    if(loaded_s0) return;
     const target = document.querySelector('#story0 > div')
     target.classList.remove('invisible');
     const nextSection = document.getElementById('for-1')
@@ -131,7 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
       if(i == 286) { show_dialog('dialog-story0', 0, 10) }
       if(i == 375) { show_dialog('dialog-story1', 10, 30) }
-      if(i == txt.length - 1) { nextSection.classList.remove('invisible') }
+      if(i == txt.length - 1) {
+        nextSection.classList.remove('invisible')
+        loaded_s0 = true;
+      }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -146,7 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ');
   }
 
+  // loading section 1
   function doSomethingForSection1() {
+    if(loaded_s1) return;
     const target = document.querySelector('#story1 > div')
     target.classList.remove('invisible');
     const nextSection = document.getElementById('for-2')
@@ -159,7 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i == 426) { show_dialog('dialog-story5', 5, 25) }
       if(i == 508) { show_dialog('dialog-story6', 10, 30) }
       if(i == 512) { show_dialog('dialog-story7', 15, 35) }
-      if(i == txt.length - 1) { nextSection.classList.remove('invisible') }
+      if(i == txt.length - 1) {
+        nextSection.classList.remove('invisible')
+        loaded_s1 = true
+      }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -173,7 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ');
   }
 
+  // loading section 2
   function doSomethingForSection2() {
+    if(loaded_s2) return;
     const target = document.querySelector('#story2 > div')
     target.classList.remove('invisible');
     const nextSection = document.getElementById('for-3')
@@ -189,7 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i == 285) { show_dialog('dialog-story15', 40, 25) }
       if(i == 287) { show_dialog('dialog-story16', 15, 30) }
       if(i == 290) { show_dialog('dialog-story17', 20, 35) }
-      if(i == txt.length - 1) { nextSection.classList.remove('invisible') }
+      if(i == txt.length - 1) {
+        nextSection.classList.remove('invisible')
+        loaded_s2 = true
+      }
   
       to_print += txt[i];
       elem.innerHTML = to_print
@@ -205,11 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return false;
   }
 
+  // loading section 3
   function doSomethingForSection3() {
+    if(loaded_s3) return;
     const target = document.querySelector('#story3 > div')
     target.classList.remove('invisible');
+    loaded_s3 = true;
     return false;
   }
+
 
 
   /**
