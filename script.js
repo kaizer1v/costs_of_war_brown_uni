@@ -38,21 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
       if(sectionID == 'for-3')
         doSomethingForSection3()
 
-      scrollDown(250)
+      scrollDown(350)
     }
+
+    // if(event.target.classList.contains('expand-collapse'))
   });
 
   // loading section 0
   function doSomethingForSection0() {
     if(loaded_s0) return;
+    let left = 500, top = -100;
     const target = document.querySelector('#story0 > div')
     target.classList.remove('invisible');
     const nextSection = document.getElementById('for-1')
 
     function typewriter(elem, txt, i = 0) {
-      if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-      if(i == 286) { show_dialog('dialog-story0', 504, -100) }
-      if(i == 375) { show_dialog('dialog-story1', 59, -230) }
+      if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
+      if(i == 286) { show_dialog('dialog-story0', left+=10, top+=10) }
+      if(i == 375) { show_dialog('dialog-story1', left+=10, top+=10) }
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
         loaded_s0 = true;
@@ -74,18 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // loading section 1
   function doSomethingForSection1() {
     if(loaded_s1) return;
+    let left = -10, top = -60;
     const target = document.querySelector('#story1 > div')
-    target.classList.remove('invisible');
+    target.classList.remove('invisible')
     const nextSection = document.getElementById('for-2')
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-      if(i == 95)  { show_dialog('dialog-story2', -10, -60) }
-      if(i == 361) { show_dialog('dialog-story3', -5, -55) }
-      if(i == 420) { show_dialog('dialog-story4', 0, -50) }
-      if(i == 426) { show_dialog('dialog-story5', 5, -45) }
-      if(i == 508) { show_dialog('dialog-story6', 10, -40) }
-      if(i == 512) { show_dialog('dialog-story7', 15, -35) }
+      if(i == 95)  { show_dialog('dialog-story2', left+=5, top+=5) }
+      if(i == 361) { show_dialog('dialog-story3', left+=5, top+=5) }
+      if(i == 420) { show_dialog('dialog-story4', left+=5, top+=5) }
+      if(i == 426) { show_dialog('dialog-story5', left+=5, top+=5) }
+      if(i == 508) { show_dialog('dialog-story6', left+=5, top+=5) }
+      if(i == 512) { show_dialog('dialog-story7', left+=5, top+=5) }
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
         loaded_s1 = true
@@ -108,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(loaded_s2) return;
     let left = -20, top = 380;
     const target = document.querySelector('#story2 > div')
-    target.classList.remove('invisible');
+    target.classList.remove('invisible')
     const nextSection = document.getElementById('for-3')
 
     function typewriter(elem, txt, i = 0) {
