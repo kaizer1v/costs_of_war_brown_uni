@@ -20,6 +20,7 @@ body {
   background-repeat: round;
   background-attachment: fixed;
   background-color: rgb(240, 240, 240);
+  overflow-x: hidden;
 }
 
 html {
