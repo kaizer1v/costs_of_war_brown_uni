@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
   let to_print = '';
-  const typingSpeed = 20;
+  const typingSpeed = 10;
   let loaded_s0 = false,
       loaded_s1 = false,
       loaded_s2 = false,
@@ -31,25 +31,40 @@ document.addEventListener('DOMContentLoaded', () => {
       const anchor = event.target;
       const sectionID = (anchor.getAttribute('id')) ? anchor.getAttribute('id') : false;
 
-      if(sectionID == 'for-1')
+      if(sectionID == 'for-1') {
         doSomethingForSection1()
-      if(sectionID == 'for-2')
+        anchor.remove()
+      }
+      if(sectionID == 'for-2') {
         doSomethingForSection2()
-      if(sectionID == 'for-3')
+        anchor.remove()
+      }
+      if(sectionID == 'for-3') {
         doSomethingForSection3()
+        anchor.remove()
+      }
 
-      scrollDown(350)
+      // check if the link clicked is for dialog stories
+      if(anchor.classList.contains('link-for-section')) {
+        console.log(anchor.dataset.dialogs)
+        // get associated dialog IDs to highlight
+        const dialogIDs = anchor.dataset.dialogs.split(' ')
+        // make all the dialogs associated to the link zoomed-in
+        dialogIDs.forEach(id => {
+          const d = document.getElementById(`dialog-story${id}`)
+          d.classList.remove('zoomout')
+        })
+      }
     }
-
-    // if(event.target.classList.contains('expand-collapse'))
   });
 
   // loading section 0
   function doSomethingForSection0() {
     if(loaded_s0) return;
     let left = 1, top = 5, gap = 3;
+    const parent = document.querySelector('#story0')
     const target = document.querySelector('#story0 > div')
-    target.classList.remove('invisible');
+    parent.classList.remove('invisible');
     const nextSection = document.getElementById('for-1')
     let dontprint = false, speed = typingSpeed;
 
@@ -57,28 +72,38 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
       if(i == 286) { show_dialog('dialog-story0', left+=gap, top+=gap) }
       if(i == 375) { show_dialog('dialog-story1', left+=gap, top+=gap) }
-      if(i == txt.length - 1) {
-        nextSection.classList.remove('invisible')
-        loaded_s0 = true;
-      }
   
       to_print += txt[i];
+      
+      // if any of the tags are identified in the text, speeden typing`
       if(txt[i] == '<' || txt[i] == '>') {
         dontprint = !dontprint
         speed = 0
       }
       
+      // normally for everything that needs to be rendered on screen     
       if(!dontprint) {
         speed = typingSpeed
         elem.innerHTML = to_print
       }
+      
+      // as soon as the last text is rendered, show the 'read more...' text & stop
+      if(i == txt.length - 1) {
+        nextSection.classList.remove('invisible')
+        loaded_s0 = true
+        return;
+      }
 
-      if(i === txt.length - 1) return;
       setTimeout(() => typewriter(elem, txt, i + 1), speed)
     }
   
     typewriter(target, '\
-      <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight "the brutal oppression of women". <span class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also <a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</span></h1>\
+      <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight "the brutal oppression of women".\
+        <span class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also\
+          <a data-dialogs="0" class="p link-for-section">tried</a> to reduce sexual assaults in our own military, even if it\
+          <a data-dialogs="1" class="n link-for-section">didn\'t</a> succeed at the start.\
+        </span>\
+      </h1>\
     ');
   }
 
@@ -86,8 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function doSomethingForSection1() {
     if(loaded_s1) return;
     let left = -10, top = 5, gap = 3;
+    const parent = document.querySelector('#story1')
     const target = document.querySelector('#story1 > div')
-    target.classList.remove('invisible')
+    parent.classList.remove('invisible')
     const nextSection = document.getElementById('for-2')
     let dontprint = false, speed = typingSpeed;
 
@@ -99,29 +125,39 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i == 426) { show_dialog('dialog-story5', left+=gap, top+=gap) }
       if(i == 508) { show_dialog('dialog-story6', left+=gap, top+=gap) }
       if(i == 512) { show_dialog('dialog-story7', left+=gap, top+=gap) }
-      if(i == txt.length - 1) {
-        nextSection.classList.remove('invisible')
-        loaded_s1 = true
-      }
-  
+      
       to_print += txt[i];
+      // if any of the tags are identified in the text, speeden typing`
       if(txt[i] == '<' || txt[i] == '>') {
         dontprint = !dontprint
         speed = 0
       }
-      
+
+      // normally for everything that needs to be rendered on screen
       if(!dontprint) {
         speed = typingSpeed
         elem.innerHTML = to_print
       }
-
-      if(i === txt.length - 1) return;
+      
+      // as soon as the last text is rendered, show the 'read more...' text & stop
+      if(i == txt.length - 1) {
+        nextSection.classList.remove('invisible')
+        loaded_s1 = true
+        return
+      }
+      
       setTimeout(() => typewriter(elem, txt, i + 1), speed)
     }
   
     typewriter(target, '\
-      <h1>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h1>\
-      <h1 class="text-secondary">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="n">still didn\'t</a> seem to work.</h1>\
+      <h1>We defeated the Taliban, established democracy, and helped\
+        <a data-dialogs="2 3" class="e link-for-section">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.\
+      </h1>\
+      <h1 class="text-secondary">Women were playing a\
+        <a data-dialogs="4 5" class="p link-for-section">greater role</a> within our armed forces, and we\
+        <a data-dialogs="6" class="p link-for-section">tried again</a> to reduce sexual assaults in our own military. But it\
+        <a data-dialogs="7" class="n link-for-section">still didn\'t</a> seem to work.\
+      </h1>\
     ');
   }
 
@@ -129,8 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function doSomethingForSection2() {
     if(loaded_s2) return;
     let left = 95, top = -10, gap = 3;
+    const parent = document.querySelector('#story2')
     const target = document.querySelector('#story2 > div')
-    target.classList.remove('invisible')
+    parent.classList.remove('invisible')
     const nextSection = document.getElementById('for-3')
     let dontprint = false, speed = typingSpeed;
 
@@ -145,29 +182,37 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i == 285) { show_dialog('dialog-story15', left+=gap, top+=gap) }
       if(i == 287) { show_dialog('dialog-story16', left+=gap, top+=gap) }
       if(i == 290) { show_dialog('dialog-story17', left+=gap, top+=gap) }
-      if(i == txt.length - 1) {
-        nextSection.classList.remove('invisible')
-        loaded_s2 = true
-      }
   
       to_print += txt[i];
+      // if any of the tags are identified in the text, speeden typing
       if(txt[i] == '<' || txt[i] == '>') {
         dontprint = !dontprint
         speed = 0
       }
       
+      // normally for everything that needs to be rendered on screen
       if(!dontprint) {
         speed = typingSpeed
         elem.innerHTML = to_print
       }
 
-      if(i === txt.length - 1) return;
+      // as soon as the last text is rendered, show the 'read more...' text & stop
+      if(i == txt.length - 1) {
+        nextSection.classList.remove('invisible')
+        loaded_s2 = true
+        return;
+      }
       setTimeout(() => typewriter(elem, txt, i + 1), speed)
     }
   
     typewriter(target, '\
-      <h1>Ultimately, though, the war severely <a class="n">worsened</a> Afghan women\'s lives. </h1>\
-      <h1 class="text-secondary">While we were busy <a class="p">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It <a class="n">didn\'t work</a> at all.</h1>\
+      <h1>Ultimately, though, the war severely\
+        <a data-dialogs="9 10 11 12 13 14" class="n link-for-section">worsened</a> Afghan women\'s lives.\
+      </h1>\
+      <h1 class="text-secondary">While we were busy\
+        <a data-dialogs="15" class="p link-for-section">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It\
+        <a data-dialogs="16 17" class="n link-for-section">didn\'t work</a> at all.\
+      </h1>\
     ');
 
     return false;
@@ -176,8 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // loading section 3
   function doSomethingForSection3() {
     if(loaded_s3) return;
+    const parent = document.querySelector('#story3')
     const target = document.querySelector('#story3 > div')
-    target.classList.remove('invisible');
+    parent.classList.remove('invisible');
     loaded_s3 = true;
     return false;
   }
@@ -281,6 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(dialog.classList.contains('invisible')) {
       dialog.classList.replace('invisible', 'visible')
       dialog.classList.add('reveal')
+      dialog.classList.add('zoomout')
       dialog.style.top = `${y}%`;
       dialog.style.left = `${x}%`;
     }
