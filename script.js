@@ -68,9 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     typewriter(target, '\
-      <h5>In 2006, Laura Bush said that America was going to Afghanistan to fight</h5>\
-      <h5>"the brutal oppression of women"</h5>\
-      <h5 class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h5>\
+      <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
+      <h1>"the brutal oppression of women"</h1>\
+      <h1 class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h1>\
     ');
   }
 
@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     typewriter(target, '\
-      <h5>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h5>\
-      <h5 class="text-secondary">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="n">still didn\'t</a> seem to work.</h5>\
+      <h1>We defeated the Taliban, established democracy, and helped <a class="e">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.</h1>\
+      <h1 class="text-secondary">Women were playing a <a class="p">greater role</a> within our armed forces, and we <a class="p">tried again</a> to reduce sexual assaults in our own military. But it <a class="n">still didn\'t</a> seem to work.</h1>\
     ');
   }
 
@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     typewriter(target, '\
-      <h5>Ultimately, though, the war severely <a class="n">worsened</a> Afghan women\'s lives. </h5>\
-      <h5 class="text-secondary">While we were busy <a class="p">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It <a class="n">didn\'t work</a> at all.</h5>\
+      <h1>Ultimately, though, the war severely <a class="n">worsened</a> Afghan women\'s lives. </h1>\
+      <h1 class="text-secondary">While we were busy <a class="p">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It <a class="n">didn\'t work</a> at all.</h1>\
     ');
 
     return false;
