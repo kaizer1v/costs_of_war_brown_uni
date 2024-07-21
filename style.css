@@ -20,6 +20,7 @@
 
 body {
   font-family: "Eczar", "Times New Roman", "Georgia", serif;
+  color: var(--basefontcolour);
   background-repeat: round;
   background-attachment: fixed;
   background-color: var(--white);
@@ -36,7 +37,6 @@ h1 {
   font-optical-sizing: auto;
   font-size: var(--basefontsize);
   font-weight: 440;
-  color: var(--basefontcolour);
   line-height: calc(1.375 * var(--basefontsize));
 }
 
@@ -72,7 +72,6 @@ section {
   section > h1, 
   section > .section-content {
     text-align: left;
-    color: rgb(43, 40, 40);
   }
 
 
