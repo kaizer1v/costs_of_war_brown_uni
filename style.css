@@ -41,6 +41,7 @@ html {
 /* ----- */
 
 section {
+  position: relative;
   flex-shrink: 0;
   flex-grow: 1;
   flex-basis: auto;
@@ -60,7 +61,6 @@ section {
   section a {
     text-decoration: underline;
     color: var(--black) !important;
-    font-size: 1.5rem;
   }
   .section-content {
     text-align: left;

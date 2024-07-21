@@ -77,19 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // loading section 1
   function doSomethingForSection1() {
     if(loaded_s1) return;
-    let left = -10, top = -60;
+    let left = -10, top = 50;
     const target = document.querySelector('#story1 > div')
     target.classList.remove('invisible')
     const nextSection = document.getElementById('for-2')
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-      if(i == 95)  { show_dialog('dialog-story2', left+=5, top+=5) }
-      if(i == 361) { show_dialog('dialog-story3', left+=5, top+=5) }
-      if(i == 420) { show_dialog('dialog-story4', left+=5, top+=5) }
-      if(i == 426) { show_dialog('dialog-story5', left+=5, top+=5) }
-      if(i == 508) { show_dialog('dialog-story6', left+=5, top+=5) }
-      if(i == 512) { show_dialog('dialog-story7', left+=5, top+=5) }
+      if(i == 95)  { show_dialog('dialog-story2', left+=10, top+=10) }
+      if(i == 361) { show_dialog('dialog-story3', left+=10, top+=10) }
+      if(i == 420) { show_dialog('dialog-story4', left+=10, top+=10) }
+      if(i == 426) { show_dialog('dialog-story5', left+=10, top+=10) }
+      if(i == 508) { show_dialog('dialog-story6', left+=10, top+=10) }
+      if(i == 512) { show_dialog('dialog-story7', left+=10, top+=10) }
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
         loaded_s1 = true
@@ -110,22 +110,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // loading section 2
   function doSomethingForSection2() {
     if(loaded_s2) return;
-    let left = -20, top = 380;
+    let left = 20, top = 480;
     const target = document.querySelector('#story2 > div')
     target.classList.remove('invisible')
     const nextSection = document.getElementById('for-3')
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
-      if(i == 95)  { show_dialog('dialog-story9',  left+=5, top+=5) }
-      if(i == 161) { show_dialog('dialog-story10', left+=5, top+=5) }
-      if(i == 120) { show_dialog('dialog-story11', left+=5, top+=5) }
-      if(i == 130) { show_dialog('dialog-story12', left+=5, top+=5) }
-      if(i == 132) { show_dialog('dialog-story13', left+=5, top+=5) }
-      if(i == 283) { show_dialog('dialog-story14', left+=5, top+=5) }
-      if(i == 285) { show_dialog('dialog-story15', left+=5, top+=5) }
-      if(i == 287) { show_dialog('dialog-story16', left+=5, top+=5) }
-      if(i == 290) { show_dialog('dialog-story17', left+=5, top+=5) }
+      if(i == 95)  { show_dialog('dialog-story9',  left+=10, top+=10) }
+      if(i == 161) { show_dialog('dialog-story10', left+=10, top+=10) }
+      if(i == 120) { show_dialog('dialog-story11', left+=10, top+=10) }
+      if(i == 130) { show_dialog('dialog-story12', left+=10, top+=10) }
+      if(i == 132) { show_dialog('dialog-story13', left+=10, top+=10) }
+      if(i == 283) { show_dialog('dialog-story14', left+=10, top+=10) }
+      if(i == 285) { show_dialog('dialog-story15', left+=10, top+=10) }
+      if(i == 287) { show_dialog('dialog-story16', left+=10, top+=10) }
+      if(i == 290) { show_dialog('dialog-story17', left+=10, top+=10) }
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
         loaded_s2 = true
