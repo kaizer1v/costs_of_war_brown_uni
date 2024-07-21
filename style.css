@@ -30,6 +30,13 @@ html {
 	/* scroll-snap-type: y mandatory; */
 }
 
+h1 {
+  font-optical-sizing: auto;
+  font-size: var(--basefontsize);
+  font-weight: 440;
+  line-height: calc(1.45 * var(--basefontsize));
+}
+
 .container {
   margin: auto;
   display: flex;
@@ -57,9 +64,6 @@ section {
   /* flex-direction: column; */
   /* flex-wrap: wrap; */
   width: fit-content;
-}
-h1 {
-  font-size: var(--basefontsize);
 }
   section a {
     text-decoration: underline;
