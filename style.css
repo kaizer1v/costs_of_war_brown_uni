@@ -30,7 +30,7 @@ html {
 	/* scroll-snap-type: y mandatory; */
 }
 
-.containerrr {
+.container {
   margin: auto;
   display: flex;
   flex-direction: column;
