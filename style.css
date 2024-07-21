@@ -36,7 +36,7 @@ h1 {
   font-size: var(--basefontsize);
   font-weight: 440;
   color: var(--basefontcolour);
-  line-height: calc(1.45 * var(--basefontsize));
+  line-height: calc(1.375 * var(--basefontsize));
 }
 
 .container {
