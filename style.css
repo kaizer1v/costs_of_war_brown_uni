@@ -44,11 +44,17 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 }
 
 /* ----- */
 /* Sections */
 /* ----- */
+
+.container > * {
+  max-width: calc(17.5 * var(--basefontsize));
+  margin: 0 auto;
+}
 
 section {
   flex-shrink: 0;
