@@ -73,10 +73,6 @@ section {
   /* flex-wrap: wrap; */
   width: fit-content;
 }
-  section a {
-    text-decoration: underline;
-    color: var(--black) !important;
-  }
   .section-content {
     text-align: left;
     color: rgb(43, 40, 40);
@@ -136,6 +132,9 @@ section {
 }
 .reveal { animation: reveal 0.2s 1 normal both; }
 
+a {
+  text-decoration: underline;
+}
 a.p, a.n, a.e, a.m {
   border-radius: calc(.1 * var(--basefontsize));
 }
