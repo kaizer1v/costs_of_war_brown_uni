@@ -10,6 +10,7 @@
 
 :root, [data-bs-theme=light] {
   --basefontsize: calc(1rem + 3vw);
+  --basefontcolour: #222;
   --green: #35A6AD;
   --red: #EF4748;
   --white: #F8F5ED;
@@ -34,6 +35,7 @@ h1 {
   font-optical-sizing: auto;
   font-size: var(--basefontsize);
   font-weight: 440;
+  color: var(--basefontcolour);
   line-height: calc(1.45 * var(--basefontsize));
 }
 
