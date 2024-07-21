@@ -74,6 +74,10 @@ section {
     text-align: left;
   }
 
+  section > .section-content .text-contextnews {
+    opacity: .6777;
+  }
+
 
 /* ----- */
 /* Story Dialogs */
