@@ -1,7 +1,7 @@
 /* ----- */
 /* Imports */
 /* ----- */
-@import url('https://fonts.googleapis.com/css2?family=Tienne:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&display=swap');
 
 
 /* ----- */
@@ -17,7 +17,7 @@
 }
 
 body {
-  font-family: "Tienne", "Times New Roman", "Georgia", serif;
+  font-family: "Eczar", "Times New Roman", "Georgia", serif;
   background-repeat: round;
   background-attachment: fixed;
   background-color: rgb(240, 240, 240);
