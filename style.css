@@ -136,29 +136,28 @@ section {
 }
 .reveal { animation: reveal 0.2s 1 normal both; }
 
-a.p {
-  padding: 0.2rem;
-  color: var(--white);
-  background-color: var(--green) !important;
+a.p, a.n, a.e, a.m {
+  border-radius: calc(.1 * var(--basefontsize));
+}
+a.p, a.n, a.e {
+  padding: 0 calc(.2 * var(--basefontsize));
 }
 
-a.n {
-  padding: 0.2rem;
-  color: var(--white);
-  background-color: var(--red) !important;
+a.p /* positive */
+{
+  background-color: var(--green);
 }
 
-a.e {
-  padding: 0.2rem;
-  color: var(--black);
-  background-color: var(--white) !important;
+a.n  /* negative */
+{
+  background-color: var(--red);
 }
 
-a.m {
-  font-size: 1rem;
-  color: var(--black);
-  text-decoration: underline;
+a.e /* general world news */
+{
+  background-color: var(--white);
 }
+a.m /* "read more" */ {  }
 
 
 /** utility classes **/
