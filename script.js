@@ -47,15 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // loading section 0
   function doSomethingForSection0() {
     if(loaded_s0) return;
-    let left = 500, top = -100;
+    let left = 1, top = 5;
     const target = document.querySelector('#story0 > div')
     target.classList.remove('invisible');
     const nextSection = document.getElementById('for-1')
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
-      if(i == 286) { show_dialog('dialog-story0', left+=10, top+=10) }
-      if(i == 375) { show_dialog('dialog-story1', left+=10, top+=10) }
+      if(i == 286) { show_dialog('dialog-story0', left+=3, top+=3) }
+      if(i == 375) { show_dialog('dialog-story1', left+=3, top+=3) }
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
         loaded_s0 = true;
@@ -253,8 +253,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(dialog.classList.contains('invisible')) {
       dialog.classList.replace('invisible', 'visible')
       dialog.classList.add('reveal')
-      dialog.style.top = `${y}px`;
-      dialog.style.left = `${x}px`;
+      dialog.style.top = `${y}%`;
+      dialog.style.left = `${x}%`;
     }
   }
 

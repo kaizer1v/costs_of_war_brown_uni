@@ -45,17 +45,8 @@ section {
   flex-shrink: 0;
   flex-grow: 1;
   flex-basis: auto;
-  padding: 1rem;
-  /* height: 80vh; */
-  /* margin-bottom: 10rem; */
+  padding: 1rem; 
   scroll-snap-align: start;
-  /* position: relative; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* align-content: stretch; */
-  /* justify-content: space-around; */
-  /* flex-direction: column; */
-  /* flex-wrap: wrap; */
   width: fit-content;
 }
   section a {
@@ -82,23 +73,9 @@ section {
   width: 100%;
   background: var(--white);
   box-shadow: 0px 0px 5px rgba(0,0,0,0.125);
-  padding: 16px;
-  font-size: 1.3rem;
+  padding: 1rem;
+  font-size: calc(.5rem + 1vw);
 }
-  /* .dialog-wrapper .expand-collapse {
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: var(--red);
-    color: var(--white);
-    position: absolute;
-    left: -42px;
-    top: -2px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 1.8rem;
-    font-weight: bold;
-  } */
   .dialog-wrapper .year { font-size: 0.7rem; }
   .positive-story { border: 2px solid var(--green); }
   .negative-story { border: 2px solid var(--red); }
@@ -118,10 +95,16 @@ section {
 .disable-touch { touch-action: none !important; }
 
 @keyframes reveal {
-  from { opacity: 0.1; }
-  to   { opacity: 1;   }
+  from {
+    opacity: 0.1;
+    transform: scale(0);
+  }
+  to   {
+    opacity: 1;
+    transform: scale(1) translate(-30%, -30%);
+  }
 }
-.reveal { animation: reveal 0.2s 1 normal both; }
+.reveal { animation: reveal 0.5s 1 normal both; }
 
 a.p {
   padding: 0.2rem;
