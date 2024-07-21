@@ -68,9 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     typewriter(target, '\
-      <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight</h1>\
-      <h1>"the brutal oppression of women"</h1>\
-      <h1 class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also<a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</h1>\
+      <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight "the brutal oppression of women". <span class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also <a class="p">tried</a> to reduce sexual assaults in our own military, even if it <a class="n">didn\'t</a> succeed at the start.</span></h1>\
     ');
   }
 
