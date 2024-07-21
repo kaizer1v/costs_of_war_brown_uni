@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
   let to_print = '';
-  const typingSpeed = 10;
+  const typingSpeed = 20;
   let loaded_s0 = false,
       loaded_s1 = false,
       loaded_s2 = false,
@@ -47,24 +47,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // loading section 0
   function doSomethingForSection0() {
     if(loaded_s0) return;
-    let left = 1, top = 5;
+    let left = 1, top = 5, gap = 3;
     const target = document.querySelector('#story0 > div')
     target.classList.remove('invisible');
     const nextSection = document.getElementById('for-1')
+    let dontprint = false, speed = typingSpeed;
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
-      if(i == 286) { show_dialog('dialog-story0', left+=3, top+=3) }
-      if(i == 375) { show_dialog('dialog-story1', left+=3, top+=3) }
+      if(i == 286) { show_dialog('dialog-story0', left+=gap, top+=gap) }
+      if(i == 375) { show_dialog('dialog-story1', left+=gap, top+=gap) }
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
         loaded_s0 = true;
       }
   
       to_print += txt[i];
-      elem.innerHTML = to_print
+      if(txt[i] == '<' || txt[i] == '>') {
+        dontprint = !dontprint
+        speed = 0
+      }
+      
+      if(!dontprint) {
+        speed = typingSpeed
+        elem.innerHTML = to_print
+      }
+
       if(i === txt.length - 1) return;
-      setTimeout(() => typewriter(elem, txt, i + 1), typingSpeed)
+      setTimeout(() => typewriter(elem, txt, i + 1), speed)
     }
   
     typewriter(target, '\
@@ -75,28 +85,38 @@ document.addEventListener('DOMContentLoaded', () => {
   // loading section 1
   function doSomethingForSection1() {
     if(loaded_s1) return;
-    let left = -10, top = 50;
+    let left = -10, top = 5, gap = 3;
     const target = document.querySelector('#story1 > div')
     target.classList.remove('invisible')
     const nextSection = document.getElementById('for-2')
+    let dontprint = false, speed = typingSpeed;
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-      if(i == 95)  { show_dialog('dialog-story2', left+=10, top+=10) }
-      if(i == 361) { show_dialog('dialog-story3', left+=10, top+=10) }
-      if(i == 420) { show_dialog('dialog-story4', left+=10, top+=10) }
-      if(i == 426) { show_dialog('dialog-story5', left+=10, top+=10) }
-      if(i == 508) { show_dialog('dialog-story6', left+=10, top+=10) }
-      if(i == 512) { show_dialog('dialog-story7', left+=10, top+=10) }
+      if(i == 95)  { show_dialog('dialog-story2', left+=gap, top+=gap) }
+      if(i == 361) { show_dialog('dialog-story3', left+=gap, top+=gap) }
+      if(i == 420) { show_dialog('dialog-story4', left+=gap, top+=gap) }
+      if(i == 426) { show_dialog('dialog-story5', left+=gap, top+=gap) }
+      if(i == 508) { show_dialog('dialog-story6', left+=gap, top+=gap) }
+      if(i == 512) { show_dialog('dialog-story7', left+=gap, top+=gap) }
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
         loaded_s1 = true
       }
   
       to_print += txt[i];
-      elem.innerHTML = to_print
+      if(txt[i] == '<' || txt[i] == '>') {
+        dontprint = !dontprint
+        speed = 0
+      }
+      
+      if(!dontprint) {
+        speed = typingSpeed
+        elem.innerHTML = to_print
+      }
+
       if(i === txt.length - 1) return;
-      setTimeout(() => typewriter(elem, txt, i + 1), typingSpeed)
+      setTimeout(() => typewriter(elem, txt, i + 1), speed)
     }
   
     typewriter(target, '\
@@ -108,31 +128,41 @@ document.addEventListener('DOMContentLoaded', () => {
   // loading section 2
   function doSomethingForSection2() {
     if(loaded_s2) return;
-    let left = 20, top = 480;
+    let left = 95, top = -10, gap = 3;
     const target = document.querySelector('#story2 > div')
     target.classList.remove('invisible')
     const nextSection = document.getElementById('for-3')
+    let dontprint = false, speed = typingSpeed;
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
-      if(i == 95)  { show_dialog('dialog-story9',  left+=10, top+=10) }
-      if(i == 161) { show_dialog('dialog-story10', left+=10, top+=10) }
-      if(i == 120) { show_dialog('dialog-story11', left+=10, top+=10) }
-      if(i == 130) { show_dialog('dialog-story12', left+=10, top+=10) }
-      if(i == 132) { show_dialog('dialog-story13', left+=10, top+=10) }
-      if(i == 283) { show_dialog('dialog-story14', left+=10, top+=10) }
-      if(i == 285) { show_dialog('dialog-story15', left+=10, top+=10) }
-      if(i == 287) { show_dialog('dialog-story16', left+=10, top+=10) }
-      if(i == 290) { show_dialog('dialog-story17', left+=10, top+=10) }
+      if(i == 95)  { show_dialog('dialog-story9',  left+=gap, top+=gap) }
+      if(i == 161) { show_dialog('dialog-story10', left+=gap, top+=gap) }
+      if(i == 120) { show_dialog('dialog-story11', left+=gap, top+=gap) }
+      if(i == 130) { show_dialog('dialog-story12', left+=gap, top+=gap) }
+      if(i == 132) { show_dialog('dialog-story13', left+=gap, top+=gap) }
+      if(i == 283) { show_dialog('dialog-story14', left+=gap, top+=gap) }
+      if(i == 285) { show_dialog('dialog-story15', left+=gap, top+=gap) }
+      if(i == 287) { show_dialog('dialog-story16', left+=gap, top+=gap) }
+      if(i == 290) { show_dialog('dialog-story17', left+=gap, top+=gap) }
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
         loaded_s2 = true
       }
   
       to_print += txt[i];
-      elem.innerHTML = to_print
+      if(txt[i] == '<' || txt[i] == '>') {
+        dontprint = !dontprint
+        speed = 0
+      }
+      
+      if(!dontprint) {
+        speed = typingSpeed
+        elem.innerHTML = to_print
+      }
+
       if(i === txt.length - 1) return;
-      setTimeout(() => typewriter(elem, txt, i + 1), typingSpeed)
+      setTimeout(() => typewriter(elem, txt, i + 1), speed)
     }
   
     typewriter(target, '\
