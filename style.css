@@ -120,6 +120,14 @@ section {
 
 .disable-touch { touch-action: none !important; }
 
+@keyframes breathe {
+  from {
+    box-shadow: 5px 5px 5px rgba(131, 150, 168, 0.6), 0px 16px 32px rgba(131, 150, 168, 0.7);
+  }
+  to {
+    box-shadow: none;
+  }
+}
 @keyframes reveal {
   from {
     opacity: 0.1;
@@ -132,6 +140,13 @@ section {
 }
 .reveal { animation: reveal 0.5s 1 normal both; }
 .zoomout { transform: scale(.15) !important; }
+/* .breathe {
+  animation-name: breathe;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+} */
 
 a {
   text-decoration: underline;
@@ -141,6 +156,11 @@ a.p, a.n, a.e, a.m {
 }
 a.p, a.n, a.e {
   padding: 0 calc(.2 * var(--basefontsize));
+  animation-name: breathe;
+  animation-duration: 1.5s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 a.p /* positive */

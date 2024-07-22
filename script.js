@@ -47,11 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
         dialogIDs.forEach(id => {
           const d = document.getElementById(`dialog-story${id}`)
           d.classList.remove('zoomout')
+          d.style.zIndex = 999;
         })
       }
 
       if(anchor.classList.contains('expand-collapse')) {
-        anchor.parentElement.parentElement.classList.add('zoomout')      
+        anchor.parentElement.parentElement.classList.add('zoomout')
+        anchor.parentElement.parentElement.style.zIndex = 0;
       }
     }
   })
@@ -132,8 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // loading section 2
   function doSomethingForSection2() {
     write({
-      section: '#story1',
-      next_section: 'for-2',
+      section: '#story2',
+      next_section: 'for-3',
       char_positions: {
          95: 'dialog-story9',
         161: 'dialog-story10',
