@@ -145,7 +145,7 @@ a.n  /* negative */
 
 a.e /* general world news */
 {
-  background-color: var(--white);
+  background-color: #ccc;
 }
 a.m /* "read more" */ {  }
 
