@@ -58,6 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  function write() {
+
+  }
+
   // loading section 0
   function doSomethingForSection0() {
     if(loaded_s0) return;
@@ -67,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     parent.classList.remove('invisible');
     const nextSection = document.getElementById('for-1')
     let dontprint = false, speed = typingSpeed;
+    const typethis = target.innerHTML
+    target.innerHTML = '' // clear the text first
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
@@ -97,14 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => typewriter(elem, txt, i + 1), speed)
     }
   
-    typewriter(target, '\
-      <h1>In 2006, Laura Bush said that America was going to Afghanistan to fight "the brutal oppression of women".\
-        <span class="text-secondary">While we were busy fighting sexual oppression (among other things) in Afghanistan, we also\
-          <a data-dialogs="0" class="p link-for-section">tried</a> to reduce sexual assaults in our own military, even if it\
-          <a data-dialogs="1" class="n link-for-section">didn\'t</a> succeed at the start.\
-        </span>\
-      </h1>\
-    ');
+    typewriter(target, typethis);
   }
 
   // loading section 1
@@ -116,6 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
     parent.classList.remove('invisible')
     const nextSection = document.getElementById('for-2')
     let dontprint = false, speed = typingSpeed;
+    const typethis = target.innerHTML
+    target.innerHTML = '' // clear the text first
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
@@ -149,16 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => typewriter(elem, txt, i + 1), speed)
     }
   
-    typewriter(target, '\
-      <h1>We defeated the Taliban, established democracy, and helped\
-        <a data-dialogs="2 3" class="e link-for-section">Afghanistan\'s</a> women feel safer. Women were playing a greater role within our armed forces, and we tried again to reduce sexual assaults in our own military. But it still didn\'t seem to work.\
-      </h1>\
-      <h1 class="text-secondary">Women were playing a\
-        <a data-dialogs="4 5" class="p link-for-section">greater role</a> within our armed forces, and we\
-        <a data-dialogs="6" class="p link-for-section">tried again</a> to reduce sexual assaults in our own military. But it\
-        <a data-dialogs="7" class="n link-for-section">still didn\'t</a> seem to work.\
-      </h1>\
-    ');
+    typewriter(target, typethis);
   }
 
   // loading section 2
@@ -170,6 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     parent.classList.remove('invisible')
     const nextSection = document.getElementById('for-3')
     let dontprint = false, speed = typingSpeed;
+    const typethis = target.innerHTML
+    target.innerHTML = '' // clear the text first
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
@@ -205,15 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => typewriter(elem, txt, i + 1), speed)
     }
   
-    typewriter(target, '\
-      <h1>Ultimately, though, the war severely\
-        <a data-dialogs="9 10 11 12 13 14" class="n link-for-section">worsened</a> Afghan women\'s lives.\
-      </h1>\
-      <h1 class="text-secondary">While we were busy\
-        <a data-dialogs="15" class="p link-for-section">pretending</a> to help Afghanistan, we kept pretending to reduce sexual assaults in our own military. It\
-        <a data-dialogs="16 17" class="n link-for-section">didn\'t work</a> at all.\
-      </h1>\
-    ');
+    typewriter(target, typethis);
 
     return false;
   }
