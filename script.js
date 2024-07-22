@@ -6,12 +6,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
-  let to_print = '';
-  const typingSpeed = 10;
-  // let loaded_s0 = false,
-  //     loaded_s1 = false,
-  //     loaded_s2 = false,
-  //     loaded_s3 = false;
 
   // utility function to scroll down
   function scrollDown(by=100) {
@@ -58,26 +52,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  function write() {
-
-  }
-
-  // loading section 0
-  function doSomethingForSection0() {
-    // if(loaded_s0) return;
+  function write(config) {
+    let to_print = '';
+    const typingSpeed = 10;
     let left = 1, top = 5, gap = 3;
-    const parent = document.querySelector('#story0')
-    const target = document.querySelector('#story0 > div')
+    const parent = document.querySelector(config.section)
+    const target = document.querySelector(`${config.section} > div`)
     parent.classList.remove('invisible');
-    const nextSection = document.getElementById('for-1')
+    const nextSection = document.getElementById(config.next_section)
     let dontprint = false, speed = typingSpeed;
     const typethis = target.innerHTML
     target.innerHTML = '' // clear the text first
 
     function typewriter(elem, txt, i = 0) {
       if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
-      if(i == 286) { show_dialog('dialog-story0', left+=gap, top+=gap) }
-      if(i == 375) { show_dialog('dialog-story1', left+=gap, top+=gap) }
+      if(i in config.char_positions) {
+        show_dialog(config.char_positions[i], left+=gap, top+=gap)
+      }
   
       to_print += txt[i];
       
@@ -106,112 +97,58 @@ document.addEventListener('DOMContentLoaded', () => {
     typewriter(target, typethis);
   }
 
+  // loading section 0
+  function doSomethingForSection0() {
+    write({
+      section: '#story0',
+      next_section: 'for-1',
+      char_positions: {
+        286: 'dialog-story0',
+        375: 'dialog-story1',
+      } 
+    })
+  }
+
   // loading section 1
   function doSomethingForSection1() {
-    // if(loaded_s1) return;
-    let left = -10, top = 5, gap = 3;
-    const parent = document.querySelector('#story1')
-    const target = document.querySelector('#story1 > div')
-    parent.classList.remove('invisible')
-    const nextSection = document.getElementById('for-2')
-    let dontprint = false, speed = typingSpeed;
-    const typethis = target.innerHTML
-    target.innerHTML = '' // clear the text first
-
-    function typewriter(elem, txt, i = 0) {
-      if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-      if(i == 95)  { show_dialog('dialog-story2', left+=gap, top+=gap) }
-      if(i == 361) { show_dialog('dialog-story3', left+=gap, top+=gap) }
-      if(i == 420) { show_dialog('dialog-story4', left+=gap, top+=gap) }
-      if(i == 426) { show_dialog('dialog-story5', left+=gap, top+=gap) }
-      if(i == 508) { show_dialog('dialog-story6', left+=gap, top+=gap) }
-      if(i == 512) { show_dialog('dialog-story7', left+=gap, top+=gap) }
-      
-      to_print += txt[i];
-      // if any of the tags are identified in the text, speeden typing`
-      if(txt[i] == '<' || txt[i] == '>') {
-        dontprint = !dontprint
-        speed = 0
-      }
-
-      // normally for everything that needs to be rendered on screen
-      if(!dontprint) {
-        speed = typingSpeed
-        elem.innerHTML = to_print
-      }
-      
-      // as soon as the last text is rendered, show the 'read more...' text & stop
-      if(i == txt.length - 1) {
-        nextSection.classList.remove('invisible')
-        // loaded_s1 = true
-        return
-      }
-      
-      setTimeout(() => typewriter(elem, txt, i + 1), speed)
-    }
-  
-    typewriter(target, typethis);
+    write({
+      section: '#story1',
+      next_section: 'for-2',
+      char_positions: {
+        95: 'dialog-story2',
+        361: 'dialog-story3',
+        420: 'dialog-story4',
+        426: 'dialog-story5',
+        508: 'dialog-story6',
+        512: 'dialog-story7'
+      } 
+    })
   }
 
   // loading section 2
   function doSomethingForSection2() {
-    // if(loaded_s2) return;
-    let left = 95, top = -10, gap = 3;
-    const parent = document.querySelector('#story2')
-    const target = document.querySelector('#story2 > div')
-    parent.classList.remove('invisible')
-    const nextSection = document.getElementById('for-3')
-    let dontprint = false, speed = typingSpeed;
-    const typethis = target.innerHTML
-    target.innerHTML = '' // clear the text first
-
-    function typewriter(elem, txt, i = 0) {
-      if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
-      if(i == 95)  { show_dialog('dialog-story9',  left+=gap, top+=gap) }
-      if(i == 161) { show_dialog('dialog-story10', left+=gap, top+=gap) }
-      if(i == 120) { show_dialog('dialog-story11', left+=gap, top+=gap) }
-      if(i == 130) { show_dialog('dialog-story12', left+=gap, top+=gap) }
-      if(i == 132) { show_dialog('dialog-story13', left+=gap, top+=gap) }
-      if(i == 283) { show_dialog('dialog-story14', left+=gap, top+=gap) }
-      if(i == 285) { show_dialog('dialog-story15', left+=gap, top+=gap) }
-      if(i == 287) { show_dialog('dialog-story16', left+=gap, top+=gap) }
-      if(i == 290) { show_dialog('dialog-story17', left+=gap, top+=gap) }
-  
-      to_print += txt[i];
-      // if any of the tags are identified in the text, speeden typing
-      if(txt[i] == '<' || txt[i] == '>') {
-        dontprint = !dontprint
-        speed = 0
-      }
-      
-      // normally for everything that needs to be rendered on screen
-      if(!dontprint) {
-        speed = typingSpeed
-        elem.innerHTML = to_print
-      }
-
-      // as soon as the last text is rendered, show the 'read more...' text & stop
-      if(i == txt.length - 1) {
-        nextSection.classList.remove('invisible')
-        // loaded_s2 = true
-        return;
-      }
-      setTimeout(() => typewriter(elem, txt, i + 1), speed)
-    }
-  
-    typewriter(target, typethis);
-
-    return false;
+    write({
+      section: '#story1',
+      next_section: 'for-2',
+      char_positions: {
+        95: 'dialog-story9',
+        161: 'dialog-story10',
+        120: 'dialog-story11',
+        130: 'dialog-story12',
+        132: 'dialog-story13',
+        283: 'dialog-story14',
+        285: 'dialog-story15',
+        287: 'dialog-story16',
+        290: 'dialog-story17',
+      } 
+    })
   }
 
   // loading section 3
   function doSomethingForSection3() {
-    // if(loaded_s3) return;
     const parent = document.querySelector('#story3')
     const target = document.querySelector('#story3 > div')
     parent.classList.remove('invisible');
-    // loaded_s3 = true;
-    return false;
   }
 
 
