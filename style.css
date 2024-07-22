@@ -86,6 +86,22 @@ section {
   padding: 1rem;
   font-size: calc(.5rem + 1vw);
 }
+  .dialog-wrapper .expand-collapse {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+    font-family: monospace;
+    color: var(--white);
+    position: absolute;
+    left: -42px;
+    top: -2px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer !important;
+  }
   .dialog-wrapper .year { font-size: 0.7rem; }
   .positive-story { border: 2px solid var(--green); }
   .negative-story { border: 2px solid var(--red); }

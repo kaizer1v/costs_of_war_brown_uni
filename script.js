@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // on loading the page, show section 0 (first section)
-  doSomethingForSection0();
+  doSomethingForSection0()
 
   // subsequent sections are loaded when clicking on 'read more...'
   document.addEventListener('click', (event) => {
@@ -49,8 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
           d.classList.remove('zoomout')
         })
       }
+
+      if(anchor.classList.contains('expand-collapse')) {
+        anchor.parentElement.parentElement.classList.add('zoomout')      
+      }
     }
-  });
+  })
 
   function write(config) {
     let to_print = '';
