@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       section: '#story1',
       next_section: 'for-2',
       char_positions: {
-        95: 'dialog-story2',
+         95: 'dialog-story2',
         361: 'dialog-story3',
         420: 'dialog-story4',
         426: 'dialog-story5',
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       section: '#story1',
       next_section: 'for-2',
       char_positions: {
-        95: 'dialog-story9',
+         95: 'dialog-story9',
         161: 'dialog-story10',
         120: 'dialog-story11',
         130: 'dialog-story12',
@@ -139,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
         283: 'dialog-story14',
         285: 'dialog-story15',
         287: 'dialog-story16',
-        290: 'dialog-story17',
-      } 
+        290: 'dialog-story17'
+      }
     })
   }
 
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const onMouseUp = () => {
     isDragging = false;
-    currentDraggable.style.cursor = 'grab';
+    currentDraggable.style.cursor = 'move';
 
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
