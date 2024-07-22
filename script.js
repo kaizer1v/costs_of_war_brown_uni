@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section');
   let to_print = '';
   const typingSpeed = 10;
-  let loaded_s0 = false,
-      loaded_s1 = false,
-      loaded_s2 = false,
-      loaded_s3 = false;
+  // let loaded_s0 = false,
+  //     loaded_s1 = false,
+  //     loaded_s2 = false,
+  //     loaded_s3 = false;
 
   // utility function to scroll down
   function scrollDown(by=100) {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // loading section 0
   function doSomethingForSection0() {
-    if(loaded_s0) return;
+    // if(loaded_s0) return;
     let left = 1, top = 5, gap = 3;
     const parent = document.querySelector('#story0')
     const target = document.querySelector('#story0 > div')
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // loading section 1
   function doSomethingForSection1() {
-    if(loaded_s1) return;
+    // if(loaded_s1) return;
     let left = -10, top = 5, gap = 3;
     const parent = document.querySelector('#story1')
     const target = document.querySelector('#story1 > div')
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // as soon as the last text is rendered, show the 'read more...' text & stop
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
-        loaded_s1 = true
+        // loaded_s1 = true
         return
       }
       
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // loading section 2
   function doSomethingForSection2() {
-    if(loaded_s2) return;
+    // if(loaded_s2) return;
     let left = 95, top = -10, gap = 3;
     const parent = document.querySelector('#story2')
     const target = document.querySelector('#story2 > div')
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // as soon as the last text is rendered, show the 'read more...' text & stop
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
-        loaded_s2 = true
+        // loaded_s2 = true
         return;
       }
       setTimeout(() => typewriter(elem, txt, i + 1), speed)
@@ -206,11 +206,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // loading section 3
   function doSomethingForSection3() {
-    if(loaded_s3) return;
+    // if(loaded_s3) return;
     const parent = document.querySelector('#story3')
     const target = document.querySelector('#story3 > div')
     parent.classList.remove('invisible');
-    loaded_s3 = true;
+    // loaded_s3 = true;
     return false;
   }
 
