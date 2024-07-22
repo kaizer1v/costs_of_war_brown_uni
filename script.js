@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // check if the link clicked is for dialog stories
       if(anchor.classList.contains('link-for-section')) {
-        console.log(anchor.dataset.dialogs)
         // get associated dialog IDs to highlight
         const dialogIDs = anchor.dataset.dialogs.split(' ')
         // make all the dialogs associated to the link zoomed-in
