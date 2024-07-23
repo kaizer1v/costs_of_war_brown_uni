@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.remove()
       }
 
-      // check if the link clicked is for dialog stories
+      // on clicking highlighted text
       if(anchor.classList.contains('link-for-section')) {
         // get associated dialog IDs to highlight
         const dialogIDs = anchor.dataset.dialogs.split(' ')
@@ -46,12 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
         dialogIDs.forEach(id => {
           const d = document.getElementById(`dialog-story${id}`)
           d.classList.remove('zoomout')
+          d.classList.add('zoomin')
           d.style.zIndex = 999;
         })
       }
 
+      // on clicking 'X' button on the dialog
       if(anchor.classList.contains('expand-collapse')) {
         anchor.parentElement.parentElement.classList.add('zoomout')
+        anchor.parentElement.parentElement.classList.remove('zoomin')
         anchor.parentElement.parentElement.style.zIndex = 0;
       }
     }

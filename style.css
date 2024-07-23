@@ -111,6 +111,7 @@ section {
     font-weight: 500;
     padding: 17px 30px;
     border-bottom: 1px solid #ccc;
+    transform: scale(.15);
   }
   .dialog-wrapper .content { padding: 2rem; }
 
@@ -120,12 +121,22 @@ section {
 
 .disable-touch { touch-action: none !important; }
 
-@keyframes breathe {
+@keyframes zoom {
   from {
-    box-shadow: 5px 5px 5px rgba(131, 150, 168, 0.6), 0px 16px 32px rgba(131, 150, 168, 0.7);
+    transform: scale(.15) !important;
   }
   to {
-    box-shadow: none;
+    transform: scale(1) !important;
+  }
+}
+@keyframes breathe {
+  from {
+    /* box-shadow: 5px 5px 5px rgba(131, 150, 168, 0.6), 0px 16px 32px rgba(131, 150, 168, 0.7); */
+    opacity: 1;
+  }
+  to {
+    /* box-shadow: none; */
+    opacity: 0.2;
   }
 }
 @keyframes reveal {
@@ -139,20 +150,25 @@ section {
   }
 }
 .reveal { animation: reveal 0.5s 1 normal both; }
-.zoomout { transform: scale(.15) !important; }
-/* .breathe {
-  animation-name: breathe;
-  animation-duration: 0.5s;
-  animation-direction: alternate;
+.zoomin {
+  animation-name: zoom;
+  animation-direction: normal;
+  animation-duration: 0.8s;
   animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-} */
+}
+.zoomout {
+  animation-name: zoom;
+  animation-direction: reverse;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+}
 
 a {
   text-decoration: underline;
 }
 a.p, a.n, a.e, a.m {
   border-radius: calc(.1 * var(--basefontsize));
+  cursor: pointer;
 }
 a.p, a.n, a.e {
   padding: 0 calc(.2 * var(--basefontsize));
