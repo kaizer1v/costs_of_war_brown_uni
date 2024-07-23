@@ -1,6 +1,9 @@
-/* -----
- * Scroll based events
- * -----
+/**
+ * Notes
+ * 1. dialog = reveal + zoomout (as and when highlighted text appears)
+ * 2. on click of the highlighted text, dialog = zoomin
+ * 3. on click of close button, dialog = zoomout
+ * 4. on click of the zoomedout dialog = zoomin (but click event is dragging here)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -45,17 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // make all the dialogs associated to the link zoomed-in
         dialogIDs.forEach(id => {
           const d = document.getElementById(`dialog-story${id}`)
-          d.classList.remove('zoomout')
-          d.classList.add('zoomin')
-          d.style.zIndex = 999;
+          show_dialog(`dialog-story${id}`, event.clientX, event.clientY)
+          // d.classList.remove('zoomout')
+          // d.classList.add('zoomin')
+          // d.style.zIndex = 999;
         })
       }
 
       // on clicking 'X' button on the dialog
       if(anchor.classList.contains('expand-collapse')) {
-        anchor.parentElement.parentElement.classList.add('zoomout')
-        anchor.parentElement.parentElement.classList.remove('zoomin')
-        anchor.parentElement.parentElement.style.zIndex = 0;
+        hide_dialog(anchor.parentElement.parentElement.getAttribute('id'))
+        // anchor.parentElement.parentElement.classList.add('zoomout')
+        // anchor.parentElement.parentElement.classList.remove('zoomin')
+        // anchor.parentElement.parentElement.style.zIndex = 0;
       }
     }
   })
@@ -257,10 +262,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if(dialog.classList.contains('invisible')) {
       dialog.classList.replace('invisible', 'visible')
-      dialog.classList.add('reveal')
       dialog.classList.add('zoomout')
+      dialog.classList.replace('zoomin', 'zoomout')
       dialog.style.top = `${y}%`;
       dialog.style.left = `${x}%`;
+    }
+  }
+
+  function hide_dialog(id) {
+    const dialog = document.getElementById(id)
+    
+    if(dialog.classList.contains('visible')) {
+      // dialog.classList.replace('invisible', 'visible')
+      // dialog.classList.remove('zoomout')
+      dialog.classList.replace('zoomout', 'zoomin')
+      // dialog.style.top = `${y}%`;
+      // dialog.style.left = `${x}%`;
     }
   }
 
