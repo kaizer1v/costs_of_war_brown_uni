@@ -11,6 +11,7 @@
 :root, [data-bs-theme=light] {
   --basefontsize: calc(1rem + 3vw);
   --baseborderthickness: calc(1 * var(--basefontsize));
+  --zoomoutarticlewidth: var(2 * var(--basefontsize));
   --basefontcolour: #222;
   --green: #35A6AD;
   --red: #EF4748;
@@ -95,6 +96,12 @@ section {
   padding: 1rem;
   font-size: calc(.5rem + 1vw);
 }
+  .dialog-wrapper.zoomout .content {
+    max-height: calc(var(--basefontsize)*10);
+    max-width: calc(var(--basefontsize)*10);
+    overflow: hidden;
+    margin-bottom: var(--basefontsize);
+  }
   .dialog-wrapper .expand-collapse {
     display: block;
     opacity: 1;
