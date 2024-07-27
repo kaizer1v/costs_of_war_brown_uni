@@ -67,7 +67,7 @@ section {
   flex-basis: auto;
   padding: 1rem; 
   scroll-snap-align: start;
-  width: fit-content;
+  width: -webkit-fill-available;
 }
   section > h1, 
   section > .section-content {
