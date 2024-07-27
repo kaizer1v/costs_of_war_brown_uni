@@ -171,9 +171,8 @@ a.p, a.n, a.e, a.m {
   cursor: pointer;
 }
 a.p, a.n, a.e {
-  --padding-sides: calc(.2 * var(--basefontsize));
-  --padding-top: calc(var(--padding-sides) * .5);
-  padding: var(--padding-top) var(--padding-sides) 0;
+  --padding: calc(.2 * var(--basefontsize));
+  padding: 0 var(--padding);
   cursor: zoom-in;
 }
 
