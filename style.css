@@ -190,7 +190,9 @@ a.e /* general world news */
 {
   background-color: var(--grey);
 }
-a.m /* "read more" */ {  }
+a.m /* "read more" */ { 
+  text-decoration: underline; 
+}
 
 
 /** utility classes **/
