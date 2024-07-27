@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const findDraggable = (element) => {
     // allow dialog to be draggable only when in `zoomin` state
-    while(element && !element.classList.contains('zoomin')) {
+    while(element && !element.classList.contains('dialog-wrapper')) {
       element = element.parentElement;
     }
     return element;

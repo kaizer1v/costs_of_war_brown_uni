@@ -120,7 +120,7 @@ section {
     font-weight: 500;
     padding: 17px 30px;
     border-bottom: 1px solid #ccc;
-    transform: scale(.15);
+    transform: scale(.1);
   }
   .dialog-wrapper .content { padding: 2rem; }
 
