@@ -131,13 +131,16 @@ section {
 .zoomout { transform: scale(.15) !important; }
 
 a {
-  text-decoration: underline;
+  text-decoration: none;
+  display: inline-block;
 }
 a.p, a.n, a.e, a.m {
   border-radius: calc(.1 * var(--basefontsize));
 }
 a.p, a.n, a.e {
-  padding: 0 calc(.2 * var(--basefontsize));
+  --padding-sides: calc(.2 * var(--basefontsize));
+  --padding-top: calc(var(--padding-sides) * .5);
+  padding: var(--padding-top) var(--padding-sides) 0;
 }
 
 a.p /* positive */
