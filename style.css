@@ -10,7 +10,7 @@
 
 :root, [data-bs-theme=light] {
   --basefontsize: calc(1rem + 3vw);
-  --baseborderthickness: calc(.5 * var(--basefontsize));
+  --baseborderthickness: calc(1 * var(--basefontsize));
   --basefontcolour: #222;
   --green: #35A6AD;
   --red: #EF4748;
