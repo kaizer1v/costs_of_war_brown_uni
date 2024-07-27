@@ -86,7 +86,7 @@ section {
 /* ----- */
 
 .dialog-wrapper {
-  cursor: move;
+  /* cursor: move; */
   position: absolute;
   max-width: 450px;
   width: 100%;
@@ -187,6 +187,12 @@ a.p, a.n, a.e {
   --padding-sides: calc(.2 * var(--basefontsize));
   --padding-top: calc(var(--padding-sides) * .5);
   padding: var(--padding-top) var(--padding-sides) 0;
+  animation-name: breathe;
+  animation-duration: 1.5s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  cursor: zoom-in;
 }
 
 a.p /* positive */
