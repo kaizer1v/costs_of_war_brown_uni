@@ -47,7 +47,7 @@ h1 {
   margin-bottom: var(--margins);
   display: flex;
   flex-direction: column;
-  text-align: center;
+
 }
 
 /* ----- */
@@ -63,7 +63,7 @@ section {
   position: relative;
   text-align: left;
   flex-shrink: 0;
-  flex-grow: 1;
+  flex-grow: 0;
   flex-basis: auto;
   padding: 1rem; 
   scroll-snap-align: start;
@@ -93,6 +93,22 @@ section {
   padding: 1rem;
   font-size: calc(.5rem + 1vw);
 }
+  .dialog-wrapper .expand-collapse {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+    font-family: monospace;
+    color: var(--white);
+    position: absolute;
+    left: -42px;
+    top: -2px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer !important;
+  }
   .dialog-wrapper .year { font-size: 0.7rem; }
   .positive-story { border: 2px solid var(--green); }
   .negative-story { border: 2px solid var(--red); }
@@ -111,17 +127,33 @@ section {
 
 .disable-touch { touch-action: none !important; }
 
+@keyframes breathe {
+  from {
+    box-shadow: 5px 5px 5px rgba(131, 150, 168, 0.6), 0px 16px 32px rgba(131, 150, 168, 0.7);
+  }
+  to {
+    box-shadow: none;
+  }
+}
 @keyframes reveal {
   from {
     opacity: 0.1;
-    transform: scale(0);
+    transform: translate(0, 0);
   }
   to   {
     opacity: 1;
-    transform: scale(.15) translate(-30%, -30%);
+    transform: translate(-30%, -30%);
   }
 }
 .reveal { animation: reveal 0.5s 1 normal both; }
+.zoomout { transform: scale(.15) !important; }
+/* .breathe {
+  animation-name: breathe;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+} */
 
 a {
   text-decoration: underline;
@@ -131,6 +163,11 @@ a.p, a.n, a.e, a.m {
 }
 a.p, a.n, a.e {
   padding: 0 calc(.2 * var(--basefontsize));
+  animation-name: breathe;
+  animation-duration: 1.5s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 a.p /* positive */
@@ -153,4 +190,5 @@ a.m /* "read more" */ {  }
 /** utility classes **/
 .invisible {
   visibility: hidden !important;
+  display: none !important;
 }
