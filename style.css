@@ -120,6 +120,7 @@ section {
     font-weight: 500;
     padding: 17px 30px;
     border-bottom: 1px solid #ccc;
+    transform: scale(.15);
   }
   .dialog-wrapper .content { padding: 2rem; }
 
@@ -129,8 +130,50 @@ section {
 
 .disable-touch { touch-action: none !important; }
 
-.reveal { animation: reveal 0.5s 1 normal both; }
-.zoomout { transform: scale(.15) !important; }
+@keyframes zoom {
+  from {
+    transform: scale(.15);
+  }
+  to {
+    transform: translate(-30%, -30%) scale(1);
+  }
+}
+@keyframes breathe {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
+/* @keyframes reveal {
+  from {
+    opacity: 0.1;
+    transform: translate(0, 0);
+  }
+  to   {
+    opacity: 1;
+    transform: translate(-30%, -30%);
+  }
+}
+.reveal { animation: reveal 0.5s 1 normal both; } */
+.zoomin {
+  /* animation-name: zoom; */
+  /* animation-direction: normal; */
+  /* animation-duration: 0.8s; */
+  /* animation-timing-function: ease-in-out; */
+  transform: scale(1);
+  transition: all .3 ease-in;
+
+}
+.zoomout {
+  /* animation-name: zoom;
+  animation-direction: reverse;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out; */
+  transform: scale(.1);
+  transition: all .3 ease-in;
+}
 
 a {
   text-decoration: none;
@@ -138,6 +181,7 @@ a {
 }
 a.p, a.n, a.e, a.m {
   border-radius: calc(.1 * var(--basefontsize));
+  cursor: pointer;
 }
 a.p, a.n, a.e {
   --padding-sides: calc(.2 * var(--basefontsize));
