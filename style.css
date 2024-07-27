@@ -33,7 +33,7 @@ html {
 	/* scroll-snap-type: y mandatory; */
 }
 
-h1 {
+p {
   font-optical-sizing: auto;
   font-size: var(--basefontsize);
   font-weight: 440;
@@ -69,7 +69,7 @@ section {
   scroll-snap-align: start;
   width: fit-content;
 }
-  section > h1, 
+  section > p, 
   section > .section-content {
     text-align: left;
   }
