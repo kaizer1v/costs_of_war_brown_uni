@@ -10,6 +10,7 @@
 
 :root, [data-bs-theme=light] {
   --basefontsize: calc(1rem + 3vw);
+  --baseborderthickness: calc(.5 * var(--basefontsize));
   --basefontcolour: #222;
   --green: #35A6AD;
   --red: #EF4748;
@@ -111,9 +112,9 @@ section {
     cursor: pointer !important;
   }
   .dialog-wrapper .year { font-size: 0.7rem; }
-  .positive-story { border: 2px solid var(--green); }
-  .negative-story { border: 2px solid var(--red); }
-  .neutral-story  { border: 2px solid var(--grey); }
+  .positive-story { border: var(--baseborderthickness) solid var(--green); }
+  .negative-story { border: var(--baseborderthickness) solid var(--red); }
+  .neutral-story  { border: var(--baseborderthickness) solid var(--grey); }
   .dialog-wrapper header {
     font-size: 23px;
     font-weight: 500;
