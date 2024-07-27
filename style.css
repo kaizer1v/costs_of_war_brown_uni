@@ -14,14 +14,16 @@
   --green: #35A6AD;
   --red: #EF4748;
   --white: #F8F5ED;
+/*  --white: rgb(240, 240, 240);*/
   --black: rgb(43, 40, 40);
 }
 
 body {
   font-family: "Eczar", "Times New Roman", "Georgia", serif;
+  color: var(--basefontcolour);
   background-repeat: round;
   background-attachment: fixed;
-  background-color: rgb(240, 240, 240);
+  background-color: var(--white);
   overflow-x: hidden;
 }
 
@@ -35,12 +37,14 @@ h1 {
   font-optical-sizing: auto;
   font-size: var(--basefontsize);
   font-weight: 440;
-  color: var(--basefontcolour);
   line-height: calc(1.375 * var(--basefontsize));
 }
 
 .container {
-  margin: auto;
+  margin: 0 auto;
+  --margins: calc(2 * var(--basefontsize));
+  margin-top: var(--margins);
+  margin-bottom: var(--margins);
   display: flex;
   flex-direction: column;
 
@@ -65,10 +69,13 @@ section {
   scroll-snap-align: start;
   width: fit-content;
 }
-  .section-content {
+  section > h1, 
+  section > .section-content {
     text-align: left;
-    color: rgb(43, 40, 40);
-    padding: 2rem;
+  }
+
+  section > .section-content .text-contextnews {
+    opacity: .6777;
   }
 
 
@@ -175,7 +182,7 @@ a.n  /* negative */
 
 a.e /* general world news */
 {
-  background-color: var(--white);
+  background-color: #ccc;
 }
 a.m /* "read more" */ {  }
 
