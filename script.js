@@ -274,15 +274,15 @@ document.addEventListener('DOMContentLoaded', () => {
    * Given a dialog id, unhide the dialog with that id
    * This is a one time function
    */
-  function show_dialog(id, x, y) {
+  function show_dialog(id, left, top) {
     const dialog = document.getElementById(id)
     
     if(dialog.classList.contains('invisible')) {
       dialog.classList.remove('invisible')
       dialog.classList.add('reveal')
       dialog.classList.add('zoomout')
-      dialog.style.top = `${y}%`;
-      dialog.style.left = `${x}%`;
+      dialog.style.top = `${top}%`;
+      dialog.style.left = `${left}%`;
     }
   }
 
