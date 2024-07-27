@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
+  const dialogs = document.querySelectorAll('.dialog-wrapper');
 
   // utility function to scroll down
   function scrollDown(by=100) {
@@ -21,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // subsequent sections are loaded when clicking on 'read more...'
   document.addEventListener('click', (event) => {
+    console.log('>>>>', event.target)
+
     if(event.target.tagName == 'A') {
       const anchor = event.target;
       const sectionID = (anchor.getAttribute('id')) ? anchor.getAttribute('id') : false;
@@ -45,28 +48,48 @@ document.addEventListener('DOMContentLoaded', () => {
         // make all the dialogs associated to the link zoomed-in
         dialogIDs.forEach(id => {
           const d = document.getElementById(`dialog-story${id}`)
-          d.classList.remove('zoomout')
+          d.classList.replace('zoomout', 'zoomin')
           d.style.zIndex = 999;
         })
       }
 
       if(anchor.classList.contains('expand-collapse')) {
-        anchor.parentElement.parentElement.classList.add('zoomout')
-        anchor.parentElement.parentElement.style.zIndex = 0;
+        anchor.parentElement.parentElement.classList.replace('zoomin', 'zoomout')
       }
     }
+
+
   })
 
+
+  dialogs.forEach(dialog => {
+    dialog.addEventListener('click', (event) => {
+        const target = event.target;
+
+        // Check if the click is on the dialog or its children
+        if(dialog.contains(target)) {
+          if(target === dialog) {
+            console.log(`dialog ${dialog.id} clicked`);
+          } else {
+            console.log(`Child clicked in dialog ${dialog.id}:`, target.textContent);
+            // zoom-in on the clicked dialog
+            dialog.classList.replace('zoomout', 'zoomin')
+            // ... and allow to drag
+          }
+        }
+    });
+  });
+
   function write(config) {
-    let to_print = '';
     const typingSpeed = 10;
-    let left = 1, top = 5, gap = 3;
     const parent = document.querySelector(config.section)
     const target = document.querySelector(`${config.section} > div`)
-    parent.classList.remove('invisible');
     const nextSection = document.getElementById(config.next_section)
-    let dontprint = false, speed = typingSpeed;
     const typethis = target.innerHTML
+    let to_print = '', left = 1, top = 5, gap = 3;
+    let dontprint = false, speed = typingSpeed;
+
+    parent.classList.remove('invisible')
     target.innerHTML = '' // clear the text first
 
     function typewriter(elem, txt, i = 0) {
@@ -161,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Drag events
    */
+
   const draggables = document.querySelectorAll(".dialog-wrapper");
   let isDragging = false;
   let startX, startY, initialX, initialY, currentDraggable;
@@ -168,7 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const preventDefault = (e) => e.preventDefault();
 
   const findDraggable = (element) => {
-    while (element && !element.classList.contains('dialog-wrapper')) {
+    // allow dialog to be draggable only when in `zoomin` state
+    while(element && !element.classList.contains('zoomin')) {
       element = element.parentElement;
     }
     return element;
@@ -243,7 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
     draggable.addEventListener('touchstart', onTouchStart, { passive: false });
   })
 
-
   /**
    * Utility
    * Given a dialog id, unhide the dialog with that id
@@ -253,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dialog = document.getElementById(id)
     
     if(dialog.classList.contains('invisible')) {
-      dialog.classList.replace('invisible', 'visible')
+      dialog.classList.remove('invisible')
       dialog.classList.add('reveal')
       dialog.classList.add('zoomout')
       dialog.style.top = `${y}%`;
