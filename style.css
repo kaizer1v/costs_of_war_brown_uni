@@ -138,14 +138,6 @@ section {
     transform: translate(-30%, -30%) scale(1);
   }
 }
-@keyframes breathe {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.2;
-  }
-}
 
 .zoomin {
   animation-name: zoom;
@@ -182,11 +174,6 @@ a.p, a.n, a.e {
   --padding-sides: calc(.2 * var(--basefontsize));
   --padding-top: calc(var(--padding-sides) * .5);
   padding: var(--padding-top) var(--padding-sides) 0;
-  animation-name: breathe;
-  animation-duration: 1.5s;
-  animation-direction: alternate;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
   cursor: zoom-in;
 }
 
