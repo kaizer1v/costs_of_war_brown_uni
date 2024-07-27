@@ -146,34 +146,29 @@ section {
     opacity: 0.2;
   }
 }
-/* @keyframes reveal {
-  from {
-    opacity: 0.1;
-    transform: translate(0, 0);
-  }
-  to   {
-    opacity: 1;
-    transform: translate(-30%, -30%);
-  }
-}
-.reveal { animation: reveal 0.5s 1 normal both; } */
+
 .zoomin {
-  /* animation-name: zoom; */
-  /* animation-direction: normal; */
-  /* animation-duration: 0.8s; */
-  /* animation-timing-function: ease-in-out; */
+  animation-name: zoom;
+  animation-direction: normal;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
   transform: scale(1);
   transition: all .3 ease-in;
+  z-index: 999;
 
 }
 .zoomout {
-  /* animation-name: zoom;
+  animation-name: zoom;
   animation-direction: reverse;
   animation-duration: 0.8s;
-  animation-timing-function: ease-in-out; */
+  animation-timing-function: ease-in-out;
   transform: scale(.1);
   transition: all .3 ease-in;
+  z-index: 10;
 }
+  .zoomout:hover {
+    cursor: zoom-in !important;
+  }
 
 a {
   text-decoration: none;
