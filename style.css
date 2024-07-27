@@ -97,6 +97,7 @@ section {
 }
   .dialog-wrapper .expand-collapse {
     display: block;
+    opacity: 1;
     width: 40px;
     height: 40px;
     background-color: grey;
@@ -110,6 +111,9 @@ section {
     font-size: 1.8rem;
     font-weight: bold;
     cursor: pointer !important;
+  }
+  .dialog-wrapper.zoomout .expand-collapse {
+    opacity: 0;
   }
   .dialog-wrapper .year { font-size: 0.7rem; }
   .positive-story { border: var(--baseborderthickness) solid var(--green); }
