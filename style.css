@@ -14,6 +14,7 @@
   --green: #35A6AD;
   --red: #EF4748;
   --white: #F8F5ED;
+  --grey: #ccc;
 /*  --white: rgb(240, 240, 240);*/
   --black: rgb(43, 40, 40);
 }
@@ -112,7 +113,7 @@ section {
   .dialog-wrapper .year { font-size: 0.7rem; }
   .positive-story { border: 2px solid var(--green); }
   .negative-story { border: 2px solid var(--red); }
-  .neutral-story  { border: 2px solid var(--white); }
+  .neutral-story  { border: 2px solid var(--grey); }
   .dialog-wrapper header {
     font-size: 23px;
     font-weight: 500;
@@ -155,7 +156,7 @@ a.n  /* negative */
 
 a.e /* general world news */
 {
-  background-color: #ccc;
+  background-color: var(--grey);
 }
 a.m /* "read more" */ {  }
 
