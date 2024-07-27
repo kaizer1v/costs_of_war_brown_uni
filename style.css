@@ -10,7 +10,8 @@
 
 :root, [data-bs-theme=light] {
   --basefontsize: calc(1rem + 3vw);
-  --baseborderthickness: calc(.5 * var(--basefontsize));
+  --baseborderthickness: calc(1 * var(--basefontsize));
+  --zoomoutarticlewidth: var(2 * var(--basefontsize));
   --basefontcolour: #222;
   --green: #35A6AD;
   --red: #EF4748;
@@ -95,8 +96,15 @@ section {
   padding: 1rem;
   font-size: calc(.5rem + 1vw);
 }
+  .dialog-wrapper.zoomout .content {
+    max-height: calc(var(--basefontsize)*10);
+    max-width: calc(var(--basefontsize)*10);
+    overflow: hidden;
+    margin-bottom: var(--basefontsize);
+  }
   .dialog-wrapper .expand-collapse {
     display: block;
+    opacity: 1;
     width: 40px;
     height: 40px;
     background-color: grey;
@@ -111,6 +119,9 @@ section {
     font-weight: bold;
     cursor: pointer !important;
   }
+  .dialog-wrapper.zoomout .expand-collapse {
+    opacity: 0;
+  }
   .dialog-wrapper .year { font-size: 0.7rem; }
   .positive-story { border: var(--baseborderthickness) solid var(--green); }
   .negative-story { border: var(--baseborderthickness) solid var(--red); }
@@ -120,7 +131,7 @@ section {
     font-weight: 500;
     padding: 17px 30px;
     border-bottom: 1px solid #ccc;
-    transform: scale(.15);
+    transform: scale(.1);
   }
   .dialog-wrapper .content { padding: 2rem; }
 
@@ -138,24 +149,7 @@ section {
     transform: translate(-30%, -30%) scale(1);
   }
 }
-@keyframes breathe {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.2;
-  }
-}
-@keyframes reveal {
-  from {
-    opacity: 0.1;
-    transform: translate(0, 0);
-  }
-  to   {
-    opacity: 1;
-    transform: translate(-30%, -30%);
-  }
-}
+
 .zoomin {
   animation-name: zoom;
   animation-direction: normal;
@@ -188,14 +182,8 @@ a.p, a.n, a.e, a.m {
   cursor: pointer;
 }
 a.p, a.n, a.e {
-  --padding-sides: calc(.2 * var(--basefontsize));
-  --padding-top: calc(var(--padding-sides) * .5);
-  padding: var(--padding-top) var(--padding-sides) 0;
-  animation-name: breathe;
-  animation-duration: 1.5s;
-  animation-direction: alternate;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+  --padding: calc(.2 * var(--basefontsize));
+  padding: 0 var(--padding);
   cursor: zoom-in;
 }
 
@@ -213,7 +201,9 @@ a.e /* general world news */
 {
   background-color: var(--grey);
 }
-a.m /* "read more" */ {  }
+a.m /* "read more" */ { 
+  text-decoration: underline; 
+}
 
 
 /** utility classes **/
