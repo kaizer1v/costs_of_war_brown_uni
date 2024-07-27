@@ -10,10 +10,12 @@
 
 :root, [data-bs-theme=light] {
   --basefontsize: calc(1rem + 3vw);
+  --baseborderthickness: calc(.5 * var(--basefontsize));
   --basefontcolour: #222;
   --green: #35A6AD;
   --red: #EF4748;
   --white: #F8F5ED;
+  --grey: #ccc;
 /*  --white: rgb(240, 240, 240);*/
   --black: rgb(43, 40, 40);
 }
@@ -33,7 +35,7 @@ html {
 	/* scroll-snap-type: y mandatory; */
 }
 
-h1 {
+p {
   font-optical-sizing: auto;
   font-size: var(--basefontsize);
   font-weight: 440;
@@ -69,7 +71,7 @@ section {
   scroll-snap-align: start;
   width: -webkit-fill-available;
 }
-  section > h1, 
+  section > p, 
   section > .section-content {
     text-align: left;
   }
@@ -110,9 +112,9 @@ section {
     cursor: pointer !important;
   }
   .dialog-wrapper .year { font-size: 0.7rem; }
-  .positive-story { border: 2px solid var(--green); }
-  .negative-story { border: 2px solid var(--red); }
-  .neutral-story  { border: 2px solid var(--white); }
+  .positive-story { border: var(--baseborderthickness) solid var(--green); }
+  .negative-story { border: var(--baseborderthickness) solid var(--red); }
+  .neutral-story  { border: var(--baseborderthickness) solid var(--grey); }
   .dialog-wrapper header {
     font-size: 23px;
     font-weight: 500;
@@ -127,47 +129,20 @@ section {
 
 .disable-touch { touch-action: none !important; }
 
-@keyframes breathe {
-  from {
-    box-shadow: 5px 5px 5px rgba(131, 150, 168, 0.6), 0px 16px 32px rgba(131, 150, 168, 0.7);
-  }
-  to {
-    box-shadow: none;
-  }
-}
-@keyframes reveal {
-  from {
-    opacity: 0.1;
-    transform: translate(0, 0);
-  }
-  to   {
-    opacity: 1;
-    transform: translate(-30%, -30%);
-  }
-}
 .reveal { animation: reveal 0.5s 1 normal both; }
 .zoomout { transform: scale(.15) !important; }
-/* .breathe {
-  animation-name: breathe;
-  animation-duration: 0.5s;
-  animation-direction: alternate;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-} */
 
 a {
-  text-decoration: underline;
+  text-decoration: none;
+  display: inline-block;
 }
 a.p, a.n, a.e, a.m {
   border-radius: calc(.1 * var(--basefontsize));
 }
 a.p, a.n, a.e {
-  padding: 0 calc(.2 * var(--basefontsize));
-  animation-name: breathe;
-  animation-duration: 1.5s;
-  animation-direction: alternate;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+  --padding-sides: calc(.2 * var(--basefontsize));
+  --padding-top: calc(var(--padding-sides) * .5);
+  padding: var(--padding-top) var(--padding-sides) 0;
 }
 
 a.p /* positive */
@@ -182,7 +157,7 @@ a.n  /* negative */
 
 a.e /* general world news */
 {
-  background-color: #ccc;
+  background-color: var(--grey);
 }
 a.m /* "read more" */ {  }
 
