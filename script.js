@@ -7,13 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section');
   const dialogs = document.querySelectorAll('.dialog-wrapper');
+  let dialog_count = 0
 
   // utility function to scroll down
   function scrollDown(by=100) {
     window.scrollBy({
-        top: by,
-        left: 0,
-        behavior: 'smooth' // Smooth scrolling
+      top: by,
+      left: 0,
+      behavior: 'smooth' // Smooth scrolling
     });
   }
 
@@ -22,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // subsequent sections are loaded when clicking on 'read more...'
   document.addEventListener('click', (event) => {
-    console.log('>>>>', event.target)
 
     if(event.target.tagName == 'A') {
       const anchor = event.target;
@@ -57,26 +57,24 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.parentElement.parentElement.classList.replace('zoomin', 'zoomout')
       }
     }
-
-
   })
 
 
   dialogs.forEach(dialog => {
     dialog.addEventListener('click', (event) => {
-        const target = event.target;
+      const target = event.target;
 
-        // Check if the click is on the dialog or its children
-        if(dialog.contains(target)) {
-          if(target === dialog) {
-            console.log(`dialog ${dialog.id} clicked`);
-          } else {
-            console.log(`Child clicked in dialog ${dialog.id}:`, target.textContent);
-            // zoom-in on the clicked dialog
-            dialog.classList.replace('zoomout', 'zoomin')
-            // ... and allow to drag
-          }
+      // Check if the click is on the dialog or its children
+      if(dialog.contains(target)) {
+        if(target === dialog) {
+          // console.log(`dialog ${dialog.id} clicked`);
+        } else {
+          // console.log(`Child clicked in dialog ${dialog.id}:`, target.textContent);
+          // zoom-in on the clicked dialog
+          dialog.classList.replace('zoomout', 'zoomin')
+          // ... and allow to drag
         }
+      }
     });
   });
 
@@ -93,8 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
     target.innerHTML = '' // clear the text first
 
     function typewriter(elem, txt, i = 0) {
-      if(i === 0)  { elem.innerHTML = ''; to_print = ''; }
+      if(i === 0) { elem.innerHTML = ''; to_print = ''; }
       if(i in config.char_positions) {
+        // const dialog_pos = document.querySelectorAll('.link-for-section')[dialog_count].getBoundingClientRect()
+        // dialog_count++;
+        // console.log(dialog_pos.x, dialog_pos.y)
         show_dialog(config.char_positions[i], left+=gap, top+=gap)
       }
   
@@ -131,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       section: '#story0',
       next_section: 'for-1',
       char_positions: {
-        286: 'dialog-story0',
+        310: 'dialog-story0',
         375: 'dialog-story1',
       } 
     })
