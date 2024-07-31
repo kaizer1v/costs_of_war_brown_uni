@@ -16,7 +16,6 @@
   --red: #EF4748;
   --white: #F8F5ED;
   --grey: #ccc;
-/*  --white: rgb(240, 240, 240);*/
   --black: rgb(43, 40, 40);
 }
 
@@ -27,19 +26,6 @@ body {
   background-attachment: fixed;
   background-color: var(--white);
   overflow-x: hidden;
-}
-
-html {
-	/* scroll-snap-type: mandatory; */
-	/* scroll-snap-points-y: repeat(100vh); */
-	/* scroll-snap-type: y mandatory; */
-}
-
-p {
-  font-optical-sizing: auto;
-  font-size: var(--basefontsize);
-  font-weight: 440;
-  line-height: calc(1.375 * var(--basefontsize));
 }
 
 .container {
@@ -71,14 +57,15 @@ section {
   scroll-snap-align: start;
   width: -webkit-fill-available;
 }
-  section > p, 
-  section > .section-content {
-    text-align: left;
+  
+  .section-content { text-align: left; }
+  .section-content {
+    font-optical-sizing: auto;
+    font-size: var(--basefontsize);
+    font-weight: 440;
+    line-height: calc(1.375 * var(--basefontsize));
   }
-
-  section > .section-content .text-contextnews {
-    opacity: .6777;
-  }
+  .text-contextnews { opacity: .6777; }
 
 
 /* ----- */
@@ -86,14 +73,13 @@ section {
 /* ----- */
 
 .dialog-wrapper {
-  /* cursor: move; */
   position: absolute;
   max-width: 450px;
   width: 100%;
   background: var(--white);
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.125);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.125);
   padding: 1rem;
-  font-size: calc(.5rem + 1vw);
+  font-size: 1.2rem;
 }
   .dialog-wrapper .expand-collapse {
     display: block;
@@ -106,7 +92,6 @@ section {
     left: -42px;
     top: -2px;
     text-align: center;
-    vertical-align: middle;
     font-size: 1.8rem;
     font-weight: bold;
     cursor: pointer !important;
@@ -116,68 +101,26 @@ section {
   .negative-story { border: var(--baseborderthickness) solid var(--red); }
   .neutral-story  { border: var(--baseborderthickness) solid var(--grey); }
   .dialog-wrapper header {
-    font-size: 23px;
-    font-weight: 500;
     padding: 17px 30px;
     border-bottom: 1px solid #ccc;
-    transform: scale(.15);
   }
   .dialog-wrapper .content { padding: 2rem; }
 
-/* ----- */
-/* Animations & Utilities */
-/* ----- */
-
-.disable-touch { touch-action: none !important; }
-
-@keyframes zoom {
-  from {
-    transform: scale(.15);
-  }
-  to {
-    transform: translate(-30%, -30%) scale(1);
-  }
-}
-@keyframes breathe {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.2;
-  }
-}
-@keyframes reveal {
-  from {
-    opacity: 0.1;
-    transform: translate(0, 0);
-  }
-  to   {
-    opacity: 1;
-    transform: translate(-30%, -30%);
-  }
-}
 .zoomin {
-  animation-name: zoom;
-  animation-direction: normal;
-  animation-duration: 0.8s;
-  animation-timing-function: ease-in-out;
   transform: scale(1);
-  transition: all .3 ease-in;
   z-index: 999;
-
+  font-size: 1.2rem !important;
 }
 .zoomout {
-  animation-name: zoom;
-  animation-direction: reverse;
-  animation-duration: 0.8s;
-  animation-timing-function: ease-in-out;
   transform: scale(.1);
-  transition: all .3 ease-in;
   z-index: 10;
 }
-  .zoomout:hover {
-    cursor: zoom-in !important;
-  }
+  .zoomout:hover { cursor: zoom-in !important; }
+
+
+/* ----- */
+/* Text highlights */
+/* ----- */
 
 a {
   text-decoration: none;
@@ -188,35 +131,28 @@ a.p, a.n, a.e, a.m {
   cursor: pointer;
 }
 a.p, a.n, a.e {
-  --padding-sides: calc(.2 * var(--basefontsize));
-  --padding-top: calc(var(--padding-sides) * .5);
-  padding: var(--padding-top) var(--padding-sides) 0;
-  animation-name: breathe;
-  animation-duration: 1.5s;
-  animation-direction: alternate;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+  padding: 0.5rem;
   cursor: zoom-in;
 }
 
-a.p /* positive */
-{
-  background-color: var(--green);
-}
+/* positive */
+a.p { background-color: var(--green); }
 
-a.n  /* negative */
-{
-  background-color: var(--red);
-}
+/* negative */
+a.n { background-color: var(--red); }
 
-a.e /* general world news */
-{
-  background-color: var(--grey);
-}
-a.m /* "read more" */ {  }
+/* general world news */
+a.e { background-color: var(--grey); }
+
+/* "read more" */
+a.m {  }
 
 
-/** utility classes **/
+
+/* ----- */
+/* Utility Classes */
+/* ----- */
+.disable-touch { touch-action: none !important; }
 .invisible {
   visibility: hidden !important;
   display: none !important;

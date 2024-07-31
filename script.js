@@ -5,18 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const sections = document.querySelectorAll('section');
   const dialogs = document.querySelectorAll('.dialog-wrapper');
-  let dialog_count = 0
-
-  // utility function to scroll down
-  function scrollDown(by=100) {
-    window.scrollBy({
-      top: by,
-      left: 0,
-      behavior: 'smooth' // Smooth scrolling
-    });
-  }
 
   // on loading the page, show section 0 (first section)
   doSomethingForSection0()
@@ -84,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const target = document.querySelector(`${config.section} > div`)
     const nextSection = document.getElementById(config.next_section)
     const typethis = target.innerHTML
-    let to_print = '', left = 1, top = 5, gap = 3;
+    let to_print = '', left = 1, top = 5, gap = 15;
     let dontprint = false, speed = typingSpeed;
 
     parent.classList.remove('invisible')
@@ -93,9 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
       if(i in config.char_positions) {
-        // const dialog_pos = document.querySelectorAll('.link-for-section')[dialog_count].getBoundingClientRect()
-        // dialog_count++;
-        // console.log(dialog_pos.x, dialog_pos.y)
         show_dialog(config.char_positions[i], left+=gap, top+=gap)
       }
   
@@ -194,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const findDraggable = (element) => {
     // allow dialog to be draggable only when in `zoomin` state
-    while(element && !element.classList.contains('zoomin')) {
+    while(element && !element.classList.contains('dialog-wrapper')) {
       element = element.parentElement;
     }
     return element;
@@ -281,9 +267,22 @@ document.addEventListener('DOMContentLoaded', () => {
       dialog.classList.remove('invisible')
       dialog.classList.add('reveal')
       dialog.classList.add('zoomout')
-      dialog.style.top = `${top}%`;
-      dialog.style.left = `${left}%`;
+      dialog.style.top = `${top}px`;
+      dialog.style.left = `${left}px`;
     }
+  }
+
+
+  /**
+   * Utility
+   * scroll the page down by `y` pixels vertically
+   */
+  function scrollDown(by=100) {
+    window.scrollBy({
+      top: by,
+      left: 0,
+      behavior: 'smooth' // Smooth scrolling
+    });
   }
 
 });
