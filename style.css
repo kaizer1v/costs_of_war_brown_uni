@@ -78,7 +78,6 @@ section {
   max-width: 450px;
   width: 100%;
   background: var(--white);
-  /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.125); */
   box-shadow: 15px 15px 30px #00000054;
   padding: 1rem;
   font-size: 1.2rem;
@@ -110,7 +109,7 @@ section {
 .zoomin {
   transform: scale(1);
   z-index: 999;
-  font-size: 1.2rem !important;
+  font-size: calc(1vw + 0.6vh + 1vmin);
 }
 .zoomout {
   transform: scale(.1);
