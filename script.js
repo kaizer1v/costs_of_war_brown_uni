@@ -82,7 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function typewriter(elem, txt, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
       if(i in config.char_positions) {
-        show_dialog(config.char_positions[i], left+=gap, top+=gap)
+        const d = config.char_positions[i];
+        show_dialog(
+          d['name'],
+          (d['left'] != 0) ? d['left'] : left+=gap,
+          (d['top'] != 0) ? d['top'] : left+=gap,
+        )
       }
   
       to_print += txt[i];
@@ -118,8 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
       section: '#story0',
       next_section: 'for-1',
       char_positions: {
-        310: 'dialog-story0',
-        375: 'dialog-story1',
+        310: { name: 'dialog-story0', top: 0, left: 0 },
+        375: { name: 'dialog-story1', top: 234, left: 365 }
       } 
     })
   }
@@ -130,12 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
       section: '#story1',
       next_section: 'for-2',
       char_positions: {
-         95: 'dialog-story2',
-        361: 'dialog-story3',
-        420: 'dialog-story4',
-        426: 'dialog-story5',
-        508: 'dialog-story6',
-        512: 'dialog-story7'
+         95: { name: 'dialog-story2', top: 0, left: 0 },
+        361: { name: 'dialog-story3', top: 0, left: 0 },
+        420: { name: 'dialog-story4', top: 0, left: 0 },
+        426: { name: 'dialog-story5', top: 0, left: 0 },
+        508: { name: 'dialog-story6', top: 0, left: 0 },
+        512: { name: 'dialog-story7', top: 0, left: 0 }
       } 
     })
   }
@@ -146,15 +151,15 @@ document.addEventListener('DOMContentLoaded', () => {
       section: '#story2',
       next_section: 'for-3',
       char_positions: {
-         95: 'dialog-story9',
-        161: 'dialog-story10',
-        120: 'dialog-story11',
-        130: 'dialog-story12',
-        132: 'dialog-story13',
-        283: 'dialog-story14',
-        285: 'dialog-story15',
-        287: 'dialog-story16',
-        290: 'dialog-story17'
+         95: { name: 'dialog-story9', top: 0, left: 0 },
+        161: { name: 'dialog-story10', top: 0, left: 0 },
+        120: { name: 'dialog-story11', top: 0, left: 0 },
+        130: { name: 'dialog-story12', top: 0, left: 0 },
+        132: { name: 'dialog-story13', top: 0, left: 0 },
+        283: { name: 'dialog-story14', top: 0, left: 0 },
+        285: { name: 'dialog-story15', top: 0, left: 0 },
+        287: { name: 'dialog-story16', top: 0, left: 0 },
+        290: { name: 'dialog-story17', top: 0, left: 0 }
       }
     })
   }
