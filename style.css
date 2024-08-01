@@ -91,11 +91,13 @@ section {
     font-family: monospace;
     color: var(--white);
     position: absolute;
-    left: -60px;
-    top: -22px;
+    left: -64px;
+    top: -24px;
     text-align: center;
     font-size: 1.8rem;
     cursor: pointer !important;
+    line-height: 1.5;
+    font-weight: bolder;
   }
   .dialog-wrapper .year { font-size: 0.7rem; }
   .positive-story { border: var(--baseborderthickness) solid var(--green); }
@@ -111,6 +113,9 @@ section {
   transform: scale(1);
   z-index: 999;
   font-size: calc(1vw + 0.6vh + 1vmin);
+  position: absolute !important;
+  top: 30px;
+  left: 30px;
 }
 .zoomout {
   transform: scale(.1);
