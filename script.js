@@ -72,17 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const parent = document.querySelector(config.section)
     const target = document.querySelector(`${config.section} > div`)
     const nextSection = document.getElementById(config.next_section)
-    const typethis = target.innerHTML
+    const txt = target.innerHTML.trim()
     let to_print = '', left = 1, top = 5, gap = 15;
     let dontprint = false, speed = typingSpeed;
 
     parent.classList.remove('invisible')
     target.innerHTML = '' // clear the text first
 
-    function typewriter(elem, txt, i = 0) {
+    function typewriter(elem, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
+
+      // if index is a char position to be watched, then...
       if(i in config.char_positions) {
         const d = config.char_positions[i];
+
+        // ...at specific char index, show specific dialogs
         show_dialog(
           d['name'],
           (d['left'] != 0) ? d['left'] : left+=gap,
@@ -90,15 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
         )
       }
   
+      // print individual characters
       to_print += txt[i];
       
-      // if any of the tags are identified in the text, speeden typing`
+      // if any of the tags are identified in the text, flag a `dontprint`
       if(txt[i] == '<' || txt[i] == '>') {
         dontprint = !dontprint
         speed = 0
       }
       
-      // normally for everything that needs to be rendered on screen     
+      // if `dontprint` is false, then...
       if(!dontprint) {
         speed = typingSpeed
         elem.innerHTML = to_print
@@ -107,14 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // as soon as the last text is rendered, show the 'read more...' text & stop
       if(i == txt.length - 1) {
         nextSection.classList.remove('invisible')
-        loaded_s0 = true
         return;
       }
 
-      setTimeout(() => typewriter(elem, txt, i + 1), speed)
+      setTimeout(() => typewriter(elem, i + 1), speed)
     }
   
-    typewriter(target, typethis);
+    typewriter(target);
   }
 
   // loading section 0
