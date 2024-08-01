@@ -65,7 +65,8 @@ section {
     font-weight: 440;
     line-height: calc(1.375 * var(--basefontsize));
   }
-  .text-contextnews { opacity: .6777; }
+  /* replacing .text-contextnews with pseudo class */
+  .section-content > span:nth-child(1) { color: var(--baseborderthickness); color: rgba(0, 0, 0, 0.5) }
 
 
 /* ----- */
