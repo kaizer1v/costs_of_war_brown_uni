@@ -72,6 +72,40 @@ section {
 /* ----- */
 /* Story Dialogs */
 /* ----- */
+.drawer {
+  position: fixed;
+  bottom: -100%;  /* Hide dialog below the viewport initially */
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+  padding: 5rem;
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  transition: bottom 0.5s ease;  /* Smooth slide-up transition */
+}
+  .drawer.open { bottom: 0; }
+  .drawer-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+  }
+    .drawer-head .title {
+      font-size: 18px;
+      font-weight: bold;
+      float: left;
+    }
+    .drawer-head .status {
+      font-size: 14px;
+      color: #555;
+      float: right;
+    }
+
 .dialog-wrapper {
   position: absolute;
   min-width: 300px;

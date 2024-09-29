@@ -7,6 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const dialogs = document.querySelectorAll('.dialog-wrapper');
 
+  // =-----=
+  const openDrawerBtn = document.getElementById('openDrawer');
+  const closeDrawerBtn = document.getElementById('closeDrawer');
+  const drawer = document.getElementById('drawer');
+
+  openDrawerBtn.addEventListener('click', function() {
+    drawer.classList.add('open');
+  });
+
+  closeDrawerBtn.addEventListener('click', function() {
+    drawer.classList.remove('open');
+  });
+  // =-----=
+
   // on loading the page, show section 0 (first section)
   doSomethingForSection0()
 
