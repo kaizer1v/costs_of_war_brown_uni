@@ -63,7 +63,7 @@ section {
     font-optical-sizing: auto;
     font-size: var(--basefontsize);
     font-weight: 440;
-    line-height: calc(1.375 * var(--basefontsize));
+    line-height: calc(2 * var(--basefontsize));
   }
   /* replacing .text-contextnews with pseudo class */
   .section-content > span:nth-child(1) { color: var(--baseborderthickness); color: rgba(0, 0, 0, 0.5) }
@@ -72,7 +72,6 @@ section {
 /* ----- */
 /* Story Dialogs */
 /* ----- */
-
 .dialog-wrapper {
   position: absolute;
   min-width: 300px;
@@ -131,13 +130,18 @@ section {
 a {
   text-decoration: none;
   display: inline-block;
+  font-size: var(--basefontsize);
+}
+a:after {
+  margin: 0 1rem;
+  padding: 0 1rem;
 }
 a.p, a.n, a.e, a.m {
   border-radius: calc(.1 * var(--basefontsize));
   cursor: pointer;
 }
 a.p, a.n, a.e {
-  padding: 0.5rem;
+  padding: 0.2rem 0.5rem;
   cursor: zoom-in;
 }
 
