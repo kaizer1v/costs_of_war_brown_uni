@@ -2,12 +2,24 @@
  * Scroll based events
  * -----
  */
+// maintaining a story map, associating the keyword to the set of stories to open
+const story_map = {
+  0: '1 2',   // said 
+  1: '3 4 5'  // tried
+  2: '6 7'    // didnt
+};
 
 document.addEventListener('DOMContentLoaded', () => {
 
   const dialogs = document.querySelectorAll('.dialog-wrapper');
 
   // =-----=
+
+  // given a link id, open all ref stories associated to it
+  function openDrawer(lnk, stories) {
+
+  }
+
   const openDrawerBtn = document.getElementById('openDrawer');
   const closeDrawerBtn = document.getElementById('closeDrawer');
   const drawer = document.getElementById('drawer');
