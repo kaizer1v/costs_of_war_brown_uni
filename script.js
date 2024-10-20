@@ -11,7 +11,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const dialogs = document.querySelectorAll('.dialog-wrapper');
+  // const dialogs = document.querySelectorAll('.dialog-wrapper');
 
   // =-----=
 
@@ -66,24 +66,26 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 
-  dialogs.forEach(dialog => {
-    dialog.addEventListener('click', (event) => {
-      const target = event.target;
+  // dialogs.forEach(dialog => {
+  //   dialog.addEventListener('click', (event) => {
+  //     const target = event.target;
 
-      // Check if the click is on the dialog or its children
-      if(dialog.contains(target)) {
-        if(target === dialog) {
-          // console.log(`dialog ${dialog.id} clicked`);
-        } else {
-          // console.log(`Child clicked in dialog ${dialog.id}:`, target.textContent);
-          // zoom-in on the clicked dialog
-          dialog.classList.replace('zoomout', 'zoomin')
-          // ... and allow to drag
-        }
-      }
-    });
-  });
+  //     // Check if the click is on the dialog or its children
+  //     if(dialog.contains(target)) {
+  //       if(target === dialog) {
+  //         // console.log(`dialog ${dialog.id} clicked`);
+  //       } else {
+  //         // console.log(`Child clicked in dialog ${dialog.id}:`, target.textContent);
+  //         // zoom-in on the clicked dialog
+  //         dialog.classList.replace('zoomout', 'zoomin')
+  //         // ... and allow to drag
+  //       }
+  //     }
+  //   });
+  // });
 
+
+  // given a speed, produces typewriting effect on text
   function write(config) {
     const typingSpeed = 10;
     const parent = document.querySelector(config.section)
@@ -100,16 +102,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
 
       // if index is a char position to be watched, then...
-      if(i in config.char_positions) {
-        const d = config.char_positions[i];
+      // if(i in config.char_positions) {
+      //   const d = config.char_positions[i];
 
         // ...at specific char index, show specific dialogs
-        show_dialog(
-          d['name'],
-          (d['left'] != 0) ? d['left'] : left+=gap,
-          (d['top'] != 0) ? d['top'] : left+=gap,
-        )
-      }
+        // show_dialog(
+        //   d['name'],
+        //   (d['left'] != 0) ? d['left'] : left+=gap,
+        //   (d['top'] != 0) ? d['top'] : left+=gap,
+        // )
+      // }
   
       // print individual characters
       to_print += txt[i];
@@ -143,10 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
     write({
       section: '#story0',
       next_section: 'for-1',
-      char_positions: {
-        310: { name: 'dialog-story0', top: 0, left: 0 },
-        375: { name: 'dialog-story1', top: 234, left: 365 }
-      } 
+      // char_positions: {
+      //   310: { name: 'dialog-story0', top: 0, left: 0 },
+      //   375: { name: 'dialog-story1', top: 234, left: 365 }
+      // } 
     })
   }
 
@@ -155,14 +157,14 @@ document.addEventListener('DOMContentLoaded', () => {
     write({
       section: '#story1',
       next_section: 'for-2',
-      char_positions: {
-         95: { name: 'dialog-story2', top: 0, left: 0 },
-        361: { name: 'dialog-story3', top: 0, left: 0 },
-        420: { name: 'dialog-story4', top: 0, left: 0 },
-        426: { name: 'dialog-story5', top: 0, left: 0 },
-        508: { name: 'dialog-story6', top: 0, left: 0 },
-        512: { name: 'dialog-story7', top: 0, left: 0 }
-      } 
+      // char_positions: {
+      //    95: { name: 'dialog-story2', top: 0, left: 0 },
+      //   361: { name: 'dialog-story3', top: 0, left: 0 },
+      //   420: { name: 'dialog-story4', top: 0, left: 0 },
+      //   426: { name: 'dialog-story5', top: 0, left: 0 },
+      //   508: { name: 'dialog-story6', top: 0, left: 0 },
+      //   512: { name: 'dialog-story7', top: 0, left: 0 }
+      // } 
     })
   }
 
@@ -171,17 +173,17 @@ document.addEventListener('DOMContentLoaded', () => {
     write({
       section: '#story2',
       next_section: 'for-3',
-      char_positions: {
-         95: { name: 'dialog-story9', top: 0, left: 0 },
-        161: { name: 'dialog-story10', top: 0, left: 0 },
-        120: { name: 'dialog-story11', top: 0, left: 0 },
-        130: { name: 'dialog-story12', top: 0, left: 0 },
-        132: { name: 'dialog-story13', top: 0, left: 0 },
-        283: { name: 'dialog-story14', top: 0, left: 0 },
-        285: { name: 'dialog-story15', top: 0, left: 0 },
-        287: { name: 'dialog-story16', top: 0, left: 0 },
-        290: { name: 'dialog-story17', top: 0, left: 0 }
-      }
+      // char_positions: {
+      //    95: { name: 'dialog-story9', top: 0, left: 0 },
+      //   161: { name: 'dialog-story10', top: 0, left: 0 },
+      //   120: { name: 'dialog-story11', top: 0, left: 0 },
+      //   130: { name: 'dialog-story12', top: 0, left: 0 },
+      //   132: { name: 'dialog-story13', top: 0, left: 0 },
+      //   283: { name: 'dialog-story14', top: 0, left: 0 },
+      //   285: { name: 'dialog-story15', top: 0, left: 0 },
+      //   287: { name: 'dialog-story16', top: 0, left: 0 },
+      //   290: { name: 'dialog-story17', top: 0, left: 0 }
+      // }
     })
   }
 
@@ -286,17 +288,17 @@ document.addEventListener('DOMContentLoaded', () => {
    * Given a dialog id, unhide the dialog with that id
    * This is a one time function
    */
-  function show_dialog(id, left, top) {
-    const dialog = document.getElementById(id)
+  // function show_dialog(id, left, top) {
+  //   const dialog = document.getElementById(id)
     
-    if(dialog.classList.contains('invisible')) {
-      dialog.classList.remove('invisible')
-      dialog.classList.add('reveal')
-      dialog.classList.add('zoomout')
-      dialog.style.top = `${top}px`;
-      dialog.style.left = `${left}px`;
-    }
-  }
+  //   if(dialog.classList.contains('invisible')) {
+  //     dialog.classList.remove('invisible')
+  //     dialog.classList.add('reveal')
+  //     dialog.classList.add('zoomout')
+  //     dialog.style.top = `${top}px`;
+  //     dialog.style.left = `${left}px`;
+  //   }
+  // }
 
 
   /**
