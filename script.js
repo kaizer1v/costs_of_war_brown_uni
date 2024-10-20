@@ -30,9 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeDrawerBtn = document.getElementById('closeDrawer');
   const drawer = document.getElementById('drawer');
   closeDrawerBtn.addEventListener('click', closeDrawer);
+  let currentIndex = 0
+  let totalItems = 1
 
   function closeDrawer() {
     drawer.classList.remove('open');
+  }
+
+  function select_story(sel) { 
+    const stories_div = document.querySelectorAll('.carousel-item')
+    const curr_story = document.querySelector('.carousel-item.active')
+    curr_story.classList.remove('active')
+    stories_div[sel].classList.add('active')
   }
 
   // given an array of story ids, show all stories in drawer
@@ -42,22 +51,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // retrieve story data
     const story_objs = stories.map(index => story_map[index]);
     const story_count = story_objs.length;
+    totalItems = story_count;
     const story_status = document.querySelector('.drawer .drawer-head .status');
 
     console.log(story_count, story_objs);
+    
     // load these into the dialog
-
     const drawer_content = document.querySelector('.drawer .drawer-content');
     drawer_content.innerHTML = '';
     const story_content = document.createElement('div');
-    story_objs.forEach((story) => {
-      story_content.innerHTML = `<span>${story.year}</span>`;
-      story_content.innerHTML += `<p>${story.content}</p>`;
+
+    story_objs.forEach((story, index) => {
+      const carouselItem = document.createElement('div');
+      carouselItem.classList.add('carousel-item');
+      if(index == 0) carouselItem.classList.add('active')
+      carouselItem.innerHTML = `
+        <span>${story.year}</span>
+        <p>${story.content}</p>
+        <hr />
+      `;
+      drawer_content.appendChild(carouselItem)
     });
-    drawer_content.appendChild(story_content);
     
     // set the status of the story counts
-    story_status.innerHTML = `Story 1 of ${story_count}`;
+    if(story_count > 1) story_status.innerHTML = `Story 1 of ${story_count}`;
   }
 
   // on loading the page, show section 0 (first section)
@@ -99,6 +116,25 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.parentElement.parentElement.classList.replace('zoomin', 'zoomout')
       }
     }
+
+    if(event.target.classList.contains('prev')) {
+      if(currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = totalItems - 1;
+      }
+      select_story(currentIndex);
+    }
+
+    if(event.target.classList.contains('nxt')) {
+      if(currentIndex < totalItems - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      select_story(currentIndex);
+    }
+      
   })
 
 
@@ -123,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // given a speed, produces typewriting effect on text
   function write(config) {
-    const typingSpeed = 10;
+    const typingSpeed = 1;
     const parent = document.querySelector(config.section)
     const target = document.querySelector(`${config.section} > div`)
     const nextSection = document.getElementById(config.next_section)

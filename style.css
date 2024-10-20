@@ -194,7 +194,9 @@ a.e { background-color: var(--grey); }
 /* "read more" */
 a.m {  }
 
-
+/* carousel items */
+.carousel-item { display: none; }
+.carousel-item.active { display: block; }
 
 /* ----- */
 /* Utility Classes */
