@@ -11,13 +11,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // const dialogs = document.querySelectorAll('.dialog-wrapper');
-
-  // =-----=
-
-  // given a link id, open all ref stories associated to it
-  function openDrawer(story_set_id) {
-    console.log('drawer openend!!', story_set_id)
+  // given an array of story ids, show all stories in drawer
+  function openDrawer(stories) {
+    console.log('drawer openend!!', stories)
   }
 
   const closeDrawerBtn = document.getElementById('closeDrawer');
@@ -199,89 +195,88 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Drag events
    */
+  // const draggables = document.querySelectorAll(".dialog-wrapper");
+  // let isDragging = false;
+  // let startX, startY, initialX, initialY, currentDraggable;
+  // const body = document.querySelector('body');
+  // const preventDefault = (e) => e.preventDefault();
 
-  const draggables = document.querySelectorAll(".dialog-wrapper");
-  let isDragging = false;
-  let startX, startY, initialX, initialY, currentDraggable;
-  const body = document.querySelector('body');
-  const preventDefault = (e) => e.preventDefault();
+  // const findDraggable = (element) => {
+  //   // allow dialog to be draggable only when in `zoomin` state
+  //   while(element && !element.classList.contains('dialog-wrapper')) {
+  //     element = element.parentElement;
+  //   }
+  //   return element;
+  // };
 
-  const findDraggable = (element) => {
-    // allow dialog to be draggable only when in `zoomin` state
-    while(element && !element.classList.contains('dialog-wrapper')) {
-      element = element.parentElement;
-    }
-    return element;
-  };
+  // const onMouseDown = (e) => {
+  //   currentDraggable = findDraggable(e.target);
+  //   isDragging = true;
+  //   startX = e.clientX;
+  //   startY = e.clientY;
+  //   initialX = currentDraggable.offsetLeft;
+  //   initialY = currentDraggable.offsetTop;
+  //   currentDraggable.style.cursor = 'grabbing';
 
-  const onMouseDown = (e) => {
-    currentDraggable = findDraggable(e.target);
-    isDragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    initialX = currentDraggable.offsetLeft;
-    initialY = currentDraggable.offsetTop;
-    currentDraggable.style.cursor = 'grabbing';
+  //   document.addEventListener('mousemove', onMouseMove);
+  //   document.addEventListener('mouseup', onMouseUp);
+  //   document.addEventListener('scroll', preventDefault, { passive: false });
+  // }
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-    document.addEventListener('scroll', preventDefault, { passive: false });
-  }
+  // const onMouseMove = (e) => {
+  //   if(!isDragging) return;
+  //   const dx = e.clientX - startX;
+  //   const dy = e.clientY - startY;
+  //   currentDraggable.style.left = `${initialX + dx}px`;
+  //   currentDraggable.style.top = `${initialY + dy}px`;
+  // };
 
-  const onMouseMove = (e) => {
-    if(!isDragging) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    currentDraggable.style.left = `${initialX + dx}px`;
-    currentDraggable.style.top = `${initialY + dy}px`;
-  };
+  // const onMouseUp = () => {
+  //   isDragging = false;
+  //   currentDraggable.style.cursor = 'move';
 
-  const onMouseUp = () => {
-    isDragging = false;
-    currentDraggable.style.cursor = 'move';
-
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
-    document.removeEventListener('scroll', preventDefault);
-  }
+  //   document.removeEventListener('mousemove', onMouseMove);
+  //   document.removeEventListener('mouseup', onMouseUp);
+  //   document.removeEventListener('scroll', preventDefault);
+  // }
 
   // for touch devices
-  const onTouchStart = (e) => {
-    currentDraggable = findDraggable(e.target);
-    isDragging = true;
-    const touch = e.touches[0];
-    startX = touch.clientX;
-    startY = touch.clientY;
-    initialX = currentDraggable.offsetLeft;
-    initialY = currentDraggable.offsetTop;
+  // const onTouchStart = (e) => {
+  //   currentDraggable = findDraggable(e.target);
+  //   isDragging = true;
+  //   const touch = e.touches[0];
+  //   startX = touch.clientX;
+  //   startY = touch.clientY;
+  //   initialX = currentDraggable.offsetLeft;
+  //   initialY = currentDraggable.offsetTop;
 
-    document.addEventListener('touchmove', onTouchMove, { passive: false });
-    document.addEventListener('touchend', onTouchEnd);
-    document.addEventListener('scroll', preventDefault, { passive: false });
-  };
+  //   document.addEventListener('touchmove', onTouchMove, { passive: false });
+  //   document.addEventListener('touchend', onTouchEnd);
+  //   document.addEventListener('scroll', preventDefault, { passive: false });
+  // };
 
-  const onTouchMove = (e) => {
-    if(!isDragging) return;
-    const touch = e.touches[0];
-    const dx = touch.clientX - startX;
-    const dy = touch.clientY - startY;
-    currentDraggable.style.left = `${initialX + dx}px`;
-    currentDraggable.style.top = `${initialY + dy}px`;
-    e.preventDefault(); // Prevent scrolling while dragging
-  };
+  // const onTouchMove = (e) => {
+  //   if(!isDragging) return;
+  //   const touch = e.touches[0];
+  //   const dx = touch.clientX - startX;
+  //   const dy = touch.clientY - startY;
+  //   currentDraggable.style.left = `${initialX + dx}px`;
+  //   currentDraggable.style.top = `${initialY + dy}px`;
+  //   e.preventDefault(); // Prevent scrolling while dragging
+  // };
 
-  const onTouchEnd = () => {
-    isDragging = false;
-    document.removeEventListener('touchmove', onTouchMove);
-    document.removeEventListener('touchend', onTouchEnd);
-    document.removeEventListener('scroll', preventDefault);
-  };
+  // const onTouchEnd = () => {
+  //   isDragging = false;
+  //   document.removeEventListener('touchmove', onTouchMove);
+  //   document.removeEventListener('touchend', onTouchEnd);
+  //   document.removeEventListener('scroll', preventDefault);
+  // };
 
-  // add the events
-  draggables.forEach((draggable) => {
-    draggable.addEventListener('mousedown', onMouseDown);
-    draggable.addEventListener('touchstart', onTouchStart, { passive: false });
-  })
+  // // add the events
+  // draggables.forEach((draggable) => {
+  //   draggable.addEventListener('mousedown', onMouseDown);
+  //   draggable.addEventListener('touchstart', onTouchStart, { passive: false });
+  // })
 
   /**
    * Utility
