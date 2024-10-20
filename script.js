@@ -3,11 +3,11 @@
  * -----
  */
 // maintaining a story map, associating the keyword to the set of stories to open
-const story_map = {
-  0: '1 2',   // said 
-  1: '3 4 5'  // tried
-  2: '6 7'    // didnt
-};
+// const story_map = {
+//   0: '1 2',   // said 
+//   1: '3 4 5'  // tried
+//   2: '6 7'    // didnt
+// };  
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -16,18 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // =-----=
 
   // given a link id, open all ref stories associated to it
-  function openDrawer(lnk, stories) {
-
+  function openDrawer(story_set_id) {
+    console.log('drawer openend!!', story_set_id)
   }
 
-  const openDrawerBtn = document.getElementById('openDrawer');
   const closeDrawerBtn = document.getElementById('closeDrawer');
   const drawer = document.getElementById('drawer');
-
-  openDrawerBtn.addEventListener('click', function() {
-    drawer.classList.add('open');
-  });
-
   closeDrawerBtn.addEventListener('click', function() {
     drawer.classList.remove('open');
   });
@@ -60,12 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if(anchor.classList.contains('link-for-section')) {
         // get associated dialog IDs to highlight
         const dialogIDs = anchor.dataset.dialogs.split(' ')
-        // make all the dialogs associated to the link zoomed-in
-        dialogIDs.forEach(id => {
-          const d = document.getElementById(`dialog-story${id}`)
-          d.classList.replace('zoomout', 'zoomin')
-          d.style.zIndex = 999;
-        })
+
+        drawer.classList.add('open');
+        openDrawer(dialogIDs)
       }
 
       if(anchor.classList.contains('expand-collapse')) {

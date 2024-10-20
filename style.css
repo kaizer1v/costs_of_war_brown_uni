@@ -176,7 +176,7 @@ a.p, a.n, a.e, a.m {
 }
 a.p, a.n, a.e {
   padding: 0.2rem 0.5rem;
-  cursor: zoom-in;
+  cursor: pointer;
 }
 
 /* positive */
