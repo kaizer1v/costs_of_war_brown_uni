@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeDrawerBtn = document.getElementById('closeDrawer');
   const drawer = document.getElementById('drawer');
   closeDrawerBtn.addEventListener('click', closeDrawer);
+  const story_status = document.querySelector('.drawer .drawer-head .status');
   let currentIndex = 0
   let totalItems = 1
 
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const curr_story = document.querySelector('.carousel-item.active')
     curr_story.classList.remove('active')
     stories_div[sel].classList.add('active')
+    story_status.innerHTML = `Story ${sel + 1} of ${stories_div.length}`;
   }
 
   // given an array of story ids, show all stories in drawer
@@ -52,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const story_objs = stories.map(index => story_map[index]);
     const story_count = story_objs.length;
     totalItems = story_count;
-    const story_status = document.querySelector('.drawer .drawer-head .status');
+    
 
     console.log(story_count, story_objs);
     
@@ -138,24 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 
-  // dialogs.forEach(dialog => {
-  //   dialog.addEventListener('click', (event) => {
-  //     const target = event.target;
-
-  //     // Check if the click is on the dialog or its children
-  //     if(dialog.contains(target)) {
-  //       if(target === dialog) {
-  //         // console.log(`dialog ${dialog.id} clicked`);
-  //       } else {
-  //         // console.log(`Child clicked in dialog ${dialog.id}:`, target.textContent);
-  //         // zoom-in on the clicked dialog
-  //         dialog.classList.replace('zoomout', 'zoomin')
-  //         // ... and allow to drag
-  //       }
-  //     }
-  //   });
-  // });
-
 
   // given a speed, produces typewriting effect on text
   function write(config) {
@@ -172,18 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function typewriter(elem, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-
-      // if index is a char position to be watched, then...
-      // if(i in config.char_positions) {
-      //   const d = config.char_positions[i];
-
-        // ...at specific char index, show specific dialogs
-        // show_dialog(
-        //   d['name'],
-        //   (d['left'] != 0) ? d['left'] : left+=gap,
-        //   (d['top'] != 0) ? d['top'] : left+=gap,
-        // )
-      // }
   
       // print individual characters
       to_print += txt[i];
@@ -216,11 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function doSomethingForSection0() {
     write({
       section: '#story0',
-      next_section: 'for-1',
-      // char_positions: {
-      //   310: { name: 'dialog-story0', top: 0, left: 0 },
-      //   375: { name: 'dialog-story1', top: 234, left: 365 }
-      // } 
+      next_section: 'for-1'
     })
   }
 
@@ -228,15 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function doSomethingForSection1() {
     write({
       section: '#story1',
-      next_section: 'for-2',
-      // char_positions: {
-      //    95: { name: 'dialog-story2', top: 0, left: 0 },
-      //   361: { name: 'dialog-story3', top: 0, left: 0 },
-      //   420: { name: 'dialog-story4', top: 0, left: 0 },
-      //   426: { name: 'dialog-story5', top: 0, left: 0 },
-      //   508: { name: 'dialog-story6', top: 0, left: 0 },
-      //   512: { name: 'dialog-story7', top: 0, left: 0 }
-      // } 
+      next_section: 'for-2'
     })
   }
 
@@ -244,18 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function doSomethingForSection2() {
     write({
       section: '#story2',
-      next_section: 'for-3',
-      // char_positions: {
-      //    95: { name: 'dialog-story9', top: 0, left: 0 },
-      //   161: { name: 'dialog-story10', top: 0, left: 0 },
-      //   120: { name: 'dialog-story11', top: 0, left: 0 },
-      //   130: { name: 'dialog-story12', top: 0, left: 0 },
-      //   132: { name: 'dialog-story13', top: 0, left: 0 },
-      //   283: { name: 'dialog-story14', top: 0, left: 0 },
-      //   285: { name: 'dialog-story15', top: 0, left: 0 },
-      //   287: { name: 'dialog-story16', top: 0, left: 0 },
-      //   290: { name: 'dialog-story17', top: 0, left: 0 }
-      // }
+      next_section: 'for-3'
     })
   }
 
@@ -265,113 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const target = document.querySelector('#story3 > div')
     parent.classList.remove('invisible');
   }
-
-
-
-  /**
-   * Drag events
-   */
-  // const draggables = document.querySelectorAll(".dialog-wrapper");
-  // let isDragging = false;
-  // let startX, startY, initialX, initialY, currentDraggable;
-  // const body = document.querySelector('body');
-  // const preventDefault = (e) => e.preventDefault();
-
-  // const findDraggable = (element) => {
-  //   // allow dialog to be draggable only when in `zoomin` state
-  //   while(element && !element.classList.contains('dialog-wrapper')) {
-  //     element = element.parentElement;
-  //   }
-  //   return element;
-  // };
-
-  // const onMouseDown = (e) => {
-  //   currentDraggable = findDraggable(e.target);
-  //   isDragging = true;
-  //   startX = e.clientX;
-  //   startY = e.clientY;
-  //   initialX = currentDraggable.offsetLeft;
-  //   initialY = currentDraggable.offsetTop;
-  //   currentDraggable.style.cursor = 'grabbing';
-
-  //   document.addEventListener('mousemove', onMouseMove);
-  //   document.addEventListener('mouseup', onMouseUp);
-  //   document.addEventListener('scroll', preventDefault, { passive: false });
-  // }
-
-  // const onMouseMove = (e) => {
-  //   if(!isDragging) return;
-  //   const dx = e.clientX - startX;
-  //   const dy = e.clientY - startY;
-  //   currentDraggable.style.left = `${initialX + dx}px`;
-  //   currentDraggable.style.top = `${initialY + dy}px`;
-  // };
-
-  // const onMouseUp = () => {
-  //   isDragging = false;
-  //   currentDraggable.style.cursor = 'move';
-
-  //   document.removeEventListener('mousemove', onMouseMove);
-  //   document.removeEventListener('mouseup', onMouseUp);
-  //   document.removeEventListener('scroll', preventDefault);
-  // }
-
-  // for touch devices
-  // const onTouchStart = (e) => {
-  //   currentDraggable = findDraggable(e.target);
-  //   isDragging = true;
-  //   const touch = e.touches[0];
-  //   startX = touch.clientX;
-  //   startY = touch.clientY;
-  //   initialX = currentDraggable.offsetLeft;
-  //   initialY = currentDraggable.offsetTop;
-
-  //   document.addEventListener('touchmove', onTouchMove, { passive: false });
-  //   document.addEventListener('touchend', onTouchEnd);
-  //   document.addEventListener('scroll', preventDefault, { passive: false });
-  // };
-
-  // const onTouchMove = (e) => {
-  //   if(!isDragging) return;
-  //   const touch = e.touches[0];
-  //   const dx = touch.clientX - startX;
-  //   const dy = touch.clientY - startY;
-  //   currentDraggable.style.left = `${initialX + dx}px`;
-  //   currentDraggable.style.top = `${initialY + dy}px`;
-  //   e.preventDefault(); // Prevent scrolling while dragging
-  // };
-
-  // const onTouchEnd = () => {
-  //   isDragging = false;
-  //   document.removeEventListener('touchmove', onTouchMove);
-  //   document.removeEventListener('touchend', onTouchEnd);
-  //   document.removeEventListener('scroll', preventDefault);
-  // };
-
-  // // add the events
-  // draggables.forEach((draggable) => {
-  //   draggable.addEventListener('mousedown', onMouseDown);
-  //   draggable.addEventListener('touchstart', onTouchStart, { passive: false });
-  // })
-
-  /**
-   * Utility
-   * Given a dialog id, unhide the dialog with that id
-   * This is a one time function
-   */
-  // function show_dialog(id, left, top) {
-  //   const dialog = document.getElementById(id)
-    
-  //   if(dialog.classList.contains('invisible')) {
-  //     dialog.classList.remove('invisible')
-  //     dialog.classList.add('reveal')
-  //     dialog.classList.add('zoomout')
-  //     dialog.style.top = `${top}px`;
-  //     dialog.style.left = `${left}px`;
-  //   }
-  // }
-
-
+  
   /**
    * Utility
    * scroll the page down by `y` pixels vertically
