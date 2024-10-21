@@ -1,5 +1,5 @@
 // maintaining a story map, associating the keyword to the set of stories to open
-const story_map = {
+const story_data = {
   0: {'index': '0', 'type': 'positive', 'year': '2008', 'content': 'The invasion of Afghanistan was justified in the name of women\'s rights - Laura Bush in her statement, "the brutal oppression of women," calling this oppression "a central goal of the terrorists" with whom the United States was now at war.'},
   1: {'index': '1', 'type': 'positive', 'year': '2008', 'content': 'The 2004 inquiry led to the establishment of the Department of Defense Sexual Assault Prevention and Response Office (SAPRO). In addition to serving as a central point for training, resources, and implementation of policy within each branch of the armed services, SAPRO tracks reports of sexual assault in each year and releases results from a biannual survey that includes a measure to estimate how many service members experienced sexual assault in a given year.'},
   2: {'index': '2', 'type': 'positive', 'year': '2008', 'content': '<iframe width="100%" src="https://www.youtube.com/embed/fUmP281en24?si=Z9DHz3ivvEc8dfYF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe>'},
@@ -23,41 +23,40 @@ const story_map = {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const closeDrawerBtn = document.getElementById('closeDrawer');
+  const btn_drawer_close = document.getElementById('closeDrawer');
   const drawer = document.getElementById('drawer');
-  closeDrawerBtn.addEventListener('click', closeDrawer);
-  const story_status = document.querySelector('.drawer .drawer-head .status');
-  let sel_story_index = 0
-  let sel_story_count = 1
+  btn_drawer_close.addEventListener('click', close_drawer);
+  const carousel_next = document.querySelector('.drawer .drawer-head .nxt');
+  const carousel_prev = document.querySelector('.drawer .drawer-head .prev');
 
-  function closeDrawer() {
+  function close_drawer() {
     drawer.classList.remove('open');
+    carousel_prev.removeEventListener('click', () => { return; });
+    carousel_next.removeEventListener('click', () => { return; });
   }
 
-  function select_story(story_index) {
-    const stories_div = document.querySelectorAll('.carousel-item')
-    const curr_story_div = document.querySelector('.carousel-item.active')
-    curr_story_div.classList.remove('active')
-    stories_div[story_index].classList.add('active')
-    story_status.innerHTML = `Story ${story_index + 1} of ${stories_div.length}`;
-  }
+  /**
+   * 
+   * @param {arr} stories
+   * Given an array of story objects, load the stories into the drawer
+   */
+  function load_drawer(stories) {
+    let sel_story_index = 0
+    let sel_story_count = stories.length
+    const story_status = document.querySelector('.drawer .drawer-head .status');
 
-  // given an array of story ids, show all stories in drawer
-  function openDrawer(stories) {
-
-    // retrieve story data
-    const sel_story_objs = stories.map(index => story_map[index]);
-    sel_story_count = sel_story_objs.length;
-    story_status.innerHTML = `Story 1 of ${sel_story_count}`;
+    // open the drawer
+    drawer.classList.add('open')
     
-    console.log(sel_story_count, sel_story_objs);
+    // set the story status
+    set_status(sel_story_index + 1, sel_story_count);
     
     // load story into the dialog
     const drawer_content = document.querySelector('.drawer .drawer-content');
     drawer_content.innerHTML = '';
     const story_content = document.createElement('div');
 
-    sel_story_objs.forEach((story, index) => {
+    stories.forEach((story, index) => {
       const carouselItem = document.createElement('div')
       carouselItem.classList.add('carousel-item')
       if(index == 0) carouselItem.classList.add('active')
@@ -67,6 +66,40 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       drawer_content.appendChild(carouselItem)
     });
+
+    function set_status(curr = 1, total = 1) {
+      story_status.innerHTML = `Story ${curr} of ${total}`;
+    }
+
+    // show the selected story in the carousel
+    function show_story(story_index) {
+      const stories_div = document.querySelectorAll('.carousel-item')
+      const curr_story_div = document.querySelector('.carousel-item.active')
+      curr_story_div.classList.remove('active')
+      stories_div[story_index].classList.add('active')
+      // story_status.innerHTML = `Story ${story_index + 1} of ${stories_div.length}`;
+      set_status(story_index + 1, sel_story_count);
+    }
+
+    // navigate to previous story on the carousel
+    carousel_prev.addEventListener('click', (e) => {
+      if(sel_story_index > 0) {
+        sel_story_index--;
+      } else {
+        sel_story_index = sel_story_count - 1;
+      }
+      show_story(sel_story_index);
+    })
+
+    // navigate to next story on the carousel
+    carousel_next.addEventListener('click', () => {
+      if(sel_story_index < sel_story_count - 1) {
+        sel_story_index++;
+      } else {
+        sel_story_index = 0;
+      }
+      show_story(sel_story_index);
+    })
   }
 
   // on loading the page, show section 0 (first section)
@@ -95,13 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
       // check if the link clicked is for dialog stories
       if(anchor.classList.contains('link-for-section')) {
         // close existing drawer
-        closeDrawer()
+        close_drawer()
+        const dialogIDs = anchor.dataset.dialogs.split(' ');
 
-        // get associated dialog IDs to highlight
-        const dialogIDs = anchor.dataset.dialogs.split(' ')
-
-        drawer.classList.add('open');
-        openDrawer(dialogIDs)
+        // get story objs from data
+        const sel_story_objs = dialogIDs.map(index => story_data[index]);
+        load_drawer(sel_story_objs);
       }
 
       if(anchor.classList.contains('expand-collapse')) {
@@ -109,23 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    if(event.target.classList.contains('prev')) {
-      if(sel_story_index > 0) {
-        sel_story_index--;
-      } else {
-        sel_story_index = sel_story_count - 1;
-      }
-      select_story(sel_story_index);
-    }
-
-    if(event.target.classList.contains('nxt')) {
-      if(sel_story_index < sel_story_count - 1) {
-        sel_story_index++;
-      } else {
-        sel_story_index = 0;
-      }
-      select_story(sel_story_index);
-    }
+    
       
   })
 
