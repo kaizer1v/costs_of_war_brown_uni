@@ -2,7 +2,7 @@
 /* Imports */
 /* ----- */
 @import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Newsreader:opsz@6..72&display=swap');
 
 /* ----- */
 /* Base */
@@ -16,11 +16,14 @@
   --red: #EF4748;
   --white: #F8F5ED;
   --grey: #ccc;
+  --yellow: #fff7c4;
   --black: rgb(43, 40, 40);
+  --font: "Eczar", "Times New Roman", "Georgia", serif;
+  --news-font: "Newsreader", serif;
 }
 
 body {
-  font-family: "Eczar", "Times New Roman", "Georgia", serif;
+  font-family: var(--font);
   color: var(--basefontcolour);
   background-repeat: round;
   background-attachment: fixed;
@@ -92,11 +95,11 @@ section {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: var(--grey);
+    background-color: var(--yellow);
     border-bottom: 1px solid #ccc;
   }
     .drawer-head .title {
-      font-size: 1rem;
+      font-size: 1.3rem;
       font-weight: bold;
       float: left;
     }
@@ -106,18 +109,23 @@ section {
       float: right;
     }
     .drawer-head .nav {
-      font-size: 1rem !important;
+      font-size: 1.3rem !important;
     }
   .drawer-content {
-    font-size: 2rem;
+    font-family: var(--news-font);
+    font-size: 1.5rem;
+    line-height: 1.8;
   }
     .drawer-content span { font-size: 1rem; }
   
   .drawer-foot { float: right }
 
   button {
-    border: 1px solid var(--black);
+    font-family: var(--font);
+    color: var(--basefontcolour);
+    border: 1px solid var(--basefontcolour);
     padding: 0.5rem;
+    font-size: 2rem;
     background: none;
     cursor: pointer;
   }
@@ -137,8 +145,8 @@ section {
   border-bottom: none;
 }
 
-span.nav span { cursor: pointer; }
-span.nav span:hover { font-weight: bold; color: var(--black); }
+span.nav span { cursor: pointer; opacity: 0.4; }
+span.nav span:hover { font-weight: bold; color: var(--black); opacity: 1; }
 
 /* ----- */
 /* Text highlights */
@@ -149,11 +157,10 @@ a {
   display: inline-block;
   font-size: var(--basefontsize);
 }
-a:after {
+a.p, a.n, a.e, a.m {
   margin: 0 1rem;
   padding: 0 1rem;
-}
-a.p, a.n, a.e, a.m {
+  line-height: 1.3;
   border-radius: calc(.1 * var(--basefontsize));
   cursor: pointer;
 }
@@ -161,6 +168,8 @@ a.p, a.n, a.e {
   padding: 0.2rem 0.5rem;
   cursor: pointer;
 }
+
+sub { font-size: 1rem; }
 
 /* positive */
 a.p { background-color: var(--green); }

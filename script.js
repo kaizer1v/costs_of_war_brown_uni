@@ -1,36 +1,36 @@
 // maintaining a story map, associating the keyword to the set of stories to open
 const story_data = {
-  0: {'index': '0', 'type': 'positive', 'year': '2008', 'content': 'The invasion of Afghanistan was justified in the name of women\'s rights - Laura Bush in her statement, "the brutal oppression of women," calling this oppression "a central goal of the terrorists" with whom the United States was now at war.'},
-  1: {'index': '1', 'type': 'positive', 'year': '2008', 'content': 'The 2004 inquiry led to the establishment of the Department of Defense Sexual Assault Prevention and Response Office (SAPRO). In addition to serving as a central point for training, resources, and implementation of policy within each branch of the armed services, SAPRO tracks reports of sexual assault in each year and releases results from a biannual survey that includes a measure to estimate how many service members experienced sexual assault in a given year.'},
-  2: {'index': '2', 'type': 'positive', 'year': '2008', 'content': '<iframe width="100%" src="https://www.youtube.com/embed/fUmP281en24?si=Z9DHz3ivvEc8dfYF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe>'},
-  3: {'index': '3', 'type': 'positive', 'year': '2008', 'content': 'Beth was a logistics officer volunteerly deployed in Afghanisthan on a female engagement team (FET). Her position as a woman within the Green Barrett team was "an invaluable tool" when it came to collecting information from Afghan women about sympathetic residents.'},
-  4: {'index': '4', 'type': 'positive', 'year': '2008', 'content': 'Edith, a young Hispanic woman from a poor background, was deployed as a supply clerk. She saw the army as a more meritocratic workplace than the civilian jobs in the US South where she always felt looked down upon. '},
-  5: {'index': '6', 'type': 'positive', 'year': 'some year', 'content': 'lorem ipsum doler sit amet'},
-  6: {'index': '5', 'type': 'positive', 'year': '2010', 'content': 'The 2010 reforms opened access for veterans (like Edith) who were otherwise denied healthcare, now to be able to make a connection by allowing deployment to a combat zone in any capacity not just combat roles to serve in place of what was before a requirement to prove a specific "event" caused one\'s PTSD.'},
-  7: {'index': '7', 'type': 'positive', 'year': '2010', 'content': '<p>However, the reforms did not extend to PTSD claims in which the cause of PTSD is sexual assault.</p><p>When Edith finally did seek mental health services at the VA, the clinician did not believe that she had been in the sort of combat she described. </p>'},
-  8: {'index': '8', 'type': 'positive', 'year': '2010', 'content': 'Veteran advocacy groups continue to note in documentation as recent as 2022 the persistent myth among medical service providers that "women do not serve in combat." This translates into higher denial rates of post-traumatic stress disorder (PTSD) diagnosis for women and is thus a barrier to accessing treatment and services.'},
-  9: {'index': '9', 'type': 'positive', 'year': '2010', 'content': 'A full 100 percent of households headed by women in Afghanistan went hungry in 2022, including an estimated 2 million widows.'},
-  10: {'index': '10', 'type': 'positive', 'year': '2010', 'content': 'The RAND study also found that 10 percent of active-duty service members experienced some form of discrimination that violates the military\'s own equal opportunity program, including sexual harassment, hostile work environment, sexual quid pro quo, or gender-based derogatory comments or mistreatment (26 percent of women and 7.4 percent of men, only 0.01 percent of which were reported.)'},
-  11: {'index': '11', 'type': 'positive', 'year': '2010', 'content': 'Human Rights Watch published a report in which it found many victims of sexual assault faced fear of retaliation given that "military service members who reported retaliation were 12 times more likely to suffer retaliation for doing so than to see their offender, if a service member, convicted for a sex offense." The report warned that any gains in reporting would be lost if victims who report their assaults continued to experience retaliation. Sadly, this seems to be the exact pattern that played out over the following 5-6 years, with reporting rates falling gradually after 2016 to 30% in 2018 and more drastically to 20% in 2021'},
-  12: {'index': '12', 'type': 'positive', 'year': '2018', 'content': '<p>In 2018, sexual assault prevalence increased by 44 percent among women. More than 2,000 Service members were the victims of sexual assault that year (13,000 women and 7,500 men).</p><p>Fewer than 8,000 per year reported that assault, according to the Department\'s own annual surveys. The sexual harassment numbers are bleaker, with about one in every four active duty women reporting experiences of sexual harassment. Yet DoD received only 1,781 reports of sexual harassment in FY20.</p>'},
-  13: {'index': '13', 'type': 'positive', 'year': '2010', 'content': 'The body of Sgt. Elder Fernandes, age 23, was found hanging from a tree outside of the same Fort Hood installation. Fernandes killed himself after he was sexually assaulted by his sergeant, reported the offense, and was retaliated against instead of believed or assisted.'},
-  14: {'index': '14', 'type': 'positive', 'year': '2010', 'content': 'The 2022 report (which gives a snapshot of numbers from 2021) was especially concerning in that it showed that "not only is unwanted sexual contact rising, but fewer people are opting to report it, and fewer perpetrators are being legally punished."'},
-  15: {'index': '15', 'type': 'positive', 'year': '2010', 'content': 'The "I am Vanessa Guillen Act" (Military Justice Improvement Prevention Act) represents a meaningful shift to remove military commanders from prosecuting military sexual assault, instead using a special council.'},
-  16: {'index': '16', 'type': 'positive', 'year': '2010', 'content': 'Pvt. Ana Fernanda Basaldua Ruiz was found dead, also at Fort Hood, in March 2023. Basaldua had also told her family she was being sexually harassed by a superior before her death.'},
-  17: {'index': '17', 'type': 'positive', 'year': '2010', 'content': 'NDAA removed important elements of the Act that had passed in the Senate, which would have taken military commanders out of the chain of command and judicial procedures if their subordinate is accused of sexual harassment or assault...'},
-  18: {'index': '18', 'type': 'positive', 'year': '2010', 'content': '... this meant that while including important reforms such as making sexual harassment a crime under the UCMJ, the 2022 protections still allowed commanders to choose juries and witnesses, grant or deny witness immunity, and offer their subordinates the option of separating from the military instead of facing justice.'},
+  0: {'index': '0', 'type': 'neutral', 'year': '2008', 'trigger': 'said', 'content': 'The invasion of Afghanistan was justified in the name of women\'s rights - Laura Bush in her statement, "the brutal oppression of women," calling this oppression "a central goal of the terrorists" with whom the United States was now at war.'},
+  1: {'index': '1', 'type': 'positive', 'year': '2008', 'trigger': 'tried', 'content': 'The 2004 inquiry led to the establishment of the Department of Defense Sexual Assault Prevention and Response Office (SAPRO). In addition to serving as a central point for training, resources, and implementation of policy within each branch of the armed services, SAPRO tracks reports of sexual assault in each year and releases results from a biannual survey that includes a measure to estimate how many service members experienced sexual assault in a given year.'},
+  2: {'index': '2', 'type': 'negative', 'year': '2008', 'trigger': 'didnt', 'content': '<iframe width="100%" src="https://www.youtube.com/embed/fUmP281en24?si=Z9DHz3ivvEc8dfYF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe>'},
+  3: {'index': '3', 'type': 'positive', 'year': '2008', 'trigger': 'Afghanisthan', 'content': 'Beth was a logistics officer volunteerly deployed in Afghanisthan on a female engagement team (FET). Her position as a woman within the Green Barrett team was "an invaluable tool" when it came to collecting information from Afghan women about sympathetic residents.'},
+  4: {'index': '4', 'type': 'positive', 'year': '2008', 'trigger': 'Afghanisthan', 'content': 'Edith, a young Hispanic woman from a poor background, was deployed as a supply clerk. She saw the army as a more meritocratic workplace than the civilian jobs in the US South where she always felt looked down upon. '},
+  5: {'index': '6', 'type': 'positive', 'year': 'some year', 'trigger': 'greater role', 'content': 'lorem ipsum doler sit amet'},
+  6: {'index': '5', 'type': 'positive', 'year': '2010', 'trigger': 'greater role', 'content': 'The 2010 reforms opened access for veterans (like Edith) who were otherwise denied healthcare, now to be able to make a connection by allowing deployment to a combat zone in any capacity not just combat roles to serve in place of what was before a requirement to prove a specific "event" caused one\'s PTSD.'},
+  7: {'index': '7', 'type': 'negative', 'year': '2010', 'trigger': 'tried again', 'content': '<p>However, the reforms did not extend to PTSD claims in which the cause of PTSD is sexual assault.</p><p>When Edith finally did seek mental health services at the VA, the clinician did not believe that she had been in the sort of combat she described. </p>'},
+  8: {'index': '8', 'type': 'negative', 'year': '2010', 'trigger': 'still didnt', 'content': 'Veteran advocacy groups continue to note in documentation as recent as 2022 the persistent myth among medical service providers that "women do not serve in combat." This translates into higher denial rates of post-traumatic stress disorder (PTSD) diagnosis for women and is thus a barrier to accessing treatment and services.'},
+  9: {'index': '9', 'type': 'negative', 'year': '2010', 'trigger': 'worsened', 'content': 'A full 100 percent of households headed by women in Afghanistan went hungry in 2022, including an estimated 2 million widows.'},
+  10: {'index': '10', 'type': 'negative', 'year': '2010', 'trigger': 'worsened', 'content': 'The RAND study also found that 10 percent of active-duty service members experienced some form of discrimination that violates the military\'s own equal opportunity program, including sexual harassment, hostile work environment, sexual quid pro quo, or gender-based derogatory comments or mistreatment (26 percent of women and 7.4 percent of men, only 0.01 percent of which were reported.)'},
+  11: {'index': '11', 'type': 'negative', 'year': '2010', 'trigger': 'worsened', 'content': 'Human Rights Watch published a report in which it found many victims of sexual assault faced fear of retaliation given that "military service members who reported retaliation were 12 times more likely to suffer retaliation for doing so than to see their offender, if a service member, convicted for a sex offense." The report warned that any gains in reporting would be lost if victims who report their assaults continued to experience retaliation. Sadly, this seems to be the exact pattern that played out over the following 5-6 years, with reporting rates falling gradually after 2016 to 30% in 2018 and more drastically to 20% in 2021'},
+  12: {'index': '12', 'type': 'negative', 'year': '2018', 'trigger': 'worsened', 'content': '<p>In 2018, sexual assault prevalence increased by 44 percent among women. More than 2,000 Service members were the victims of sexual assault that year (13,000 women and 7,500 men).</p><p>Fewer than 8,000 per year reported that assault, according to the Department\'s own annual surveys. The sexual harassment numbers are bleaker, with about one in every four active duty women reporting experiences of sexual harassment. Yet DoD received only 1,781 reports of sexual harassment in FY20.</p>'},
+  13: {'index': '13', 'type': 'negative', 'year': '2010', 'trigger': 'worsened', 'content': 'The body of Sgt. Elder Fernandes, age 23, was found hanging from a tree outside of the same Fort Hood installation. Fernandes killed himself after he was sexually assaulted by his sergeant, reported the offense, and was retaliated against instead of believed or assisted.'},
+  14: {'index': '14', 'type': 'negative', 'year': '2010', 'trigger': 'worsened', 'content': 'The 2022 report (which gives a snapshot of numbers from 2021) was especially concerning in that it showed that "not only is unwanted sexual contact rising, but fewer people are opting to report it, and fewer perpetrators are being legally punished."'},
+  15: {'index': '15', 'type': 'positive', 'year': '2010', 'trigger': 'pretending', 'content': 'The "I am Vanessa Guillen Act" (Military Justice Improvement Prevention Act) represents a meaningful shift to remove military commanders from prosecuting military sexual assault, instead using a special council.'},
+  16: {'index': '16', 'type': 'negative', 'year': '2010', 'trigger': 'didnt work', 'content': 'Pvt. Ana Fernanda Basaldua Ruiz was found dead, also at Fort Hood, in March 2023. Basaldua had also told her family she was being sexually harassed by a superior before her death.'},
+  17: {'index': '17', 'type': 'negative', 'year': '2010', 'trigger': 'didnt work', 'content': 'NDAA removed important elements of the Act that had passed in the Senate, which would have taken military commanders out of the chain of command and judicial procedures if their subordinate is accused of sexual harassment or assault...'},
+  18: {'index': '18', 'type': 'positive', 'year': '2010', 'trigger': '', 'content': '... this meant that while including important reforms such as making sexual harassment a crime under the UCMJ, the 2022 protections still allowed commanders to choose juries and witnesses, grant or deny witness immunity, and offer their subordinates the option of separating from the military instead of facing justice.'},
 }
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const btn_drawer_close = document.getElementById('closeDrawer');
+  const btn_drawer_close = document.getElementById('close_drawer');
   const drawer = document.getElementById('drawer');
   btn_drawer_close.addEventListener('click', close_drawer);
   const carousel_next = document.querySelector('.drawer .drawer-head .nxt');
   const carousel_prev = document.querySelector('.drawer .drawer-head .prev');
 
   function close_drawer() {
-    drawer.classList.remove('open');
+    drawer.classList.remove('open', 'positive', 'negative', 'neutral');
     carousel_prev.removeEventListener('click', () => { return; });
     carousel_next.removeEventListener('click', () => { return; });
   }
@@ -41,14 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
    * Given an array of story objects, load the stories into the drawer
    */
   function load_drawer(stories) {
-    let sel_story_index = 0
-    let sel_story_count = stories.length
+    let sel_story_index = 0               // maintain counter of curr story in carousel view
+    let sel_story_count = stories.length || 1 // maintain total stories to show in carousel view
+    const story_type = stories[0]['type']
     const story_status = document.querySelector('.drawer .drawer-head .status');
 
     // open the drawer
-    drawer.classList.add('open')
+    drawer.classList.add('open', story_type);
     
-    // set the story status
+    // set the story status (default)
     set_status(sel_story_index + 1, sel_story_count);
     
     // load story into the dialog
@@ -67,7 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
       drawer_content.appendChild(carouselItem)
     });
 
-    function set_status(curr = 1, total = 1) {
+    // set the status for the carousel
+    function set_status(curr = 1, total) {
       story_status.innerHTML = `Story ${curr} of ${total}`;
     }
 
@@ -77,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const curr_story_div = document.querySelector('.carousel-item.active')
       curr_story_div.classList.remove('active')
       stories_div[story_index].classList.add('active')
-      // story_status.innerHTML = `Story ${story_index + 1} of ${stories_div.length}`;
       set_status(story_index + 1, sel_story_count);
     }
 
@@ -139,10 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(anchor.classList.contains('expand-collapse')) {
         anchor.parentElement.parentElement.classList.replace('zoomin', 'zoomout')
       }
-    }
-
-    
-      
+    }  
   })
 
 
