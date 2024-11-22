@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function typewriter(elem, i = 0) {
       if(i === 0) { elem.innerHTML = ''; to_print = ''; }
-  
+
       // print individual characters
       to_print += txt[i];
       
