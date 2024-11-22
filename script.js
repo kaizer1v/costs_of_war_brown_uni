@@ -28,8 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
   btn_drawer_close.addEventListener('click', close_drawer);
   const carousel_next = document.querySelector('.drawer .drawer-head .nxt');
   const carousel_prev = document.querySelector('.drawer .drawer-head .prev');
+  const slide_up = new Audio('./sound-slide-up.mp3');
+  const slide_down = new Audio('./sound-slide-down.mp3');
 
   function close_drawer() {
+    slide_down.play();
     drawer.classList.remove('open', 'positive', 'negative', 'neutral');
     carousel_prev.removeEventListener('click', () => { return; });
     carousel_next.removeEventListener('click', () => { return; });
@@ -48,6 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // open the drawer
     drawer.classList.add('open', story_type);
+
+    // play open sound
+    slide_up.play();
     
     // set the story status (default)
     set_status(sel_story_index + 1, sel_story_count);
@@ -140,14 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if(anchor.classList.contains('expand-collapse')) {
         anchor.parentElement.parentElement.classList.replace('zoomin', 'zoomout')
       }
-    }  
+    }
   })
 
 
 
   // given a speed, produces typewriting effect on text
   function write(config) {
-    const typingSpeed = 1;
+    const typingSpeed = 60;
     const parent = document.querySelector(config.section)
     const target = document.querySelector(`${config.section} > div`)
     const nextSection = document.getElementById(config.next_section)
