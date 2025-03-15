@@ -34,29 +34,35 @@ document.addEventListener('DOMContentLoaded', () => {
   function close_drawer() {
     slide_down.play();
     drawer.classList.remove('open', 'positive', 'negative', 'neutral');
-    carousel_prev.removeEventListener('click', () => { return; });
-    carousel_next.removeEventListener('click', () => { return; });
+    // carousel_prev.removeEventListener('click', () => { return; });
+    // carousel_next.removeEventListener('click', () => { return; });
+
+    // enable scroll on the body
+    document.body.style.overflow = 'auto';
   }
 
   /**
-   * 
-   * @param {arr} stories
    * Given an array of story objects, load the stories into the drawer
+   * @param {arr} stories
+   * 
    */
   function load_drawer(stories) {
     let sel_story_index = 0               // maintain counter of curr story in carousel view
     let sel_story_count = stories.length || 1 // maintain total stories to show in carousel view
     const story_type = stories[0]['type']
-    const story_status = document.querySelector('.drawer .drawer-head .status');
+    // const story_status = document.querySelector('.drawer .drawer-head .status');
 
     // open the drawer
     drawer.classList.add('open', story_type);
+
+    // disable scroll on the body
+    document.body.style.overflow = 'hidden';
 
     // play open sound
     slide_up.play();
     
     // set the story status (default)
-    set_status(sel_story_index + 1, sel_story_count);
+    // set_status(sel_story_index + 1, sel_story_count);
     
     // load story into the dialog
     const drawer_content = document.querySelector('.drawer .drawer-content');
@@ -66,7 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
     stories.forEach((story, index) => {
       const carouselItem = document.createElement('div')
       carouselItem.classList.add('carousel-item')
-      if(index == 0) carouselItem.classList.add('active')
+      // if(index == 0) carouselItem.classList.add('active')
+      carouselItem.classList.add('active')
       carouselItem.innerHTML = `
         <span>${story.year}</span>
         <p>${story.content}</p>
@@ -85,28 +92,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const curr_story_div = document.querySelector('.carousel-item.active')
       curr_story_div.classList.remove('active')
       stories_div[story_index].classList.add('active')
-      set_status(story_index + 1, sel_story_count);
+      // set_status(story_index + 1, sel_story_count);
     }
 
     // navigate to previous story on the carousel
-    carousel_prev.addEventListener('click', (e) => {
-      if(sel_story_index > 0) {
-        sel_story_index--;
-      } else {
-        sel_story_index = sel_story_count - 1;
-      }
-      show_story(sel_story_index);
-    })
+    // carousel_prev.addEventListener('click', (e) => {
+    //   if(sel_story_index > 0) {
+    //     sel_story_index--;
+    //   } else {
+    //     sel_story_index = sel_story_count - 1;
+    //   }
+    //   show_story(sel_story_index);
+    // })
 
     // navigate to next story on the carousel
-    carousel_next.addEventListener('click', () => {
-      if(sel_story_index < sel_story_count - 1) {
-        sel_story_index++;
-      } else {
-        sel_story_index = 0;
-      }
-      show_story(sel_story_index);
-    })
+    // carousel_next.addEventListener('click', () => {
+    //   if(sel_story_index < sel_story_count - 1) {
+    //     sel_story_index++;
+    //   } else {
+    //     sel_story_index = 0;
+    //   }
+    //   show_story(sel_story_index);
+    // })
   }
 
   // on loading the page, show section 0 (first section)
@@ -153,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // given a speed, produces typewriting effect on text
   function write(config) {
-    const typingSpeed = 60;
+    const typingSpeed = 10;
     const parent = document.querySelector(config.section)
     const target = document.querySelector(`${config.section} > div`)
     const nextSection = document.getElementById(config.next_section)
