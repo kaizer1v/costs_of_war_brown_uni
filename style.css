@@ -199,7 +199,10 @@ a.e { background-color: var(--grey); }
 
 /* carousel items */
 .carousel-item { display: none; }
-.carousel-item.active { display: block; }
+.carousel-item.active {
+  display: block;
+  border-top: 1px solid var(--basefontcolour)
+}
 
 /* ----- */
 /* Utility Classes */
