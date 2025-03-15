@@ -26,16 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const btn_drawer_close = document.getElementById('close_drawer');
   const drawer = document.getElementById('drawer');
   btn_drawer_close.addEventListener('click', close_drawer);
-  const carousel_next = document.querySelector('.drawer .drawer-head .nxt');
-  const carousel_prev = document.querySelector('.drawer .drawer-head .prev');
   const slide_up = new Audio('./sound-slide-up.mp3');
   const slide_down = new Audio('./sound-slide-down.mp3');
 
   function close_drawer() {
     slide_down.play();
     drawer.classList.remove('open', 'positive', 'negative', 'neutral');
-    // carousel_prev.removeEventListener('click', () => { return; });
-    // carousel_next.removeEventListener('click', () => { return; });
 
     // enable scroll on the body
     document.body.style.overflow = 'auto';
@@ -47,10 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * 
    */
   function load_drawer(stories) {
-    let sel_story_index = 0               // maintain counter of curr story in carousel view
-    let sel_story_count = stories.length || 1 // maintain total stories to show in carousel view
     const story_type = stories[0]['type']
-    // const story_status = document.querySelector('.drawer .drawer-head .status');
 
     // open the drawer
     drawer.classList.add('open', story_type);
@@ -60,10 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // play open sound
     slide_up.play();
-    
-    // set the story status (default)
-    // set_status(sel_story_index + 1, sel_story_count);
-    
+        
     // load story into the dialog
     const drawer_content = document.querySelector('.drawer .drawer-content');
     drawer_content.innerHTML = '';
@@ -81,39 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
       drawer_content.appendChild(carouselItem)
     });
 
-    // set the status for the carousel
-    function set_status(curr = 1, total) {
-      story_status.innerHTML = `Story ${curr} of ${total}`;
-    }
-
     // show the selected story in the carousel
     function show_story(story_index) {
       const stories_div = document.querySelectorAll('.carousel-item')
       const curr_story_div = document.querySelector('.carousel-item.active')
       curr_story_div.classList.remove('active')
       stories_div[story_index].classList.add('active')
-      // set_status(story_index + 1, sel_story_count);
     }
-
-    // navigate to previous story on the carousel
-    // carousel_prev.addEventListener('click', (e) => {
-    //   if(sel_story_index > 0) {
-    //     sel_story_index--;
-    //   } else {
-    //     sel_story_index = sel_story_count - 1;
-    //   }
-    //   show_story(sel_story_index);
-    // })
-
-    // navigate to next story on the carousel
-    // carousel_next.addEventListener('click', () => {
-    //   if(sel_story_index < sel_story_count - 1) {
-    //     sel_story_index++;
-    //   } else {
-    //     sel_story_index = 0;
-    //   }
-    //   show_story(sel_story_index);
-    // })
   }
 
   // on loading the page, show section 0 (first section)
@@ -160,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // given a speed, produces typewriting effect on text
   function write(config) {
-    const typingSpeed = 10;
+    const typingSpeed = 60;
     const parent = document.querySelector(config.section)
     const target = document.querySelector(`${config.section} > div`)
     const nextSection = document.getElementById(config.next_section)
@@ -244,4 +208,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-});
+
+  /***
+   * given a speed for scrolling, always scroll to the bottom
+   * of the page as the height grows
+   * 
+   * @param {number} speed - the speed at which to scroll (not sure if the speed actually works)
+   */
+  function alwaysBottom(speed = 10) {
+    function scrollStep() {
+      let newPosition = window.scrollY + speed
+
+      // Stop scrolling when reaching the bottom
+      if(newPosition >= document.body.scrollHeight - window.innerHeight) {
+        window.scrollTo(0, document.body.scrollHeight)
+        return
+      }
+      window.scrollTo(0, newPosition)
+      requestAnimationFrame(scrollStep)
+    }
+
+    requestAnimationFrame(scrollStep)
+  }
+
+  // observe changes in document's scrollHeight
+  const observer = new MutationObserver(() => { alwaysBottom(20) })
+  observer.observe(document.body, { childList: true, subtree: true, attributes: true })
+})
