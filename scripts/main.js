@@ -11,7 +11,7 @@ fetch('./data/stories.json')
     return response.json()
   })
   .then(data => {
-    // console.log('Fetched JSON:', data)
+    console.log('Fetched JSON:', data)
     render_stories(data)
   })
   .catch(error => { console.error('Error fetching JSON:', error) })
@@ -70,7 +70,7 @@ function render_stories(story_data) {
   function doSomethingForSection0() {
     write({
       section: '#story0',
-      next_section: 'for-1'
+      next_section: 'for-1',
     })
   }
 

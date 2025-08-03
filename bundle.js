@@ -2,17 +2,20 @@
  * given a configuration object, write the text in a typewriter effect
  * @param {Object} config - Configuration object for the typewriter effect
  * @param {string} config.section - CSS selector for the section to display
+ * @param {number} config.speed - Speed of typing effect in milliseconds (default: 60)
  * @param {string} config.next_section - ID of the next section to reveal
  */
 
 function write(config) {
-    const typingSpeed = 60;
+    const typingSpeed = config.speed || 60; // speed in milliseconds (default: 60)
     const parent = document.querySelector(config.section);
     const target = document.querySelector(`${config.section} > div`);
     const nextSection = document.getElementById(config.next_section);
     const txt = target.innerHTML.trim();
     let to_print = '';
     let dontprint = false, speed = typingSpeed;
+
+    console.log('writing', config.section, 'next:', config.next_section, 'target: ', target);
 
     parent.classList.remove('invisible');
     target.innerHTML = ''; // clear the text first
@@ -118,7 +121,7 @@ fetch('./data/stories.json')
     return response.json()
   })
   .then(data => {
-    // console.log('Fetched JSON:', data)
+    console.log('Fetched JSON:', data);
     render_stories(data);
   })
   .catch(error => { console.error('Error fetching JSON:', error); });
@@ -177,7 +180,7 @@ function render_stories(story_data) {
   function doSomethingForSection0() {
     write({
       section: '#story0',
-      next_section: 'for-1'
+      next_section: 'for-1',
     });
   }
 
