@@ -1,6 +1,8 @@
 /**
- * 
- * @param {*} config 
+ * given a configuration object, write the text in a typewriter effect
+ * @param {Object} config - Configuration object for the typewriter effect
+ * @param {string} config.section - CSS selector for the section to display
+ * @param {string} config.next_section - ID of the next section to reveal
  */
 
 function write(config) {
