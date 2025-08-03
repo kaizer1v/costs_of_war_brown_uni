@@ -47,6 +47,67 @@ function write(config) {
     typewriter(target);
   }
 
+class Drawer {
+  constructor(drawerSelector = '#drawer', closeBtnSelector = '#close_drawer') {
+    this.drawer = document.querySelector(drawerSelector);
+    this.drawerContent = this.drawer.querySelector('.drawer-content');
+    this.btnClose = document.querySelector(closeBtnSelector);
+    this.slideUp = new Audio('./assets/sound-slide-up.mp3');
+    this.slideDown = new Audio('./assets/sound-slide-down.mp3');
+
+    if (this.btnClose) {
+      this.btnClose.addEventListener('click', () => this.close());
+    }
+  }
+
+  /**
+   * Opens the drawer with story data
+   * @param {Array} stories - array of story objects
+   */
+  open(stories) {
+    const storyType = stories[0]['type'];
+
+    // Add classes
+    this.drawer.classList.add('open', storyType);
+    document.body.style.overflow = 'hidden';
+    this.slideUp.play();
+
+    // Clear content
+    this.drawerContent.innerHTML = '';
+
+    // Append stories
+    stories.forEach((story, index) => {
+      const item = document.createElement('div');
+      item.classList.add('carousel-item', 'active');
+      item.innerHTML = `
+        <span>${story.year}</span>
+        <p>${story.content}</p>
+      `;
+      this.drawerContent.appendChild(item);
+    });
+  }
+
+  /**
+   * Closes the drawer
+   */
+  close() {
+    this.slideDown.play();
+    this.drawer.classList.remove('open', 'positive', 'negative', 'neutral');
+    document.body.style.overflow = 'auto';
+  }
+
+  /**
+   * Replace currently shown story in the carousel (optional feature)
+   * @param {number} index - index of the story to show
+   */
+  showStory(index) {
+    const stories = this.drawerContent.querySelectorAll('.carousel-item');
+    const current = this.drawerContent.querySelector('.carousel-item.active');
+    if (current) current.classList.remove('active');
+    if (stories[index]) stories[index].classList.add('active');
+  }
+}
+
 /**
  * Fetch the JSON data from the file and render the stories
  * @returns {Promise<void>}
@@ -69,54 +130,8 @@ fetch('./data/stories.json')
  */
 function render_stories(story_data) {
 
-  const btn_drawer_close = document.getElementById('close_drawer');
-  const drawer = document.getElementById('drawer');
-  btn_drawer_close.addEventListener('click', close_drawer);
-  const slide_up = new Audio('./assets/sound-slide-up.mp3');
-  const slide_down = new Audio('./assets/sound-slide-down.mp3');
-
-  function close_drawer() {
-    slide_down.play();
-    drawer.classList.remove('open', 'positive', 'negative', 'neutral');
-
-    // enable scroll on the body
-    document.body.style.overflow = 'auto';
-  }
-
-  /**
-   * Given an array of story objects, load the stories into the drawer
-   * @param {arr} stories
-   * 
-   */
-  function load_drawer(stories) {
-    const story_type = stories[0]['type'];
-
-    // open the drawer
-    drawer.classList.add('open', story_type);
-
-    // disable scroll on the body
-    document.body.style.overflow = 'hidden';
-
-    // play open sound
-    slide_up.play();
-        
-    // load story into the dialog
-    const drawer_content = document.querySelector('.drawer .drawer-content');
-    drawer_content.innerHTML = '';
-    document.createElement('div');
-
-    stories.forEach((story, index) => {
-      const carouselItem = document.createElement('div');
-      carouselItem.classList.add('carousel-item');
-      // if(index == 0) carouselItem.classList.add('active')
-      carouselItem.classList.add('active');
-      carouselItem.innerHTML = `
-        <span>${story.year}</span>
-        <p>${story.content}</p>
-      `;
-      drawer_content.appendChild(carouselItem);
-    });
-  }
+  // initialise the drawer to show stories
+  const drawer = new Drawer();
 
   // on loading the page, show section 0 (first section)
   doSomethingForSection0();
@@ -144,12 +159,12 @@ function render_stories(story_data) {
       // check if the link clicked is for dialog stories
       if(anchor.classList.contains('link-for-section')) {
         // close existing drawer
-        close_drawer();
+        drawer.close();
         const dialogIDs = anchor.dataset.dialogs.split(' ');
 
         // get story objs from data
         const sel_story_objs = dialogIDs.map(index => story_data[index]);
-        load_drawer(sel_story_objs);
+        drawer.open(sel_story_objs);
       }
 
       if(anchor.classList.contains('expand-collapse')) {
@@ -188,6 +203,7 @@ function render_stories(story_data) {
     document.querySelector('#story3 > div');
     parent.classList.remove('invisible');
   }
+  
 
 
   /***

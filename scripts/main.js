@@ -1,5 +1,5 @@
 import { write } from './typewriter.js';
-
+import { Drawer } from './drawer.js';
 
 /**
  * Fetch the JSON data from the file and render the stories
@@ -23,62 +23,8 @@ fetch('./data/stories.json')
  */
 function render_stories(story_data) {
 
-  const btn_drawer_close = document.getElementById('close_drawer');
-  const drawer = document.getElementById('drawer');
-  btn_drawer_close.addEventListener('click', close_drawer);
-  const slide_up = new Audio('./assets/sound-slide-up.mp3');
-  const slide_down = new Audio('./assets/sound-slide-down.mp3');
-
-  function close_drawer() {
-    slide_down.play();
-    drawer.classList.remove('open', 'positive', 'negative', 'neutral');
-
-    // enable scroll on the body
-    document.body.style.overflow = 'auto';
-  }
-
-  /**
-   * Given an array of story objects, load the stories into the drawer
-   * @param {arr} stories
-   * 
-   */
-  function load_drawer(stories) {
-    const story_type = stories[0]['type']
-
-    // open the drawer
-    drawer.classList.add('open', story_type);
-
-    // disable scroll on the body
-    document.body.style.overflow = 'hidden';
-
-    // play open sound
-    slide_up.play();
-        
-    // load story into the dialog
-    const drawer_content = document.querySelector('.drawer .drawer-content');
-    drawer_content.innerHTML = '';
-    const story_content = document.createElement('div');
-
-    stories.forEach((story, index) => {
-      const carouselItem = document.createElement('div')
-      carouselItem.classList.add('carousel-item')
-      // if(index == 0) carouselItem.classList.add('active')
-      carouselItem.classList.add('active')
-      carouselItem.innerHTML = `
-        <span>${story.year}</span>
-        <p>${story.content}</p>
-      `;
-      drawer_content.appendChild(carouselItem)
-    });
-
-    // show the selected story in the carousel
-    function show_story(story_index) {
-      const stories_div = document.querySelectorAll('.carousel-item')
-      const curr_story_div = document.querySelector('.carousel-item.active')
-      curr_story_div.classList.remove('active')
-      stories_div[story_index].classList.add('active')
-    }
-  }
+  // initialise the drawer to show stories
+  const drawer = new Drawer()
 
   // on loading the page, show section 0 (first section)
   doSomethingForSection0()
@@ -106,12 +52,12 @@ function render_stories(story_data) {
       // check if the link clicked is for dialog stories
       if(anchor.classList.contains('link-for-section')) {
         // close existing drawer
-        close_drawer()
-        const dialogIDs = anchor.dataset.dialogs.split(' ');
+        drawer.close()
+        const dialogIDs = anchor.dataset.dialogs.split(' ')
 
         // get story objs from data
-        const sel_story_objs = dialogIDs.map(index => story_data[index]);
-        load_drawer(sel_story_objs);
+        const sel_story_objs = dialogIDs.map(index => story_data[index])
+        drawer.open(sel_story_objs)
       }
 
       if(anchor.classList.contains('expand-collapse')) {
@@ -151,17 +97,6 @@ function render_stories(story_data) {
     parent.classList.remove('invisible');
   }
   
-  /**
-   * Utility
-   * scroll the page down by `y` pixels vertically
-   */
-  function scrollDown(by=100) {
-    window.scrollBy({
-      top: by,
-      left: 0,
-      behavior: 'smooth' // Smooth scrolling
-    });
-  }
 
 
   /***
