@@ -1,4 +1,14 @@
-✅ The article fonts seem too small when reading on mobile
-  => ✅ might want to disable scrolling when the drawer is open
+# Costs of War
 
-✅ append each story in the same drawer as different sections
+A research paper collaboration with Brown university explaining America's true cost of war
+
+---
+
+## Instructions to run on local machine
+
+After cloning this repo, do the following on terminal
+
+```bash
+npm install
+npm run dev
+```
