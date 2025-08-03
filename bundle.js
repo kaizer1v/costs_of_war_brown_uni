@@ -181,7 +181,6 @@ function render_stories(story_data) {
     write({
       section: '#story0',
       next_section: 'for-1',
-      speed: 1
     });
   }
 
